@@ -105,7 +105,48 @@ EB Garamond, Libre Caslon Condensed, Mohave.
 `VITE_DEFAULT_SLUG` must be set per deployment — without it `src/lib/api.ts` falls back to
 `demo-envelop`, which is a *different* wedding and will render the wrong couple.
 
-## Next
+## Bands
 
-Frame 244, band by band, walking `frame244-zorder.json` in order. Build one band, screenshot,
-diff, then move on — the same loop the cover went through.
+`scripts/gen_band.py` generates `src/lib/bands/<band>.ts`, one placement table per band, and
+`BandArt` renders a table. Bands **overlap** in the design — hero's art runs to y 978 while
+quote starts at 709 — so a band's height is the distance to the *next* band's top, and `z`
+stays the **global** Figma child order. Every band shares one stacking context, which is what
+keeps cross-band layering correct after the split. Do not give a band `z-index`, or it becomes
+its own context and the global order stops working.
+
+### Off-frame nodes: occluded is not absent
+
+22 nodes report a box lying wholly outside the 375px frame. They are rotated, so their bounds
+are fiction, but Figma still exported pixels for them and most land back inside the frame as
+mirrored decorations. `gen_band.py` searches the full frame width for those (`rescue()`).
+
+When that search *fails*, the layer is either buried under later layers or genuinely absent —
+and `locate.py` cannot tell the two apart, because it scores over all of a layer's opaque
+pixels and a mostly-buried layer scores badly even where it belongs. Dropping every failure
+took the sheet from 8.97 to 13.43 mean abs delta. So a failed search falls back to the clip
+rule, and only `PAINTS_NOTHING` is dropped: two layers verified by eye to paint an artifact
+the render does not have (`2712:161` laid a dark moss mound across the Wedding Gift heading).
+**Add to that set only with a before/after delta that justifies it.**
+
+### Checking a band
+
+```sh
+npm run dev &                       # port 5176
+node scripts/shot.mjs 5176
+```
+
+Screenshot the running sheet and difference it against `.figma-tmp/exports244/frame244-full.png`.
+Scroll the **window**, not `.desktop-right-column` — that column only scrolls at >=768px, and
+below that the bands never reveal, which reads as a blank sheet rather than a scroll bug.
+
+Current state, mean abs delta per band:
+
+| band | delta | band | delta | band | delta |
+|---|---|---|---|---|---|
+| hero | 4.3 | bride | 6.5 | gift | 10.5 |
+| quote | 4.0 | countdown | 9.3 | rsvp | 3.3 |
+| invite | 4.0 | theday | 11.4 | wish | 11.6 |
+| groom | 7.2 | akad | 7.6 | gallery | 9.3 |
+| divider | 8.7 | resepsi | 18.5 | footer | 7.9 |
+
+Whole sheet **8.97**. Resepsi is the worst band and the obvious next thing to look at.

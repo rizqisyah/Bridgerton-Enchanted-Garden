@@ -37,6 +37,14 @@ SCALE = 2
 GOOD_ERR = 40.0  # locate.py's own threshold for "this is a real match"
 OUT_DIR = pathlib.Path("src/lib/bands")
 
+# Rotated nodes whose reported bounds are fiction AND which no position in the frame
+# matches. They are buried in the design, so drawing them anywhere paints an artifact
+# the render does not have -- 2712:161 put a dark moss mound across the Wedding Gift
+# heading. Every other off-frame node is merely occluded, which is not the same thing:
+# dropping those made the sheet measurably worse. Add to this list only with a
+# before/after delta that justifies it.
+PAINTS_NOTHING = {"2712:160", "2712:161"}
+
 
 def reconcile(pos, node_size, exp_size, frame_size):
     """Reconcile one axis of a Figma node against the size Figma actually exported."""
@@ -51,6 +59,51 @@ def reconcile(pos, node_size, exp_size, frame_size):
         if pos + node_size > frame_size:
             return frame_size - exp_size
     return round(pos)
+
+
+def rescue(path, hint_y, span=700, step=8):
+    """Search the whole frame width for a layer whose reported box is off-frame.
+
+    A node reported wholly outside the 375px frame is rotated, so its bounds are
+    fiction -- but Figma still exported pixels for it, which means it renders
+    SOMEWHERE. Most are mirrored decorations that land back inside the frame.
+    A few are buried under later layers and never show at all; those must be
+    dropped, or we paint something the design does not.
+
+    Returns (x, y, err) for the best position within +/-span of the reported y.
+    """
+    im = locate.load_asset(path)
+    pts = locate.opaque_points(im, 400)
+    if not pts:
+        return None
+    ref = Image.open(locate.REF).convert("RGB")
+    rp = ref.load()
+
+    def score(ox, oy):
+        return sum(
+            abs(rp[x + ox, y + oy][0] - r)
+            + abs(rp[x + ox, y + oy][1] - g)
+            + abs(rp[x + ox, y + oy][2] - b)
+            for x, y, (r, g, b) in pts
+        ) / len(pts)
+
+    y_lo = max(0, hint_y - span)
+    y_hi = min(ref.height - im.height, hint_y + span)
+    x_hi = ref.width - im.width
+    if y_hi < y_lo or x_hi < 0:
+        return None
+    best = min(
+        (score(ox, oy), ox, oy)
+        for oy in range(y_lo, y_hi + 1, step)
+        for ox in range(0, x_hi + 1, step)
+    )
+    err, bx, by = best
+    for oy in range(max(y_lo, by - step), min(y_hi, by + step) + 1):
+        for ox in range(max(0, bx - step), min(x_hi, bx + step) + 1):
+            sc = score(ox, oy)
+            if sc < err:
+                err, bx, by = sc, ox, oy
+    return bx, by, err
 
 
 def band_tops(children):
@@ -81,10 +134,13 @@ def main():
             print(f"!! no such band: {name}")
             continue
         top, height = spans[name]
-        rows, matched = [], 0
+        rows, matched, dropped = [], 0, []
 
         for c in children:
             if c["section"] != name:
+                continue
+            if c["id"] in PAINTS_NOTHING:
+                dropped.append(f"{c['id']} (z{c['z']}, buried in the design)")
                 continue
             a = assets.get(c["id"])
             if not a:
@@ -101,6 +157,20 @@ def main():
             if found and found[4] < GOOD_ERR:
                 x, y = found[0], found[1]
                 matched += 1
+            elif c["x"] >= FRAME_W or c["x"] + c["w"] <= 0:
+                # Reported wholly outside the frame: the bounds are fiction, so the
+                # render is the only authority. Match it or drop it.
+                hit = rescue(path, max(0, round(c["y"])))
+                if hit and hit[2] < GOOD_ERR:
+                    x, y = hit[0], hit[1]
+                    matched += 1
+                else:
+                    # A high error here means occluded OR absent -- locate.py cannot tell
+                    # them apart, and guessing "absent" and dropping the layer measurably
+                    # hurt the render. Fall through to the clip rule; only the layers in
+                    # PAINTS_NOTHING below are actually dropped.
+                    x = reconcile(c["x"], c["w"], w, FRAME_W)
+                    y = reconcile(c["y"], c["h"], h, FRAME_H)
             else:
                 x = reconcile(c["x"], c["w"], w, FRAME_W)
                 y = reconcile(c["y"], c["h"], h, FRAME_H)
@@ -140,7 +210,9 @@ export const LAYERS: BandLayer[] = [
 
 """
         (OUT_DIR / f"{name}.ts").write_text(header + body)
-        print(f"{name:10} y {top:5}..{top + height:5} h {height:5}  {len(rows):3} layers  {matched:3} template-matched")
+        print(f"{name:10} y {top:5}..{top + height:5} h {height:5}  {len(rows):3} layers  {matched:3} matched")
+        for d in dropped:
+            print(f"           dropped: {d}")
 
 
 if __name__ == "__main__":
