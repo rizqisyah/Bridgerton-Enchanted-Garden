@@ -5,7 +5,7 @@ import InviteBody from './components/invite/InviteBody.vue'
 import { usePreloadAssets } from './composables/usePreloadAssets'
 import { useWedding } from './composables/useWedding'
 
-const { guest, wedding, coupleNickname, quoteText, quoteVerse, refetch } = useWedding()
+const { guest, wedding, coupleNickname, quoteText, quoteVerse } = useWedding()
 const { coverLoaded, preloadCover, preloadInviteBody } = usePreloadAssets()
 
 const isOpen = ref(false)
@@ -33,7 +33,6 @@ const leftBackgroundStyle = computed(() => {
  * keeps a real phone from assembling the scene out of half-loaded images.
  */
 onMounted(async () => {
-  refetch()
   await preloadCover()
   preloadInviteBody()
 })

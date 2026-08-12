@@ -1,4 +1,14 @@
 import { ref, computed, onMounted } from 'vue'
+
+/*
+ * DESIGN MODE (the default): never call the API, so every band renders Frame 243/244's
+ * own content -- Ahmad & Salma, Nama Tamu, the design's dates, venues, accounts, wishes
+ * and illustrated portraits. Each component already reads this composable first and
+ * falls back to the design string, so nothing else has to change.
+ *
+ * Set VITE_LIVE_DATA=1 to fetch a real wedding instead.
+ */
+const DESIGN_MODE = !import.meta.env.VITE_LIVE_DATA
 import { resolveSlug, getHome, submitUcapan } from '../lib/api'
 
 const state = ref<{
@@ -49,6 +59,7 @@ export function useWedding() {
   const guestCode = ref(new URLSearchParams(window.location.search).get('to') || '')
 
   async function fetchWeddingData() {
+    if (DESIGN_MODE) return
     state.value.loading = true
     state.value.error = null
     try {
@@ -69,7 +80,7 @@ export function useWedding() {
   }
 
   onMounted(() => {
-    if (state.value.data) return
+    if (DESIGN_MODE || state.value.data) return
     inflight ??= fetchWeddingData().finally(() => {
       inflight = null
     })
