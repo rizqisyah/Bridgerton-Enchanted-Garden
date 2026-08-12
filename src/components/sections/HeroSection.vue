@@ -68,8 +68,8 @@ const heroSkip = computed(() => (couplePhoto.value ? ['2695:173'] : []))
   opacity: 0;
   transform: translateY(calc(30 * var(--px))) scale(0.9);
   transition:
-    opacity 1100ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
-    transform 1500ms cubic-bezier(0.16, 1.02, 0.28, 1) var(--delay, 0ms);
+    opacity 1900ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
+    transform 2600ms cubic-bezier(0.16, 1.02, 0.28, 1) var(--delay, 0ms);
 }
 
 .hero.is-in .hero__couple,

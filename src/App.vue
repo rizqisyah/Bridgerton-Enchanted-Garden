@@ -97,9 +97,9 @@ function onSplashLeave() {
  */
 .splash-leave-active {
   transition:
-    opacity 1.3s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),
-    filter 1.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    opacity 2.2s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 2.4s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 2.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
   will-change: opacity, transform, filter;
 }
 
@@ -109,15 +109,15 @@ function onSplashLeave() {
   filter: blur(14px) !important;
 }
 
-/* Held back 0.45s so the cover has visibly receded before this rises to meet it. */
+/* Held back 0.8s so the cover has visibly receded before this rises to meet it. */
 .invitation-content {
   opacity: 0;
   transform: translateY(28px) scale(0.965);
   filter: blur(10px);
   transition:
-    opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.45s,
-    transform 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.45s,
-    filter 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.45s;
+    opacity 2.3s cubic-bezier(0.16, 1, 0.3, 1) 0.8s,
+    transform 2.7s cubic-bezier(0.16, 1, 0.3, 1) 0.8s,
+    filter 2.3s cubic-bezier(0.16, 1, 0.3, 1) 0.8s;
   will-change: opacity, transform, filter;
 }
 

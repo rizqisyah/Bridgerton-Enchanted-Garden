@@ -11,7 +11,7 @@ const props = withDefaults(
     /** Stagger between layers, back to front. */
     step?: number
   }>(),
-  { skip: () => [], shown: true, step: 90 },
+  { skip: () => [], shown: true, step: 150 },
 )
 
 const FRAME_W = 375
@@ -58,13 +58,22 @@ const entrance = (l: BandLayer, i: number) => {
     '--ty': `${ty}`,
     '--rot': `${rot}deg`,
     '--scale': `${scale}`,
-    '--dur': isBackdrop ? '1900ms' : small ? '1150ms' : '1500ms',
+    '--dur': isBackdrop ? '3400ms' : small ? '2100ms' : '2700ms',
     // Backdrops lead; everything in front of them queues up behind, front-most last.
-    animationDelay: `${(isBackdrop ? 0 : 260) + i * props.step}ms`,
+    animationDelay: `${Math.round((isBackdrop ? 0 : 440) + i * stagger())}ms`,
   }
 }
 
 const visible = () => props.layers.filter((l) => !props.skip.includes(l.id))
+
+/*
+ * Groom is 36 layers. At a flat 150ms step its last layer would start 5.2s in and the
+ * band would still be assembling 8s after it came into view, long after the reader has
+ * scrolled past. Cap the total stagger instead of the per-layer step, so short bands
+ * get the full leisurely spacing and long ones tighten up to fit the same window.
+ */
+const MAX_STAGGER = 2600
+const stagger = () => Math.min(props.step, MAX_STAGGER / Math.max(1, visible().length - 1))
 </script>
 
 <template>
@@ -105,7 +114,7 @@ const visible = () => props.layers.filter((l) => !props.skip.includes(l.id))
 
 .band-art.is-in {
   visibility: visible;
-  animation: layer-in var(--dur, 1500ms) cubic-bezier(0.16, 1.02, 0.28, 1) backwards;
+  animation: layer-in var(--dur, 2700ms) cubic-bezier(0.16, 1.02, 0.28, 1) backwards;
 }
 
 @keyframes layer-in {

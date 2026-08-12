@@ -10,7 +10,7 @@ defineEmits<{ open: [] }>()
  * foreground florals so the scene assembles from the back forward. Everything else
  * is placed straight from the Figma table.
  */
-const delayFor = (z: number) => Math.min(z * 22, 620)
+const delayFor = (z: number) => Math.min(z * 38, 1080)
 </script>
 
 <template>
@@ -94,7 +94,7 @@ const delayFor = (z: number) => Math.min(z * 22, 620)
 
 .cover__layer {
   max-width: none; /* the bleeding layers are wider than the frame by design */
-  animation: rise 1200ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation: rise 2200ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 
 /*
@@ -113,12 +113,12 @@ const delayFor = (z: number) => Math.min(z * 22, 620)
 .cover__dear,
 .cover__guest,
 .cover__open {
-  animation: rise 1400ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms) backwards;
+  animation: rise 2400ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms) backwards;
 }
 
 /* 2684:114 — Taldose Script 20/30, #72703d. */
 .cover__eyebrow {
-  --delay: 700ms;
+  --delay: 1100ms;
   z-index: 17;
   top: calc(288 * var(--px));
   left: calc(53 * var(--px));
@@ -131,7 +131,7 @@ const delayFor = (z: number) => Math.min(z * 22, 620)
 
 /* 2684:116 — Norveil Fantasy Demo 48/47, -6% tracking, #ad2124. */
 .cover__couple {
-  --delay: 860ms;
+  --delay: 1400ms;
   z-index: 17;
   top: calc(320 * var(--px));
   left: calc(43 * var(--px));
@@ -147,7 +147,7 @@ const delayFor = (z: number) => Math.min(z * 22, 620)
 
 /* 2684:118 — Ibarra Real Nova 14 Medium Italic, #790707. */
 .cover__dear {
-  --delay: 1020ms;
+  --delay: 1700ms;
   z-index: 18;
   top: calc(469 * var(--px));
   left: calc(92 * var(--px));
@@ -162,7 +162,7 @@ const delayFor = (z: number) => Math.min(z * 22, 620)
 
 /* 2684:113 — Ibarra Real Nova 16 Medium Italic, #790707. */
 .cover__guest {
-  --delay: 1120ms;
+  --delay: 1880ms;
   z-index: 18;
   top: calc(490 * var(--px));
   left: calc(107 * var(--px));
@@ -177,7 +177,7 @@ const delayFor = (z: number) => Math.min(z * 22, 620)
 
 /* 2695:153 — Jost 15/30, +2% tracking, #ac6f28. */
 .cover__open {
-  --delay: 1280ms;
+  --delay: 2100ms;
   z-index: 37;
   top: calc(540 * var(--px));
   left: calc(121 * var(--px));

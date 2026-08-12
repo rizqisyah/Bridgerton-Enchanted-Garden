@@ -31,8 +31,8 @@ const { el, shown } = useReveal(0.15)
   opacity: 0;
   transform: translateY(calc(10 * var(--px)));
   transition:
-    opacity 1100ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
-    transform 1500ms cubic-bezier(0.16, 1.02, 0.28, 1) var(--delay, 0ms);
+    opacity 1900ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
+    transform 2600ms cubic-bezier(0.16, 1.02, 0.28, 1) var(--delay, 0ms);
   --delay: 120ms;
   z-index: 1;
   left: calc(95 * var(--px));
