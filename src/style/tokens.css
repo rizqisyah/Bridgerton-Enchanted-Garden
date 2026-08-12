@@ -8,6 +8,8 @@
   /* colors — sampled from Frame 243 text fills */
   --crimson: #ad2124; /* couple name */
   --crimson-deep: #790707; /* guest block */
+  --crimson-heading: #941313; /* akad/resepsi headings */
+  --crimson-title: #9e0f0f; /* gift, gallery, footer headings */
   --olive: #72703d; /* "The Wedding Of" */
   --gold-brown: #ac6f28; /* "Click to open" */
   --paper: #f2ece1; /* the cream ground the chateau plate sits on */
@@ -27,6 +29,7 @@
   --font-quote: "EB Garamond", serif; /* SUB for Roben Elegante — the quote block */
   --font-body: "Cormorant Garamond", serif; /* body copy */
   --font-condensed: "Libre Caslon Condensed", serif;
+  --font-heading-script: "Sacramento", cursive; /* SUB for Comtic Hiden — every band heading */
 
   /* design frame reference (Figma Frame 243 cover / Frame 244 body) */
   --frame-w: 375;
