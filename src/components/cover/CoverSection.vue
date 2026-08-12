@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { COVER_LAYERS } from '../../lib/coverLayers'
 
-defineProps<{ guestName: string; coupleName: string }>()
+// `ready` gates the reveal on the 36 layers being decoded — see App.vue.
+defineProps<{ guestName: string; coupleName: string; ready: boolean }>()
 defineEmits<{ open: [] }>()
 
 /*
@@ -15,7 +16,7 @@ const delayFor = (z: number) => Math.min(z * 22, 620)
 <template>
   <!-- Figma Frame 243 (2684:108), 375 x 725. Coords below are frame-local design px. -->
   <section class="cover">
-    <div class="cover__frame">
+    <div class="cover__frame" :class="{ 'cover__frame--ready': ready }">
       <img
         v-for="layer in COVER_LAYERS"
         :key="layer.id"
@@ -78,6 +79,17 @@ const delayFor = (z: number) => Math.min(z * 22, 620)
   position: absolute;
   margin: 0;
   text-align: center;
+  /*
+   * Held until the layers are decoded. `animation-play-state` rather than `display`
+   * so the images are still in the document and actually fetching while hidden.
+   */
+  visibility: hidden;
+  animation-play-state: paused;
+}
+
+.cover__frame--ready > * {
+  visibility: visible;
+  animation-play-state: running;
 }
 
 .cover__layer {
