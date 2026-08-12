@@ -1,0 +1,5137 @@
+{
+ "frame": {
+  "id": "2695:163",
+  "name": "Frame 244",
+  "w": 375,
+  "h": 9866,
+  "file": "adat jawa",
+  "page": "Page 1"
+ },
+ "nodes": [
+  {
+   "id": "2695:162",
+   "type": "RECTANGLE",
+   "name": "Rectangle 126",
+   "parent": null,
+   "depth": 0,
+   "x": 0,
+   "y": 0,
+   "w": 375,
+   "h": 10032,
+   "section": "page",
+   "text": null,
+   "styles": {
+    "fills": [
+     "#f3ece2"
+    ]
+   }
+  },
+  {
+   "id": "2695:165",
+   "type": "RECTANGLE",
+   "name": "bdgfxdb 2",
+   "parent": null,
+   "depth": 0,
+   "x": -109,
+   "y": 0,
+   "w": 593,
+   "h": 691,
+   "section": "hero",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:191",
+   "type": "TEXT",
+   "name": "No. Rekening : 8715154435",
+   "parent": "2712:190",
+   "depth": 3,
+   "x": 0,
+   "y": 0,
+   "w": 311,
+   "h": 18,
+   "section": "gift",
+   "text": "No. Rekening : 8715154435",
+   "styles": {
+    "fills": [
+     "#844711"
+    ],
+    "fontFamily": "EB Garamond",
+    "fontSize": 14,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "textAlignHorizontal": "LEFT"
+   }
+  },
+  {
+   "id": "2712:199",
+   "type": "TEXT",
+   "name": "No. Rekening : 8715154435",
+   "parent": "2712:198",
+   "depth": 3,
+   "x": 0,
+   "y": 0,
+   "w": 311,
+   "h": 18,
+   "section": "gift",
+   "text": "No. Rekening : 8715154435",
+   "styles": {
+    "fills": [
+     "#844711"
+    ],
+    "fontFamily": "EB Garamond",
+    "fontSize": 14,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "textAlignHorizontal": "LEFT"
+   }
+  },
+  {
+   "id": "2712:207",
+   "type": "TEXT",
+   "name": "Alamat\u202865, Jalan Raya Tanjung Barat",
+   "parent": "2712:206",
+   "depth": 3,
+   "x": 0,
+   "y": 0,
+   "w": 311,
+   "h": 36,
+   "section": "gift",
+   "text": "Alamat\u202865, Jalan Raya Tanjung Barat",
+   "styles": {
+    "fills": [
+     "#844711"
+    ],
+    "fontFamily": "EB Garamond",
+    "fontSize": 14,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "textAlignHorizontal": "LEFT"
+   }
+  },
+  {
+   "id": "2712:263",
+   "type": "TEXT",
+   "name": "Nama",
+   "parent": "2712:260",
+   "depth": 3,
+   "x": 10,
+   "y": 3,
+   "w": 219.77,
+   "h": 23,
+   "section": "wish",
+   "text": "Nama",
+   "styles": {
+    "fills": [
+     "#00000080"
+    ],
+    "fontFamily": "Ibarra Real Nova",
+    "fontSize": 16,
+    "fontStyle": "Italic",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 22.399999618530273
+    },
+    "textAlignHorizontal": "LEFT"
+   }
+  },
+  {
+   "id": "2729:126",
+   "type": "RECTANGLE",
+   "name": "gdrfgb 1",
+   "parent": "2712:261",
+   "depth": 3,
+   "x": 250,
+   "y": 3,
+   "w": 33,
+   "h": 33,
+   "section": "wish",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:262",
+   "type": "TEXT",
+   "name": "Give your wish",
+   "parent": "2712:261",
+   "depth": 3,
+   "x": 8.82,
+   "y": 8,
+   "w": 219.77,
+   "h": 23,
+   "section": "wish",
+   "text": "Give your wish",
+   "styles": {
+    "fills": [
+     "#00000080"
+    ],
+    "fontFamily": "Ibarra Real Nova",
+    "fontSize": 16,
+    "fontStyle": "Italic",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 22.399999618530273
+    },
+    "textAlignHorizontal": "LEFT"
+   }
+  },
+  {
+   "id": "2712:192",
+   "type": "TEXT",
+   "name": "A/n Muhammad Arif",
+   "parent": "2712:190",
+   "depth": 3,
+   "x": 0,
+   "y": 19,
+   "w": 311,
+   "h": 18,
+   "section": "gift",
+   "text": "A/n Muhammad Arif",
+   "styles": {
+    "fills": [
+     "#844711"
+    ],
+    "fontFamily": "EB Garamond",
+    "fontSize": 14,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "textAlignHorizontal": "LEFT"
+   }
+  },
+  {
+   "id": "2712:200",
+   "type": "TEXT",
+   "name": "A/n Muhammad Arif",
+   "parent": "2712:198",
+   "depth": 3,
+   "x": 0,
+   "y": 19,
+   "w": 311,
+   "h": 18,
+   "section": "gift",
+   "text": "A/n Muhammad Arif",
+   "styles": {
+    "fills": [
+     "#844711"
+    ],
+    "fontFamily": "EB Garamond",
+    "fontSize": 14,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "textAlignHorizontal": "LEFT"
+   }
+  },
+  {
+   "id": "2695:171",
+   "type": "TEXT",
+   "name": "Ahmad and Salma",
+   "parent": null,
+   "depth": 0,
+   "x": 45,
+   "y": 69,
+   "w": 289,
+   "h": 56,
+   "section": "hero",
+   "text": "Ahmad \nand Salma",
+   "styles": {
+    "fills": [
+     "#ad2124"
+    ],
+    "fontFamily": "Charoly Demo",
+    "fontSize": 32,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 28
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2695:166",
+   "type": "ELLIPSE",
+   "name": "Ellipse 11",
+   "parent": null,
+   "depth": 0,
+   "x": 60,
+   "y": 111,
+   "w": 255,
+   "h": 469,
+   "section": "hero",
+   "text": null,
+   "styles": {
+    "fills": [
+     "#ffffffde"
+    ]
+   }
+  },
+  {
+   "id": "2695:169",
+   "type": "GROUP",
+   "name": "Group 252",
+   "parent": null,
+   "depth": 0,
+   "x": 53,
+   "y": 131,
+   "w": 269,
+   "h": 30,
+   "section": "hero",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2695:170",
+   "type": "TEXT",
+   "name": "WEDDING INVITATION",
+   "parent": "2695:169",
+   "depth": 1,
+   "x": 53,
+   "y": 131,
+   "w": 269,
+   "h": 30,
+   "section": "hero",
+   "text": "WEDDING INVITATION",
+   "styles": {
+    "fills": [
+     "#72703d"
+    ],
+    "fontFamily": "Mohave",
+    "fontSize": 20,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 30
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2695:174",
+   "type": "RECTANGLE",
+   "name": "affff668-1c7d-4f2f-a78b-04b76236bafe-Photoroom 5",
+   "parent": null,
+   "depth": 0,
+   "x": 420,
+   "y": 161,
+   "w": 86,
+   "h": 210,
+   "section": "hero",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2695:175",
+   "type": "RECTANGLE",
+   "name": "affff668-1c7d-4f2f-a78b-04b76236bafe-Photoroom 6",
+   "parent": null,
+   "depth": 0,
+   "x": -45,
+   "y": 161,
+   "w": 86,
+   "h": 210,
+   "section": "hero",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2695:172",
+   "type": "RECTANGLE",
+   "name": "IMG_1462-Photoroom 1",
+   "parent": null,
+   "depth": 0,
+   "x": 34,
+   "y": 197,
+   "w": 307,
+   "h": 402,
+   "section": "hero",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2695:173",
+   "type": "RECTANGLE",
+   "name": "IMG_8122 (1) 1",
+   "parent": null,
+   "depth": 0,
+   "x": 60,
+   "y": 272,
+   "w": 266,
+   "h": 273,
+   "section": "hero",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2695:177",
+   "type": "RECTANGLE",
+   "name": "2409ef7d-2136-48cb-a066-ab7e694bc14c-Photoroom 2",
+   "parent": null,
+   "depth": 0,
+   "x": 496,
+   "y": 294,
+   "w": 265,
+   "h": 397,
+   "section": "hero",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2695:176",
+   "type": "RECTANGLE",
+   "name": "2409ef7d-2136-48cb-a066-ab7e694bc14c-Photoroom 1",
+   "parent": null,
+   "depth": 0,
+   "x": -121,
+   "y": 301,
+   "w": 265,
+   "h": 397,
+   "section": "hero",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2695:179",
+   "type": "RECTANGLE",
+   "name": "8166e082-6e00-480f-9afd-68a3b9940b49-Photoroom 2",
+   "parent": null,
+   "depth": 0,
+   "x": -103,
+   "y": 428,
+   "w": 599,
+   "h": 263,
+   "section": "hero",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2695:194",
+   "type": "RECTANGLE",
+   "name": "cbf8fbd0-a12b-46dc-801a-72c26e768333-Photoroom 5",
+   "parent": null,
+   "depth": 0,
+   "x": 341,
+   "y": 485,
+   "w": 91,
+   "h": 114,
+   "section": "hero",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2695:195",
+   "type": "RECTANGLE",
+   "name": "cbf8fbd0-a12b-46dc-801a-72c26e768333-Photoroom 6",
+   "parent": null,
+   "depth": 0,
+   "x": 34,
+   "y": 485,
+   "w": 91,
+   "h": 114,
+   "section": "hero",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2695:189",
+   "type": "RECTANGLE",
+   "name": "gbdn 1",
+   "parent": null,
+   "depth": 0,
+   "x": 10,
+   "y": 518,
+   "w": 179,
+   "h": 224,
+   "section": "hero",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2695:190",
+   "type": "RECTANGLE",
+   "name": "gbdn 2",
+   "parent": null,
+   "depth": 0,
+   "x": 189,
+   "y": 518,
+   "w": 179,
+   "h": 224,
+   "section": "hero",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2695:183",
+   "type": "RECTANGLE",
+   "name": "cbf8fbd0-a12b-46dc-801a-72c26e768333-Photoroom 3",
+   "parent": null,
+   "depth": 0,
+   "x": -33,
+   "y": 580,
+   "w": 86,
+   "h": 107,
+   "section": "hero",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2695:184",
+   "type": "RECTANGLE",
+   "name": "cbf8fbd0-a12b-46dc-801a-72c26e768333-Photoroom 4",
+   "parent": null,
+   "depth": 0,
+   "x": 408,
+   "y": 580,
+   "w": 86,
+   "h": 107,
+   "section": "hero",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2695:181",
+   "type": "RECTANGLE",
+   "name": "0939f27b-feca-4b23-88ca-ad60878221f8-Photoroom 2",
+   "parent": null,
+   "depth": 0,
+   "x": 197,
+   "y": 617,
+   "w": 224,
+   "h": 149,
+   "section": "hero",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2695:178",
+   "type": "RECTANGLE",
+   "name": "fsb 6",
+   "parent": null,
+   "depth": 0,
+   "x": -16,
+   "y": 618,
+   "w": 160,
+   "h": 160,
+   "section": "hero",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2695:180",
+   "type": "RECTANGLE",
+   "name": "0939f27b-feca-4b23-88ca-ad60878221f8-Photoroom 1",
+   "parent": null,
+   "depth": 0,
+   "x": 176,
+   "y": 618,
+   "w": 224,
+   "h": 149,
+   "section": "hero",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2695:182",
+   "type": "RECTANGLE",
+   "name": "Rectangle 137",
+   "parent": null,
+   "depth": 0,
+   "x": -49,
+   "y": 662,
+   "w": 484,
+   "h": 316,
+   "section": "hero",
+   "text": null,
+   "styles": {
+    "fills": [
+     "#f3ece2"
+    ]
+   }
+  },
+  {
+   "id": "2697:202",
+   "type": "RECTANGLE",
+   "name": "2409ef7d-2136-48cb-a066-ab7e694bc14c-Photoroom 3",
+   "parent": null,
+   "depth": 0,
+   "x": 326,
+   "y": 682,
+   "w": 122,
+   "h": 183,
+   "section": "hero",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2695:196",
+   "type": "RECTANGLE",
+   "name": "sx-Photoroom 1",
+   "parent": null,
+   "depth": 0,
+   "x": -33,
+   "y": 709,
+   "w": 550,
+   "h": 440,
+   "section": "quote",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2697:201",
+   "type": "TEXT",
+   "name": "\u201cDi antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan kasih sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda kebesaran Allah bagi kaum yang berpikir.\u201d",
+   "parent": null,
+   "depth": 0,
+   "x": 48,
+   "y": 774,
+   "w": 230,
+   "h": 133,
+   "section": "quote",
+   "text": "\u201cDi antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan kasih sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda kebesaran Allah bagi kaum yang berpikir.\u201d",
+   "styles": {
+    "fills": [
+     "#4b4742"
+    ],
+    "fontFamily": "Roben Elegante",
+    "fontSize": 10,
+    "fontStyle": "Script",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 13
+    },
+    "textAlignHorizontal": "LEFT"
+   }
+  },
+  {
+   "id": "2697:199",
+   "type": "RECTANGLE",
+   "name": "42f20aad-5d4b-40d1-a8db-22b0cf69c2d2-Photoroom 1",
+   "parent": null,
+   "depth": 0,
+   "x": 130,
+   "y": 836,
+   "w": 341,
+   "h": 341,
+   "section": "quote",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2697:200",
+   "type": "TEXT",
+   "name": "QS Ar-Rum 21",
+   "parent": null,
+   "depth": 0,
+   "x": 16,
+   "y": 871,
+   "w": 185,
+   "h": 58,
+   "section": "quote",
+   "text": "QS Ar-Rum 21",
+   "styles": {
+    "fills": [
+     "#3b3835"
+    ],
+    "fontFamily": "Roben Elegante",
+    "fontSize": 13,
+    "fontStyle": "Script",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 48
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2696:198",
+   "type": "RECTANGLE",
+   "name": "4a52d730-cc02-4146-baac-31d784320081-Photoroom 1",
+   "parent": null,
+   "depth": 0,
+   "x": -36,
+   "y": 957,
+   "w": 533,
+   "h": 213,
+   "section": "quote",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2697:204",
+   "type": "RECTANGLE",
+   "name": "gbdn 3",
+   "parent": null,
+   "depth": 0,
+   "x": 58,
+   "y": 1017,
+   "w": 105,
+   "h": 132,
+   "section": "quote",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2696:197",
+   "type": "RECTANGLE",
+   "name": "c2a52e8a-7390-4947-9d19-7839e8532faf-Photoroom 1",
+   "parent": null,
+   "depth": 0,
+   "x": 408,
+   "y": 1036,
+   "w": 403,
+   "h": 226,
+   "section": "quote",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2713:143",
+   "type": "RECTANGLE",
+   "name": "558ae5b3-d777-4ef8-9933-43c561691253 3",
+   "parent": null,
+   "depth": 0,
+   "x": -49,
+   "y": 1083,
+   "w": 153,
+   "h": 153,
+   "section": "quote",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:209",
+   "type": "TEXT",
+   "name": "Tanpa mengurangi rasa hormat, kami bermaksud mengundang Bapak/Ibu/Saudara/I untuk menghadiri acara Pernikahan kami:",
+   "parent": null,
+   "depth": 0,
+   "x": 9,
+   "y": 1251,
+   "w": 358,
+   "h": 108,
+   "section": "invite",
+   "text": "Tanpa mengurangi rasa hormat, kami bermaksud mengundang Bapak/Ibu/Saudara/I untuk menghadiri acara \nPernikahan kami:",
+   "styles": {
+    "fills": [
+     "#5c5050"
+    ],
+    "fontFamily": "Ibarra Real Nova",
+    "fontSize": 13,
+    "fontStyle": "Medium Italic",
+    "fontWeight": 500,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 20
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2699:213",
+   "type": "RECTANGLE",
+   "name": "sx-Photoroom 2",
+   "parent": null,
+   "depth": 0,
+   "x": -45,
+   "y": 1342,
+   "w": 466,
+   "h": 373,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:214",
+   "type": "TEXT",
+   "name": "Ahmad Soetrisno Budianto, S.Pd",
+   "parent": null,
+   "depth": 0,
+   "x": 62,
+   "y": 1376,
+   "w": 254,
+   "h": 46,
+   "section": "groom",
+   "text": "Ahmad \nSoetrisno Budianto, S.Pd",
+   "styles": {
+    "fills": [
+     "#ad2124"
+    ],
+    "fontFamily": "Comtic Hiden",
+    "fontSize": 13,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 23
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2699:212",
+   "type": "RECTANGLE",
+   "name": "ad8b0039-9f59-4efd-a076-f11f60791916-Photoroom 1",
+   "parent": null,
+   "depth": 0,
+   "x": -11,
+   "y": 1426,
+   "w": 398,
+   "h": 521,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:226",
+   "type": "RECTANGLE",
+   "name": "e4fa81bb3887856f767a38bcba66728d-Photoroom 14",
+   "parent": null,
+   "depth": 0,
+   "x": 192.69,
+   "y": 1467.78,
+   "w": 83,
+   "h": 112,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:221",
+   "type": "RECTANGLE",
+   "name": "d72f1100-c23f-4df1-9504-9b2546f283a6-Photoroom 5",
+   "parent": null,
+   "depth": 0,
+   "x": 255,
+   "y": 1501,
+   "w": 55,
+   "h": 55,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:220",
+   "type": "RECTANGLE",
+   "name": "affff668-1c7d-4f2f-a78b-04b76236bafe-Photoroom 7",
+   "parent": null,
+   "depth": 0,
+   "x": 269,
+   "y": 1510,
+   "w": 82,
+   "h": 201,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:210",
+   "type": "RECTANGLE",
+   "name": "cd dgn 2",
+   "parent": null,
+   "depth": 0,
+   "x": -52,
+   "y": 1562,
+   "w": 482,
+   "h": 321,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:211",
+   "type": "RECTANGLE",
+   "name": "groom",
+   "parent": null,
+   "depth": 0,
+   "x": 70,
+   "y": 1564,
+   "w": 235,
+   "h": 283,
+   "section": "groom",
+   "text": null,
+   "styles": {
+    "cornerRadius": "mixed"
+   }
+  },
+  {
+   "id": "2699:222",
+   "type": "RECTANGLE",
+   "name": "cff39dbc117603387914283ebe25d454 5",
+   "parent": null,
+   "depth": 0,
+   "x": 36,
+   "y": 1592,
+   "w": 34,
+   "h": 130,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:224",
+   "type": "RECTANGLE",
+   "name": "a30e689305ba1b872e8b7b6e5233a97d 5",
+   "parent": null,
+   "depth": 0,
+   "x": 25,
+   "y": 1647,
+   "w": 45,
+   "h": 45,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:215",
+   "type": "RECTANGLE",
+   "name": "ad70ac3a-5d7f-49bf-8a5a-999f206707ee-Photoroom 1",
+   "parent": null,
+   "depth": 0,
+   "x": -111,
+   "y": 1647,
+   "w": 200,
+   "h": 268,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:216",
+   "type": "RECTANGLE",
+   "name": "ad70ac3a-5d7f-49bf-8a5a-999f206707ee-Photoroom 2",
+   "parent": null,
+   "depth": 0,
+   "x": 492,
+   "y": 1647,
+   "w": 200,
+   "h": 268,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:219",
+   "type": "RECTANGLE",
+   "name": "cbf8fbd0-a12b-46dc-801a-72c26e768333-Photoroom 7",
+   "parent": null,
+   "depth": 0,
+   "x": -11,
+   "y": 1664.61,
+   "w": 90.66,
+   "h": 113.28,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:206",
+   "type": "RECTANGLE",
+   "name": "5144e535-611d-450e-87ab-af20453051af-Photoroom 1",
+   "parent": null,
+   "depth": 0,
+   "x": -68,
+   "y": 1722,
+   "w": 512,
+   "h": 430,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:239",
+   "type": "RECTANGLE",
+   "name": "vdf 10",
+   "parent": null,
+   "depth": 0,
+   "x": 335.52,
+   "y": 1728.25,
+   "w": 72,
+   "h": 128,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:207",
+   "type": "RECTANGLE",
+   "name": "Rectangle 138",
+   "parent": null,
+   "depth": 0,
+   "x": -54,
+   "y": 1740,
+   "w": 484,
+   "h": 175,
+   "section": "groom",
+   "text": null,
+   "styles": {
+    "fills": [
+     "#f3ece2"
+    ]
+   }
+  },
+  {
+   "id": "2699:208",
+   "type": "RECTANGLE",
+   "name": "Rectangle 139",
+   "parent": null,
+   "depth": 0,
+   "x": -65,
+   "y": 1740,
+   "w": 484,
+   "h": 175,
+   "section": "groom",
+   "text": null,
+   "styles": {
+    "fills": [
+     "#f3ece2"
+    ]
+   }
+  },
+  {
+   "id": "2699:225",
+   "type": "RECTANGLE",
+   "name": "a30e689305ba1b872e8b7b6e5233a97d 6",
+   "parent": null,
+   "depth": 0,
+   "x": 13,
+   "y": 1740,
+   "w": 80,
+   "h": 80,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:231",
+   "type": "RECTANGLE",
+   "name": "5b9e4053-feba-49f5-9700-b874c1c979d6-Photoroom 1",
+   "parent": null,
+   "depth": 0,
+   "x": 259.53,
+   "y": 1780,
+   "w": 82.51,
+   "h": 123.68,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:232",
+   "type": "RECTANGLE",
+   "name": "5b9e4053-feba-49f5-9700-b874c1c979d6-Photoroom 2",
+   "parent": null,
+   "depth": 0,
+   "x": 116.31,
+   "y": 1780,
+   "w": 82.51,
+   "h": 123.68,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:217",
+   "type": "RECTANGLE",
+   "name": "gbdn 4",
+   "parent": null,
+   "depth": 0,
+   "x": -60,
+   "y": 1793,
+   "w": 132,
+   "h": 165,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:218",
+   "type": "RECTANGLE",
+   "name": "gbdn 5",
+   "parent": null,
+   "depth": 0,
+   "x": 430,
+   "y": 1793,
+   "w": 132,
+   "h": 165,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:235",
+   "type": "RECTANGLE",
+   "name": "fsb 8",
+   "parent": null,
+   "depth": 0,
+   "x": 97,
+   "y": 1807,
+   "w": 80,
+   "h": 80,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:236",
+   "type": "RECTANGLE",
+   "name": "fsb 9",
+   "parent": null,
+   "depth": 0,
+   "x": 198,
+   "y": 1807,
+   "w": 80,
+   "h": 80,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:241",
+   "type": "RECTANGLE",
+   "name": "acf83061-7cf7-4cb2-a0cf-fb51101f1998-Photoroom 8",
+   "parent": null,
+   "depth": 0,
+   "x": 325.89,
+   "y": 1820.83,
+   "w": 79,
+   "h": 118,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:234",
+   "type": "RECTANGLE",
+   "name": "a30e689305ba1b872e8b7b6e5233a97d 7",
+   "parent": null,
+   "depth": 0,
+   "x": 157,
+   "y": 1834,
+   "w": 62,
+   "h": 62,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:229",
+   "type": "RECTANGLE",
+   "name": "dscvdsv 2",
+   "parent": null,
+   "depth": 0,
+   "x": 298,
+   "y": 1851,
+   "w": 146,
+   "h": 139,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:227",
+   "type": "RECTANGLE",
+   "name": "dscvdsv 1",
+   "parent": null,
+   "depth": 0,
+   "x": 100,
+   "y": 1861,
+   "w": 151,
+   "h": 202,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:243",
+   "type": "RECTANGLE",
+   "name": "Rectangle 141",
+   "parent": null,
+   "depth": 0,
+   "x": -13,
+   "y": 1902,
+   "w": 422,
+   "h": 382,
+   "section": "groom",
+   "text": null,
+   "styles": {
+    "fills": [
+     "#f3ece285"
+    ]
+   }
+  },
+  {
+   "id": "2699:240",
+   "type": "RECTANGLE",
+   "name": "acf83061-7cf7-4cb2-a0cf-fb51101f1998-Photoroom 7",
+   "parent": null,
+   "depth": 0,
+   "x": 118.27,
+   "y": 1957.9,
+   "w": 79,
+   "h": 118,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:290",
+   "type": "RECTANGLE",
+   "name": "ad70ac3a-5d7f-49bf-8a5a-999f206707ee-Photoroom 5",
+   "parent": null,
+   "depth": 0,
+   "x": -157,
+   "y": 2017,
+   "w": 208,
+   "h": 313,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:291",
+   "type": "RECTANGLE",
+   "name": "ad70ac3a-5d7f-49bf-8a5a-999f206707ee-Photoroom 6",
+   "parent": null,
+   "depth": 0,
+   "x": 531,
+   "y": 2017,
+   "w": 208,
+   "h": 313,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:244",
+   "type": "TEXT",
+   "name": "Putra Pertama dari Bapak Hasbih Muhammad & Ibu Siti Nurhamidin",
+   "parent": null,
+   "depth": 0,
+   "x": 22,
+   "y": 2048,
+   "w": 331,
+   "h": 71,
+   "section": "groom",
+   "text": "Putra Pertama dari  Bapak Hasbih Muhammad  & Ibu Siti Nurhamidin",
+   "styles": {
+    "fills": [
+     "#5c5050"
+    ],
+    "fontFamily": "Ibarra Real Nova",
+    "fontSize": 16,
+    "fontStyle": "Medium Italic",
+    "fontWeight": 500,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 20
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2699:294",
+   "type": "RECTANGLE",
+   "name": "vdf 12",
+   "parent": null,
+   "depth": 0,
+   "x": 91.95,
+   "y": 2092.51,
+   "w": 85.71,
+   "h": 152.2,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:295",
+   "type": "RECTANGLE",
+   "name": "vdf 13",
+   "parent": null,
+   "depth": 0,
+   "x": 288,
+   "y": 2092.51,
+   "w": 85.71,
+   "h": 152.2,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:292",
+   "type": "RECTANGLE",
+   "name": "d84ac9edb66ae53130f8584a85b708ec-Photoroom 1",
+   "parent": null,
+   "depth": 0,
+   "x": 238,
+   "y": 2130.23,
+   "w": 139,
+   "h": 170,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:293",
+   "type": "RECTANGLE",
+   "name": "d84ac9edb66ae53130f8584a85b708ec-Photoroom 2",
+   "parent": null,
+   "depth": 0,
+   "x": 153.88,
+   "y": 2130.23,
+   "w": 139,
+   "h": 170,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2713:145",
+   "type": "RECTANGLE",
+   "name": "a0769ff4-efe6-47a0-ba43-2605d687cf79 11",
+   "parent": null,
+   "depth": 0,
+   "x": 260,
+   "y": 2148,
+   "w": 93,
+   "h": 116,
+   "section": "groom",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:276",
+   "type": "TEXT",
+   "name": "And",
+   "parent": null,
+   "depth": 0,
+   "x": 95,
+   "y": 2158,
+   "w": 185,
+   "h": 58,
+   "section": "divider",
+   "text": "And",
+   "styles": {
+    "fills": [
+     "#5a6a52"
+    ],
+    "fontFamily": "Activists",
+    "fontSize": 64,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 48
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2699:245",
+   "type": "RECTANGLE",
+   "name": "sx-Photoroom 3",
+   "parent": null,
+   "depth": 0,
+   "x": -48,
+   "y": 2249,
+   "w": 466,
+   "h": 373,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:247",
+   "type": "TEXT",
+   "name": "Salma Putri Kartika, S.E",
+   "parent": null,
+   "depth": 0,
+   "x": 87,
+   "y": 2289,
+   "w": 205,
+   "h": 46,
+   "section": "bride",
+   "text": "Salma\nPutri Kartika, S.E",
+   "styles": {
+    "fills": [
+     "#ad2124"
+    ],
+    "fontFamily": "Comtic Hiden",
+    "fontSize": 13,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 23
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2699:254",
+   "type": "RECTANGLE",
+   "name": "ad8b0039-9f59-4efd-a076-f11f60791916-Photoroom 2",
+   "parent": null,
+   "depth": 0,
+   "x": -14,
+   "y": 2333,
+   "w": 398,
+   "h": 521,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:269",
+   "type": "RECTANGLE",
+   "name": "e4fa81bb3887856f767a38bcba66728d-Photoroom 15",
+   "parent": null,
+   "depth": 0,
+   "x": 189.69,
+   "y": 2374.78,
+   "w": 83,
+   "h": 112,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:271",
+   "type": "RECTANGLE",
+   "name": "d72f1100-c23f-4df1-9504-9b2546f283a6-Photoroom 6",
+   "parent": null,
+   "depth": 0,
+   "x": 252,
+   "y": 2408,
+   "w": 55,
+   "h": 55,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:270",
+   "type": "RECTANGLE",
+   "name": "affff668-1c7d-4f2f-a78b-04b76236bafe-Photoroom 8",
+   "parent": null,
+   "depth": 0,
+   "x": 266,
+   "y": 2417,
+   "w": 82,
+   "h": 201,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:251",
+   "type": "RECTANGLE",
+   "name": "bride",
+   "parent": null,
+   "depth": 0,
+   "x": 88,
+   "y": 2459,
+   "w": 200,
+   "h": 295,
+   "section": "bride",
+   "text": null,
+   "styles": {
+    "cornerRadius": "mixed"
+   }
+  },
+  {
+   "id": "2699:246",
+   "type": "RECTANGLE",
+   "name": "cd dgn 3",
+   "parent": null,
+   "depth": 0,
+   "x": -55,
+   "y": 2469,
+   "w": 482,
+   "h": 321,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:255",
+   "type": "RECTANGLE",
+   "name": "cff39dbc117603387914283ebe25d454 6",
+   "parent": null,
+   "depth": 0,
+   "x": 33,
+   "y": 2499,
+   "w": 34,
+   "h": 130,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:259",
+   "type": "RECTANGLE",
+   "name": "a30e689305ba1b872e8b7b6e5233a97d 8",
+   "parent": null,
+   "depth": 0,
+   "x": 22,
+   "y": 2554,
+   "w": 45,
+   "h": 45,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:265",
+   "type": "RECTANGLE",
+   "name": "ad70ac3a-5d7f-49bf-8a5a-999f206707ee-Photoroom 3",
+   "parent": null,
+   "depth": 0,
+   "x": -114,
+   "y": 2554,
+   "w": 200,
+   "h": 268,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:266",
+   "type": "RECTANGLE",
+   "name": "ad70ac3a-5d7f-49bf-8a5a-999f206707ee-Photoroom 4",
+   "parent": null,
+   "depth": 0,
+   "x": 489,
+   "y": 2554,
+   "w": 200,
+   "h": 268,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:264",
+   "type": "RECTANGLE",
+   "name": "cbf8fbd0-a12b-46dc-801a-72c26e768333-Photoroom 8",
+   "parent": null,
+   "depth": 0,
+   "x": -14,
+   "y": 2571.61,
+   "w": 90.66,
+   "h": 113.28,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:248",
+   "type": "RECTANGLE",
+   "name": "5144e535-611d-450e-87ab-af20453051af-Photoroom 2",
+   "parent": null,
+   "depth": 0,
+   "x": -71,
+   "y": 2629,
+   "w": 512,
+   "h": 430,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:258",
+   "type": "RECTANGLE",
+   "name": "vdf 11",
+   "parent": null,
+   "depth": 0,
+   "x": 332.52,
+   "y": 2635.25,
+   "w": 72,
+   "h": 128,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:249",
+   "type": "RECTANGLE",
+   "name": "Rectangle 142",
+   "parent": null,
+   "depth": 0,
+   "x": -57,
+   "y": 2647,
+   "w": 484,
+   "h": 175,
+   "section": "bride",
+   "text": null,
+   "styles": {
+    "fills": [
+     "#f3ece2"
+    ]
+   }
+  },
+  {
+   "id": "2699:250",
+   "type": "RECTANGLE",
+   "name": "Rectangle 143",
+   "parent": null,
+   "depth": 0,
+   "x": -68,
+   "y": 2647,
+   "w": 484,
+   "h": 175,
+   "section": "bride",
+   "text": null,
+   "styles": {
+    "fills": [
+     "#f3ece2"
+    ]
+   }
+  },
+  {
+   "id": "2699:262",
+   "type": "RECTANGLE",
+   "name": "a30e689305ba1b872e8b7b6e5233a97d 9",
+   "parent": null,
+   "depth": 0,
+   "x": 10,
+   "y": 2647,
+   "w": 80,
+   "h": 80,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:272",
+   "type": "RECTANGLE",
+   "name": "5b9e4053-feba-49f5-9700-b874c1c979d6-Photoroom 3",
+   "parent": null,
+   "depth": 0,
+   "x": 256.53,
+   "y": 2687,
+   "w": 82.51,
+   "h": 123.68,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:273",
+   "type": "RECTANGLE",
+   "name": "5b9e4053-feba-49f5-9700-b874c1c979d6-Photoroom 4",
+   "parent": null,
+   "depth": 0,
+   "x": 113.31,
+   "y": 2687,
+   "w": 82.51,
+   "h": 123.68,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:267",
+   "type": "RECTANGLE",
+   "name": "gbdn 6",
+   "parent": null,
+   "depth": 0,
+   "x": -63,
+   "y": 2700,
+   "w": 132,
+   "h": 165,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:268",
+   "type": "RECTANGLE",
+   "name": "gbdn 7",
+   "parent": null,
+   "depth": 0,
+   "x": 427,
+   "y": 2700,
+   "w": 132,
+   "h": 165,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:260",
+   "type": "RECTANGLE",
+   "name": "fsb 10",
+   "parent": null,
+   "depth": 0,
+   "x": 94,
+   "y": 2714,
+   "w": 80,
+   "h": 80,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:261",
+   "type": "RECTANGLE",
+   "name": "fsb 11",
+   "parent": null,
+   "depth": 0,
+   "x": 195,
+   "y": 2714,
+   "w": 80,
+   "h": 80,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:257",
+   "type": "RECTANGLE",
+   "name": "acf83061-7cf7-4cb2-a0cf-fb51101f1998-Photoroom 10",
+   "parent": null,
+   "depth": 0,
+   "x": 322.89,
+   "y": 2727.83,
+   "w": 79,
+   "h": 118,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:263",
+   "type": "RECTANGLE",
+   "name": "a30e689305ba1b872e8b7b6e5233a97d 10",
+   "parent": null,
+   "depth": 0,
+   "x": 154,
+   "y": 2741,
+   "w": 62,
+   "h": 62,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:253",
+   "type": "RECTANGLE",
+   "name": "dscvdsv 4",
+   "parent": null,
+   "depth": 0,
+   "x": 295,
+   "y": 2758,
+   "w": 146,
+   "h": 139,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:252",
+   "type": "RECTANGLE",
+   "name": "dscvdsv 3",
+   "parent": null,
+   "depth": 0,
+   "x": 97,
+   "y": 2768,
+   "w": 151,
+   "h": 202,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:296",
+   "type": "RECTANGLE",
+   "name": "Rectangle 141",
+   "parent": null,
+   "depth": 0,
+   "x": -47,
+   "y": 2827,
+   "w": 484,
+   "h": 233,
+   "section": "bride",
+   "text": null,
+   "styles": {
+    "fills": [
+     "#f3ece2b2"
+    ]
+   }
+  },
+  {
+   "id": "2699:256",
+   "type": "RECTANGLE",
+   "name": "acf83061-7cf7-4cb2-a0cf-fb51101f1998-Photoroom 9",
+   "parent": null,
+   "depth": 0,
+   "x": 115.27,
+   "y": 2864.9,
+   "w": 79,
+   "h": 118,
+   "section": "bride",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:275",
+   "type": "TEXT",
+   "name": "Putri Pertama dari Bapak Harith Satyo\u2028& Ibu Nuri Mulyana",
+   "parent": null,
+   "depth": 0,
+   "x": 22,
+   "y": 2939,
+   "w": 331,
+   "h": 71,
+   "section": "bride",
+   "text": "Putri Pertama dari  Bapak Harith Satyo\u2028& Ibu Nuri Mulyana",
+   "styles": {
+    "fills": [
+     "#5c5050"
+    ],
+    "fontFamily": "Ibarra Real Nova",
+    "fontSize": 16,
+    "fontStyle": "Medium Italic",
+    "fontWeight": 500,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 20
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2699:274",
+   "type": "RECTANGLE",
+   "name": "Rectangle 144",
+   "parent": null,
+   "depth": 0,
+   "x": -10,
+   "y": 2948,
+   "w": 422,
+   "h": 382,
+   "section": "bride",
+   "text": null,
+   "styles": {
+    "fills": [
+     "#f3ece285"
+    ]
+   }
+  },
+  {
+   "id": "2738:126",
+   "type": "RECTANGLE",
+   "name": "divid-1 1",
+   "parent": null,
+   "depth": 0,
+   "x": 72,
+   "y": 3046,
+   "w": 245,
+   "h": 13,
+   "section": "countdown",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:281",
+   "type": "RECTANGLE",
+   "name": "42f20aad-5d4b-40d1-a8db-22b0cf69c2d2-Photoroom 2",
+   "parent": null,
+   "depth": 0,
+   "x": -119,
+   "y": 3081,
+   "w": 626,
+   "h": 626,
+   "section": "countdown",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:282",
+   "type": "TEXT",
+   "name": "Save the Date...",
+   "parent": null,
+   "depth": 0,
+   "x": 35,
+   "y": 3102,
+   "w": 275,
+   "h": 46,
+   "section": "countdown",
+   "text": "Save \nthe Date...",
+   "styles": {
+    "fills": [
+     "#ad2124"
+    ],
+    "fontFamily": "Comtic Hiden",
+    "fontSize": 20,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 23
+    },
+    "textAlignHorizontal": "LEFT"
+   }
+  },
+  {
+   "id": "2699:279",
+   "type": "RECTANGLE",
+   "name": "IMG_1462-Photoroom 2",
+   "parent": null,
+   "depth": 0,
+   "x": 1,
+   "y": 3203,
+   "w": 385,
+   "h": 504,
+   "section": "countdown",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:280",
+   "type": "RECTANGLE",
+   "name": "Rectangle 145",
+   "parent": null,
+   "depth": 0,
+   "x": 76,
+   "y": 3280,
+   "w": 227,
+   "h": 355,
+   "section": "countdown",
+   "text": null,
+   "styles": {
+    "fills": [
+     "#ffffffc2"
+    ]
+   }
+  },
+  {
+   "id": "2699:283",
+   "type": "RECTANGLE",
+   "name": "Screenshot 2026-07-31 153625 1",
+   "parent": null,
+   "depth": 0,
+   "x": 116,
+   "y": 3330,
+   "w": 155,
+   "h": 210,
+   "section": "countdown",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:277",
+   "type": "RECTANGLE",
+   "name": "4a52d730-cc02-4146-baac-31d784320081-Photoroom 2",
+   "parent": null,
+   "depth": 0,
+   "x": -79,
+   "y": 3403,
+   "w": 593,
+   "h": 237,
+   "section": "countdown",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:343",
+   "type": "RECTANGLE",
+   "name": "bd675a75-6790-49be-a20c-c3b6bd2ee3cd-Photoroom 1",
+   "parent": null,
+   "depth": 0,
+   "x": 263,
+   "y": 3488,
+   "w": 148,
+   "h": 177,
+   "section": "countdown",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:278",
+   "type": "RECTANGLE",
+   "name": "4a52d730-cc02-4146-baac-31d784320081-Photoroom 3",
+   "parent": null,
+   "depth": 0,
+   "x": -31,
+   "y": 3497,
+   "w": 497,
+   "h": 199,
+   "section": "countdown",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2713:137",
+   "type": "RECTANGLE",
+   "name": "64546162-9ec5-404f-b012-9a0b7c06a69b-Photoroom 1",
+   "parent": null,
+   "depth": 0,
+   "x": 230,
+   "y": 3532,
+   "w": 190,
+   "h": 152,
+   "section": "countdown",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:289",
+   "type": "GROUP",
+   "name": "Group 253",
+   "parent": null,
+   "depth": 0,
+   "x": 102,
+   "y": 3557,
+   "w": 183,
+   "h": 46,
+   "section": "countdown",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:287",
+   "type": "RECTANGLE",
+   "name": "Rectangle 146",
+   "parent": "2699:289",
+   "depth": 1,
+   "x": 125,
+   "y": 3557,
+   "w": 138,
+   "h": 39,
+   "section": "countdown",
+   "text": null,
+   "styles": {
+    "cornerRadius": 13,
+    "fills": [
+     "#424c30"
+    ]
+   }
+  },
+  {
+   "id": "2699:288",
+   "type": "TEXT",
+   "name": "Add to Calender",
+   "parent": "2699:289",
+   "depth": 1,
+   "x": 102,
+   "y": 3565,
+   "w": 183,
+   "h": 38,
+   "section": "countdown",
+   "text": "Add to Calender",
+   "styles": {
+    "fills": [
+     "#ffffff"
+    ],
+    "fontFamily": "Libre Caslon Condensed",
+    "fontSize": 15,
+    "fontStyle": "Italic",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 23
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2712:180",
+   "type": "RECTANGLE",
+   "name": "b3d3db19-ebea-4f06-8be7-258f7e1e7201-Photoroom 1",
+   "parent": null,
+   "depth": 0,
+   "x": 28,
+   "y": 3746,
+   "w": 146,
+   "h": 146,
+   "section": "theday",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2706:142",
+   "type": "RECTANGLE",
+   "name": "c4246477-7aaa-442b-8e5d-5ea5c9a1403b-Photoroom 2",
+   "parent": null,
+   "depth": 0,
+   "x": 311.18,
+   "y": 3823,
+   "w": 182.96,
+   "h": 275.07,
+   "section": "theday",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2699:284",
+   "type": "RECTANGLE",
+   "name": "4a52d730-cc02-4146-baac-31d784320081-Photoroom 4",
+   "parent": null,
+   "depth": 0,
+   "x": -25,
+   "y": 3896,
+   "w": 476,
+   "h": 202,
+   "section": "theday",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2706:128",
+   "type": "TEXT",
+   "name": "It\u2019s The Day...",
+   "parent": null,
+   "depth": 0,
+   "x": 36,
+   "y": 3898,
+   "w": 275,
+   "h": 23,
+   "section": "theday",
+   "text": "It\u2019s The Day...",
+   "styles": {
+    "fills": [
+     "#ad2124"
+    ],
+    "fontFamily": "Comtic Hiden",
+    "fontSize": 24,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 23
+    },
+    "textAlignHorizontal": "LEFT"
+   }
+  },
+  {
+   "id": "2712:220",
+   "type": "RECTANGLE",
+   "name": "a0769ff4-efe6-47a0-ba43-2605d687cf79 1",
+   "parent": null,
+   "depth": 0,
+   "x": 220,
+   "y": 3898,
+   "w": 225,
+   "h": 281,
+   "section": "theday",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:222",
+   "type": "RECTANGLE",
+   "name": "a0769ff4-efe6-47a0-ba43-2605d687cf79 2",
+   "parent": null,
+   "depth": 0,
+   "x": 139,
+   "y": 3941,
+   "w": 186,
+   "h": 232,
+   "section": "theday",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2706:129",
+   "type": "RECTANGLE",
+   "name": "28fd1323-2231-402f-be0e-a364b3848ab6-Photoroom 1",
+   "parent": null,
+   "depth": 0,
+   "x": -122,
+   "y": 3958,
+   "w": 620.99,
+   "h": 933,
+   "section": "akad",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2706:151",
+   "type": "RECTANGLE",
+   "name": "d84ac9edb66ae53130f8584a85b708ec-Photoroom 3",
+   "parent": null,
+   "depth": 0,
+   "x": 227,
+   "y": 4057,
+   "w": 76,
+   "h": 117,
+   "section": "akad",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:128",
+   "type": "RECTANGLE",
+   "name": "cff39dbc117603387914283ebe25d454 7",
+   "parent": null,
+   "depth": 0,
+   "x": 53.49,
+   "y": 4062,
+   "w": 48.32,
+   "h": 185.62,
+   "section": "akad",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2706:152",
+   "type": "RECTANGLE",
+   "name": "d84ac9edb66ae53130f8584a85b708ec-Photoroom 4",
+   "parent": null,
+   "depth": 0,
+   "x": 124,
+   "y": 4107,
+   "w": 76,
+   "h": 117,
+   "section": "akad",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2706:150",
+   "type": "RECTANGLE",
+   "name": "dscvdsv 6",
+   "parent": null,
+   "depth": 0,
+   "x": -28,
+   "y": 4118,
+   "w": 178,
+   "h": 165,
+   "section": "akad",
+   "text": null,
+   "styles": {
+    "cornerRadius": 104
+   }
+  },
+  {
+   "id": "2706:153",
+   "type": "RECTANGLE",
+   "name": "5b9e4053-feba-49f5-9700-b874c1c979d6-Photoroom 5",
+   "parent": null,
+   "depth": 0,
+   "x": 363,
+   "y": 4124,
+   "w": 77,
+   "h": 115,
+   "section": "akad",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2706:154",
+   "type": "RECTANGLE",
+   "name": "5b9e4053-feba-49f5-9700-b874c1c979d6-Photoroom 6",
+   "parent": null,
+   "depth": 0,
+   "x": -22,
+   "y": 4151,
+   "w": 77,
+   "h": 115,
+   "section": "akad",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2706:156",
+   "type": "RECTANGLE",
+   "name": "affff668-1c7d-4f2f-a78b-04b76236bafe-Photoroom 10",
+   "parent": null,
+   "depth": 0,
+   "x": 340,
+   "y": 4174,
+   "w": 78,
+   "h": 191,
+   "section": "akad",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:127",
+   "type": "RECTANGLE",
+   "name": "a30e689305ba1b872e8b7b6e5233a97d 11",
+   "parent": null,
+   "depth": 0,
+   "x": 62,
+   "y": 4189,
+   "w": 47,
+   "h": 47,
+   "section": "akad",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2706:155",
+   "type": "RECTANGLE",
+   "name": "affff668-1c7d-4f2f-a78b-04b76236bafe-Photoroom 9",
+   "parent": null,
+   "depth": 0,
+   "x": -5,
+   "y": 4209,
+   "w": 108,
+   "h": 264,
+   "section": "akad",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2706:135",
+   "type": "GROUP",
+   "name": "Group 254",
+   "parent": null,
+   "depth": 0,
+   "x": -135,
+   "y": 4246,
+   "w": 645,
+   "h": 616,
+   "section": "akad",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2706:136",
+   "type": "RECTANGLE",
+   "name": "Rectangle 147",
+   "parent": "2706:135",
+   "depth": 1,
+   "x": 33,
+   "y": 4246,
+   "w": 318,
+   "h": 560,
+   "section": "akad",
+   "text": null,
+   "styles": {
+    "fills": [
+     "#f3ece2c7"
+    ]
+   }
+  },
+  {
+   "id": "2706:132",
+   "type": "RECTANGLE",
+   "name": "ad70ac3a-5d7f-49bf-8a5a-999f206707ee-Photoroom 7",
+   "parent": "2706:135",
+   "depth": 1,
+   "x": -135,
+   "y": 4266,
+   "w": 341,
+   "h": 513,
+   "section": "akad",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2706:133",
+   "type": "RECTANGLE",
+   "name": "ad70ac3a-5d7f-49bf-8a5a-999f206707ee-Photoroom 8",
+   "parent": "2706:135",
+   "depth": 1,
+   "x": 169,
+   "y": 4266,
+   "w": 341,
+   "h": 513,
+   "section": "akad",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2706:157",
+   "type": "RECTANGLE",
+   "name": "5b9e4053-feba-49f5-9700-b874c1c979d6-Photoroom 7",
+   "parent": null,
+   "depth": 0,
+   "x": 262,
+   "y": 4270,
+   "w": 77,
+   "h": 115,
+   "section": "akad",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2706:134",
+   "type": "RECTANGLE",
+   "name": "ad70ac3a-5d7f-49bf-8a5a-999f206707ee-Photoroom 9",
+   "parent": "2706:135",
+   "depth": 1,
+   "x": 17,
+   "y": 4349,
+   "w": 341,
+   "h": 513,
+   "section": "akad",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2706:158",
+   "type": "TEXT",
+   "name": "Akad Nikah",
+   "parent": null,
+   "depth": 0,
+   "x": 66,
+   "y": 4400,
+   "w": 243,
+   "h": 26,
+   "section": "akad",
+   "text": "Akad Nikah",
+   "styles": {
+    "fills": [
+     "#941313"
+    ],
+    "fontFamily": "Comtic Hiden",
+    "fontSize": 20,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 23
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2706:137",
+   "type": "RECTANGLE",
+   "name": "sx-Photoroom 4",
+   "parent": "2706:135",
+   "depth": 1,
+   "x": -48,
+   "y": 4413,
+   "w": 471,
+   "h": 378,
+   "section": "akad",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2706:159",
+   "type": "TEXT",
+   "name": "Minggu, 2 Agustus 2026",
+   "parent": null,
+   "depth": 0,
+   "x": 66,
+   "y": 4445,
+   "w": 243,
+   "h": 28,
+   "section": "akad",
+   "text": "Minggu, 2 Agustus 2026",
+   "styles": {
+    "fills": [
+     "#000000"
+    ],
+    "fontFamily": "Libre Caslon Condensed",
+    "fontSize": 15,
+    "fontStyle": "Italic",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 23
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2706:160",
+   "type": "TEXT",
+   "name": "12.00 - 13.00 WIB",
+   "parent": null,
+   "depth": 0,
+   "x": 66,
+   "y": 4495,
+   "w": 243,
+   "h": 28,
+   "section": "akad",
+   "text": "12.00 - 13.00 WIB",
+   "styles": {
+    "fills": [
+     "#000000"
+    ],
+    "fontFamily": "Libre Caslon Condensed",
+    "fontSize": 15,
+    "fontStyle": "Italic",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 23
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2706:161",
+   "type": "TEXT",
+   "name": "Kediaman Mempelai Wanita",
+   "parent": null,
+   "depth": 0,
+   "x": 70,
+   "y": 4545,
+   "w": 243,
+   "h": 28,
+   "section": "akad",
+   "text": "Kediaman Mempelai Wanita",
+   "styles": {
+    "fills": [
+     "#000000"
+    ],
+    "fontFamily": "Libre Caslon Condensed",
+    "fontSize": 15,
+    "fontStyle": "Italic",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 23
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2706:162",
+   "type": "TEXT",
+   "name": "Jl. Melati Raya No. 27, RT 004/RW 006, Kelurahan Cikini, Kecamatan Menteng, Jakarta Pusat, DKI Jakarta 10330",
+   "parent": null,
+   "depth": 0,
+   "x": 86,
+   "y": 4568,
+   "w": 203,
+   "h": 68,
+   "section": "akad",
+   "text": "Jl. Melati Raya No. 27, RT 004/RW 006, Kelurahan Cikini, Kecamatan Menteng, Jakarta Pusat, DKI Jakarta 10330",
+   "styles": {
+    "fills": [
+     "#000000"
+    ],
+    "fontFamily": "Libre Caslon Condensed",
+    "fontSize": 11,
+    "fontStyle": "Italic",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 23
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2706:140",
+   "type": "RECTANGLE",
+   "name": "7590ffe3-c88a-487e-a79c-1564ad62c2dd-Photoroom 3",
+   "parent": null,
+   "depth": 0,
+   "x": 510,
+   "y": 4569,
+   "w": 711,
+   "h": 474,
+   "section": "akad",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2706:130",
+   "type": "RECTANGLE",
+   "name": "9a3ecb17-4804-47f4-aa81-e97e12e74751-Photoroom 1",
+   "parent": null,
+   "depth": 0,
+   "x": -49,
+   "y": 4655,
+   "w": 272,
+   "h": 272,
+   "section": "akad",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2706:131",
+   "type": "RECTANGLE",
+   "name": "9a3ecb17-4804-47f4-aa81-e97e12e74751-Photoroom 2",
+   "parent": null,
+   "depth": 0,
+   "x": 422,
+   "y": 4655,
+   "w": 272,
+   "h": 272,
+   "section": "akad",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2706:163",
+   "type": "RECTANGLE",
+   "name": "Rectangle 148",
+   "parent": null,
+   "depth": 0,
+   "x": 158,
+   "y": 4655,
+   "w": 59,
+   "h": 24,
+   "section": "akad",
+   "text": null,
+   "styles": {
+    "cornerRadius": 7,
+    "fills": [
+     "#b1b195"
+    ]
+   }
+  },
+  {
+   "id": "2706:164",
+   "type": "TEXT",
+   "name": "Maps",
+   "parent": null,
+   "depth": 0,
+   "x": 162,
+   "y": 4656,
+   "w": 51,
+   "h": 22,
+   "section": "akad",
+   "text": "Maps",
+   "styles": {
+    "fills": [
+     "#000000"
+    ],
+    "fontFamily": "Libre Caslon Condensed",
+    "fontSize": 11,
+    "fontStyle": "Italic",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 23
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2706:143",
+   "type": "RECTANGLE",
+   "name": "c6f66539-5f6c-4fc3-bff1-019c0272ab2f-Photoroom 1",
+   "parent": null,
+   "depth": 0,
+   "x": 63,
+   "y": 4709,
+   "w": 249,
+   "h": 176,
+   "section": "akad",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2706:144",
+   "type": "RECTANGLE",
+   "name": "c2a52e8a-7390-4947-9d19-7839e8532faf-Photoroom 2",
+   "parent": null,
+   "depth": 0,
+   "x": -20.19,
+   "y": 4772.47,
+   "w": 475,
+   "h": 159.65,
+   "section": "akad",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:156",
+   "type": "RECTANGLE",
+   "name": "28fd1323-2231-402f-be0e-a364b3848ab6-Photoroom 2",
+   "parent": null,
+   "depth": 0,
+   "x": 495.99,
+   "y": 4946,
+   "w": 620.99,
+   "h": 933,
+   "section": "resepsi",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2706:145",
+   "type": "RECTANGLE",
+   "name": "c2a52e8a-7390-4947-9d19-7839e8532faf-Photoroom 3",
+   "parent": null,
+   "depth": 0,
+   "x": -30.34,
+   "y": 4964.53,
+   "w": 475,
+   "h": 159.65,
+   "section": "resepsi",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:165",
+   "type": "RECTANGLE",
+   "name": "d84ac9edb66ae53130f8584a85b708ec-Photoroom 5",
+   "parent": null,
+   "depth": 0,
+   "x": 146,
+   "y": 5045,
+   "w": 76,
+   "h": 117,
+   "section": "resepsi",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:164",
+   "type": "RECTANGLE",
+   "name": "cff39dbc117603387914283ebe25d454 8",
+   "parent": null,
+   "depth": 0,
+   "x": 319.51,
+   "y": 5050,
+   "w": 48.32,
+   "h": 185.62,
+   "section": "resepsi",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:166",
+   "type": "RECTANGLE",
+   "name": "d84ac9edb66ae53130f8584a85b708ec-Photoroom 6",
+   "parent": null,
+   "depth": 0,
+   "x": 249,
+   "y": 5095,
+   "w": 76,
+   "h": 117,
+   "section": "resepsi",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:163",
+   "type": "RECTANGLE",
+   "name": "dscvdsv 7",
+   "parent": null,
+   "depth": 0,
+   "x": 401,
+   "y": 5106,
+   "w": 178,
+   "h": 165,
+   "section": "resepsi",
+   "text": null,
+   "styles": {
+    "cornerRadius": 104
+   }
+  },
+  {
+   "id": "2712:167",
+   "type": "RECTANGLE",
+   "name": "5b9e4053-feba-49f5-9700-b874c1c979d6-Photoroom 8",
+   "parent": null,
+   "depth": 0,
+   "x": 10,
+   "y": 5112,
+   "w": 77,
+   "h": 115,
+   "section": "resepsi",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:168",
+   "type": "RECTANGLE",
+   "name": "5b9e4053-feba-49f5-9700-b874c1c979d6-Photoroom 9",
+   "parent": null,
+   "depth": 0,
+   "x": 395,
+   "y": 5139,
+   "w": 77,
+   "h": 115,
+   "section": "resepsi",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:171",
+   "type": "RECTANGLE",
+   "name": "affff668-1c7d-4f2f-a78b-04b76236bafe-Photoroom 12",
+   "parent": null,
+   "depth": 0,
+   "x": 33,
+   "y": 5162,
+   "w": 78,
+   "h": 191,
+   "section": "resepsi",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:179",
+   "type": "RECTANGLE",
+   "name": "a30e689305ba1b872e8b7b6e5233a97d 12",
+   "parent": null,
+   "depth": 0,
+   "x": 311,
+   "y": 5177,
+   "w": 47,
+   "h": 47,
+   "section": "resepsi",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:170",
+   "type": "RECTANGLE",
+   "name": "affff668-1c7d-4f2f-a78b-04b76236bafe-Photoroom 11",
+   "parent": null,
+   "depth": 0,
+   "x": 378,
+   "y": 5197,
+   "w": 108,
+   "h": 264,
+   "section": "resepsi",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:150",
+   "type": "GROUP",
+   "name": "Group 255",
+   "parent": null,
+   "depth": 0,
+   "x": 508,
+   "y": 5234,
+   "w": 645,
+   "h": 616,
+   "section": "resepsi",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:155",
+   "type": "RECTANGLE",
+   "name": "Rectangle 147",
+   "parent": "2712:150",
+   "depth": 1,
+   "x": 340,
+   "y": 5234,
+   "w": 318,
+   "h": 560,
+   "section": "resepsi",
+   "text": null,
+   "styles": {
+    "fills": [
+     "#f3ece2c7"
+    ]
+   }
+  },
+  {
+   "id": "2712:151",
+   "type": "RECTANGLE",
+   "name": "ad70ac3a-5d7f-49bf-8a5a-999f206707ee-Photoroom 7",
+   "parent": "2712:150",
+   "depth": 1,
+   "x": 508,
+   "y": 5254,
+   "w": 341,
+   "h": 513,
+   "section": "resepsi",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:152",
+   "type": "RECTANGLE",
+   "name": "ad70ac3a-5d7f-49bf-8a5a-999f206707ee-Photoroom 8",
+   "parent": "2712:150",
+   "depth": 1,
+   "x": 204,
+   "y": 5254,
+   "w": 341,
+   "h": 513,
+   "section": "resepsi",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:169",
+   "type": "RECTANGLE",
+   "name": "5b9e4053-feba-49f5-9700-b874c1c979d6-Photoroom 10",
+   "parent": null,
+   "depth": 0,
+   "x": 111,
+   "y": 5258,
+   "w": 77,
+   "h": 115,
+   "section": "resepsi",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:153",
+   "type": "RECTANGLE",
+   "name": "ad70ac3a-5d7f-49bf-8a5a-999f206707ee-Photoroom 9",
+   "parent": "2712:150",
+   "depth": 1,
+   "x": 356,
+   "y": 5337,
+   "w": 341,
+   "h": 513,
+   "section": "resepsi",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:172",
+   "type": "TEXT",
+   "name": "Resepsi Nikah",
+   "parent": null,
+   "depth": 0,
+   "x": 60,
+   "y": 5388,
+   "w": 243,
+   "h": 26,
+   "section": "resepsi",
+   "text": "Resepsi Nikah",
+   "styles": {
+    "fills": [
+     "#941313"
+    ],
+    "fontFamily": "Comtic Hiden",
+    "fontSize": 20,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 23
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2712:154",
+   "type": "RECTANGLE",
+   "name": "sx-Photoroom 4",
+   "parent": "2712:150",
+   "depth": 1,
+   "x": 421,
+   "y": 5401,
+   "w": 471,
+   "h": 378,
+   "section": "resepsi",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:173",
+   "type": "TEXT",
+   "name": "Minggu, 2 Agustus 2026",
+   "parent": null,
+   "depth": 0,
+   "x": 60,
+   "y": 5433,
+   "w": 243,
+   "h": 28,
+   "section": "resepsi",
+   "text": "Minggu, 2 Agustus 2026",
+   "styles": {
+    "fills": [
+     "#000000"
+    ],
+    "fontFamily": "Libre Caslon Condensed",
+    "fontSize": 15,
+    "fontStyle": "Italic",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 23
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2712:174",
+   "type": "TEXT",
+   "name": "12.00 - 13.00 WIB",
+   "parent": null,
+   "depth": 0,
+   "x": 60,
+   "y": 5483,
+   "w": 243,
+   "h": 28,
+   "section": "resepsi",
+   "text": "12.00 - 13.00 WIB",
+   "styles": {
+    "fills": [
+     "#000000"
+    ],
+    "fontFamily": "Libre Caslon Condensed",
+    "fontSize": 15,
+    "fontStyle": "Italic",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 23
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2712:175",
+   "type": "TEXT",
+   "name": "Kediaman Mempelai Wanita",
+   "parent": null,
+   "depth": 0,
+   "x": 64,
+   "y": 5533,
+   "w": 243,
+   "h": 28,
+   "section": "resepsi",
+   "text": "Kediaman Mempelai Wanita",
+   "styles": {
+    "fills": [
+     "#000000"
+    ],
+    "fontFamily": "Libre Caslon Condensed",
+    "fontSize": 15,
+    "fontStyle": "Italic",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 23
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2712:176",
+   "type": "TEXT",
+   "name": "Jl. Melati Raya No. 27, RT 004/RW 006, Kelurahan Cikini, Kecamatan Menteng, Jakarta Pusat, DKI Jakarta 10330",
+   "parent": null,
+   "depth": 0,
+   "x": 80,
+   "y": 5556,
+   "w": 203,
+   "h": 68,
+   "section": "resepsi",
+   "text": "Jl. Melati Raya No. 27, RT 004/RW 006, Kelurahan Cikini, Kecamatan Menteng, Jakarta Pusat, DKI Jakarta 10330",
+   "styles": {
+    "fills": [
+     "#000000"
+    ],
+    "fontFamily": "Libre Caslon Condensed",
+    "fontSize": 11,
+    "fontStyle": "Italic",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 23
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2712:149",
+   "type": "RECTANGLE",
+   "name": "7590ffe3-c88a-487e-a79c-1564ad62c2dd-Photoroom 4",
+   "parent": null,
+   "depth": 0,
+   "x": -137,
+   "y": 5557,
+   "w": 711,
+   "h": 474,
+   "section": "resepsi",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:157",
+   "type": "RECTANGLE",
+   "name": "9a3ecb17-4804-47f4-aa81-e97e12e74751-Photoroom 3",
+   "parent": null,
+   "depth": 0,
+   "x": 422,
+   "y": 5643,
+   "w": 272,
+   "h": 272,
+   "section": "resepsi",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:158",
+   "type": "RECTANGLE",
+   "name": "9a3ecb17-4804-47f4-aa81-e97e12e74751-Photoroom 4",
+   "parent": null,
+   "depth": 0,
+   "x": -49,
+   "y": 5643,
+   "w": 272,
+   "h": 272,
+   "section": "resepsi",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:177",
+   "type": "RECTANGLE",
+   "name": "Rectangle 149",
+   "parent": null,
+   "depth": 0,
+   "x": 215,
+   "y": 5643,
+   "w": 59,
+   "h": 24,
+   "section": "resepsi",
+   "text": null,
+   "styles": {
+    "cornerRadius": 7,
+    "fills": [
+     "#b1b195"
+    ]
+   }
+  },
+  {
+   "id": "2712:178",
+   "type": "TEXT",
+   "name": "Maps",
+   "parent": null,
+   "depth": 0,
+   "x": 156,
+   "y": 5644,
+   "w": 51,
+   "h": 22,
+   "section": "resepsi",
+   "text": "Maps",
+   "styles": {
+    "fills": [
+     "#000000"
+    ],
+    "fontFamily": "Libre Caslon Condensed",
+    "fontSize": 11,
+    "fontStyle": "Italic",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 23
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2712:162",
+   "type": "RECTANGLE",
+   "name": "c6f66539-5f6c-4fc3-bff1-019c0272ab2f-Photoroom 2",
+   "parent": null,
+   "depth": 0,
+   "x": 310,
+   "y": 5697,
+   "w": 249,
+   "h": 176,
+   "section": "resepsi",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:160",
+   "type": "RECTANGLE",
+   "name": "c2a52e8a-7390-4947-9d19-7839e8532faf-Photoroom 4",
+   "parent": null,
+   "depth": 0,
+   "x": 393.19,
+   "y": 5760.47,
+   "w": 475,
+   "h": 159.65,
+   "section": "resepsi",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:161",
+   "type": "RECTANGLE",
+   "name": "c2a52e8a-7390-4947-9d19-7839e8532faf-Photoroom 5",
+   "parent": null,
+   "depth": 0,
+   "x": 403.34,
+   "y": 5952.53,
+   "w": 475,
+   "h": 159.65,
+   "section": "resepsi",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:183",
+   "type": "GROUP",
+   "name": "Group 249",
+   "parent": null,
+   "depth": 0,
+   "x": 26,
+   "y": 6021,
+   "w": 327,
+   "h": 597,
+   "section": "gift",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:184",
+   "type": "GROUP",
+   "name": "Group 209",
+   "parent": "2712:183",
+   "depth": 1,
+   "x": 30,
+   "y": 6021,
+   "w": 230,
+   "h": 46,
+   "section": "gift",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:185",
+   "type": "TEXT",
+   "name": "Wedding Gift",
+   "parent": "2712:184",
+   "depth": 2,
+   "x": 30,
+   "y": 6021,
+   "w": 230,
+   "h": 46,
+   "section": "gift",
+   "text": "Wedding \nGift",
+   "styles": {
+    "fills": [
+     "#9e0f0f"
+    ],
+    "fontFamily": "Comtic Hiden",
+    "fontSize": 20,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 28
+    },
+    "textAlignHorizontal": "LEFT"
+   }
+  },
+  {
+   "id": "2712:208",
+   "type": "TEXT",
+   "name": "Bagi Bapak/Ibu/Saudara/i yang berkenan memberikan tanda kasih sebagai bentuk perhatian dan dukungan, dapat menyampaikannya melalui fitur yang telah kami sediakan di bawah ini. Setiap tanda kasih yang diberikan akan kami terima dengan penuh rasa syukur dan penghargaan.",
+   "parent": "2712:183",
+   "depth": 1,
+   "x": 26,
+   "y": 6093,
+   "w": 324,
+   "h": 88,
+   "section": "gift",
+   "text": "Bagi Bapak/Ibu/Saudara/i yang berkenan memberikan tanda kasih sebagai bentuk perhatian dan dukungan, dapat menyampaikannya melalui fitur yang telah kami sediakan di bawah ini. Setiap tanda kasih yang diberikan akan kami terima dengan penuh rasa syukur dan penghargaan. ",
+   "styles": {
+    "fills": [
+     "#000000"
+    ],
+    "fontFamily": "EB Garamond",
+    "fontSize": 11,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 22
+    },
+    "textAlignHorizontal": "LEFT"
+   }
+  },
+  {
+   "id": "2712:186",
+   "type": "GROUP",
+   "name": "Group 241",
+   "parent": "2712:183",
+   "depth": 1,
+   "x": 26,
+   "y": 6202,
+   "w": 327,
+   "h": 110,
+   "section": "gift",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:187",
+   "type": "GROUP",
+   "name": "Group 240",
+   "parent": "2712:186",
+   "depth": 2,
+   "x": 26,
+   "y": 6202,
+   "w": 327,
+   "h": 110,
+   "section": "gift",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:188",
+   "type": "RECTANGLE",
+   "name": "Rectangle 135",
+   "parent": "2712:187",
+   "depth": 3,
+   "x": 26,
+   "y": 6202,
+   "w": 324,
+   "h": 110,
+   "section": "gift",
+   "text": null,
+   "styles": {
+    "cornerRadius": 12,
+    "fills": [
+     "#f7f3dc"
+    ]
+   }
+  },
+  {
+   "id": "2712:189",
+   "type": "VECTOR",
+   "name": "Rectangle 136",
+   "parent": "2712:187",
+   "depth": 3,
+   "x": 309,
+   "y": 6202,
+   "w": 44,
+   "h": 110,
+   "section": "gift",
+   "text": null,
+   "styles": {
+    "cornerRadius": "mixed",
+    "fills": [
+     "#4d4d2d"
+    ]
+   }
+  },
+  {
+   "id": "2712:193",
+   "type": "RECTANGLE",
+   "name": "BCA_logo_Bank_Central_Asia-1-2048x650 1",
+   "parent": "2712:186",
+   "depth": 2,
+   "x": 42,
+   "y": 6217,
+   "w": 60,
+   "h": 19.04,
+   "section": "gift",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:190",
+   "type": "FRAME",
+   "name": "Frame 223",
+   "parent": "2712:186",
+   "depth": 2,
+   "x": 42,
+   "y": 6240,
+   "w": 170,
+   "h": 37,
+   "section": "gift",
+   "text": null,
+   "styles": {
+    "padding": {
+     "bottom": 0,
+     "left": 0,
+     "right": 0,
+     "top": 0
+    }
+   }
+  },
+  {
+   "id": "2712:209",
+   "type": "RECTANGLE",
+   "name": "ed742d1c38731a13260f54866e18013d-Photoroom 4",
+   "parent": null,
+   "depth": 0,
+   "x": 320,
+   "y": 6248,
+   "w": 21,
+   "h": 21,
+   "section": "gift",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:194",
+   "type": "GROUP",
+   "name": "Group 242",
+   "parent": "2712:183",
+   "depth": 1,
+   "x": 26,
+   "y": 6355,
+   "w": 327,
+   "h": 110,
+   "section": "gift",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:195",
+   "type": "GROUP",
+   "name": "Group 240",
+   "parent": "2712:194",
+   "depth": 2,
+   "x": 26,
+   "y": 6355,
+   "w": 327,
+   "h": 110,
+   "section": "gift",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:196",
+   "type": "RECTANGLE",
+   "name": "Rectangle 135",
+   "parent": "2712:195",
+   "depth": 3,
+   "x": 26,
+   "y": 6355,
+   "w": 324,
+   "h": 110,
+   "section": "gift",
+   "text": null,
+   "styles": {
+    "cornerRadius": 12,
+    "fills": [
+     "#f7f3dc"
+    ]
+   }
+  },
+  {
+   "id": "2712:197",
+   "type": "VECTOR",
+   "name": "Rectangle 136",
+   "parent": "2712:195",
+   "depth": 3,
+   "x": 309,
+   "y": 6355,
+   "w": 44,
+   "h": 110,
+   "section": "gift",
+   "text": null,
+   "styles": {
+    "cornerRadius": "mixed",
+    "fills": [
+     "#4d4d2d"
+    ]
+   }
+  },
+  {
+   "id": "2712:201",
+   "type": "RECTANGLE",
+   "name": "BCA_logo_Bank_Central_Asia-1-2048x650 1",
+   "parent": "2712:194",
+   "depth": 2,
+   "x": 42,
+   "y": 6370,
+   "w": 60,
+   "h": 19.04,
+   "section": "gift",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:198",
+   "type": "FRAME",
+   "name": "Frame 223",
+   "parent": "2712:194",
+   "depth": 2,
+   "x": 42,
+   "y": 6393,
+   "w": 170,
+   "h": 37,
+   "section": "gift",
+   "text": null,
+   "styles": {
+    "padding": {
+     "bottom": 0,
+     "left": 0,
+     "right": 0,
+     "top": 0
+    }
+   }
+  },
+  {
+   "id": "2712:210",
+   "type": "RECTANGLE",
+   "name": "ed742d1c38731a13260f54866e18013d-Photoroom 5",
+   "parent": null,
+   "depth": 0,
+   "x": 320,
+   "y": 6402,
+   "w": 21,
+   "h": 21,
+   "section": "gift",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:202",
+   "type": "GROUP",
+   "name": "Group 243",
+   "parent": "2712:183",
+   "depth": 1,
+   "x": 26,
+   "y": 6508,
+   "w": 327,
+   "h": 110,
+   "section": "gift",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:203",
+   "type": "GROUP",
+   "name": "Group 240",
+   "parent": "2712:202",
+   "depth": 2,
+   "x": 26,
+   "y": 6508,
+   "w": 327,
+   "h": 110,
+   "section": "gift",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:204",
+   "type": "RECTANGLE",
+   "name": "Rectangle 135",
+   "parent": "2712:203",
+   "depth": 3,
+   "x": 26,
+   "y": 6508,
+   "w": 324,
+   "h": 110,
+   "section": "gift",
+   "text": null,
+   "styles": {
+    "cornerRadius": 12,
+    "fills": [
+     "#f7f3dc"
+    ]
+   }
+  },
+  {
+   "id": "2712:205",
+   "type": "VECTOR",
+   "name": "Rectangle 136",
+   "parent": "2712:203",
+   "depth": 3,
+   "x": 309,
+   "y": 6508,
+   "w": 44,
+   "h": 110,
+   "section": "gift",
+   "text": null,
+   "styles": {
+    "cornerRadius": "mixed",
+    "fills": [
+     "#4d4d2d"
+    ]
+   }
+  },
+  {
+   "id": "2712:206",
+   "type": "FRAME",
+   "name": "Frame 223",
+   "parent": "2712:202",
+   "depth": 2,
+   "x": 42,
+   "y": 6530,
+   "w": 170,
+   "h": 36,
+   "section": "gift",
+   "text": null,
+   "styles": {
+    "padding": {
+     "bottom": 0,
+     "left": 0,
+     "right": 0,
+     "top": 0
+    }
+   }
+  },
+  {
+   "id": "2712:211",
+   "type": "RECTANGLE",
+   "name": "ed742d1c38731a13260f54866e18013d-Photoroom 6",
+   "parent": null,
+   "depth": 0,
+   "x": 320,
+   "y": 6556,
+   "w": 21,
+   "h": 21,
+   "section": "gift",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:212",
+   "type": "RECTANGLE",
+   "name": "2409ef7d-2136-48cb-a066-ab7e694bc14c-Photoroom 4",
+   "parent": null,
+   "depth": 0,
+   "x": -88,
+   "y": 6567,
+   "w": 186,
+   "h": 279,
+   "section": "gift",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:213",
+   "type": "RECTANGLE",
+   "name": "2409ef7d-2136-48cb-a066-ab7e694bc14c-Photoroom 5",
+   "parent": null,
+   "depth": 0,
+   "x": 463,
+   "y": 6569,
+   "w": 186,
+   "h": 279,
+   "section": "gift",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2713:133",
+   "type": "GROUP",
+   "name": "Group 256",
+   "parent": null,
+   "depth": 0,
+   "x": -64,
+   "y": 6730,
+   "w": 484,
+   "h": 544,
+   "section": "gift",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2713:130",
+   "type": "RECTANGLE",
+   "name": "tanah",
+   "parent": "2713:133",
+   "depth": 1,
+   "x": -29,
+   "y": 6730,
+   "w": 430,
+   "h": 273,
+   "section": "gift",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:214",
+   "type": "RECTANGLE",
+   "name": "gbdn 8",
+   "parent": null,
+   "depth": 0,
+   "x": -45,
+   "y": 6742,
+   "w": 100,
+   "h": 125,
+   "section": "gift",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:215",
+   "type": "RECTANGLE",
+   "name": "gbdn 9",
+   "parent": null,
+   "depth": 0,
+   "x": 420,
+   "y": 6742,
+   "w": 100,
+   "h": 125,
+   "section": "gift",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:217",
+   "type": "RECTANGLE",
+   "name": "558ae5b3-d777-4ef8-9933-43c561691253 1",
+   "parent": null,
+   "depth": 0,
+   "x": 182,
+   "y": 6742,
+   "w": 263,
+   "h": 263,
+   "section": "gift",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:219",
+   "type": "RECTANGLE",
+   "name": "558ae5b3-d777-4ef8-9933-43c561691253 2",
+   "parent": null,
+   "depth": 0,
+   "x": 188,
+   "y": 6742,
+   "w": 263,
+   "h": 263,
+   "section": "gift",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:349",
+   "type": "RECTANGLE",
+   "name": "3eb38f85-f4f7-4485-a930-172e51a6ca12-Photoroom 1",
+   "parent": null,
+   "depth": 0,
+   "x": 105,
+   "y": 6773,
+   "w": 194,
+   "h": 157,
+   "section": "gift",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2713:135",
+   "type": "VECTOR",
+   "name": "Rectangle 141",
+   "parent": "2713:133",
+   "depth": 1,
+   "x": -64,
+   "y": 6958,
+   "w": 484,
+   "h": 316,
+   "section": "gift",
+   "text": null,
+   "styles": {
+    "fills": [
+     "#f3ece2"
+    ]
+   }
+  },
+  {
+   "id": "2712:223",
+   "type": "GROUP",
+   "name": "RSVP",
+   "parent": null,
+   "depth": 0,
+   "x": 35,
+   "y": 6967,
+   "w": 305,
+   "h": 425,
+   "section": "rsvp",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:226",
+   "type": "TEXT",
+   "name": "Rsvp",
+   "parent": "2712:223",
+   "depth": 1,
+   "x": 35,
+   "y": 6967,
+   "w": 305,
+   "h": 38,
+   "section": "rsvp",
+   "text": "Rsvp",
+   "styles": {
+    "fills": [
+     "#9e0f0f"
+    ],
+    "fontFamily": "Comtic Hiden",
+    "fontSize": 20,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 38
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2712:225",
+   "type": "TEXT",
+   "name": "Kehadiran Bapak/Ibu/Saudara/i akan menjadi kehormatan besar bagi kami dan keluarga. Mohon konfirmasi kehadiran Anda melalui formulir reservasi di bawah:",
+   "parent": "2712:223",
+   "depth": 1,
+   "x": 72,
+   "y": 7011,
+   "w": 231,
+   "h": 100,
+   "section": "rsvp",
+   "text": "Kehadiran Bapak/Ibu/Saudara/i akan menjadi kehormatan besar bagi kami dan keluarga. Mohon konfirmasi kehadiran Anda melalui formulir reservasi di bawah:",
+   "styles": {
+    "fills": [
+     "#631818"
+    ],
+    "fontFamily": "EB Garamond",
+    "fontSize": 16,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 20
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2712:231",
+   "type": "TEXT",
+   "name": "Nama:",
+   "parent": "2712:223",
+   "depth": 1,
+   "x": 54,
+   "y": 7141,
+   "w": 41,
+   "h": 23,
+   "section": "rsvp",
+   "text": "Nama:",
+   "styles": {
+    "fills": [
+     "#631818"
+    ],
+    "fontFamily": "Cormorant Garamond",
+    "fontSize": 16,
+    "fontStyle": "Bold",
+    "fontWeight": 700,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 22.399999618530273
+    },
+    "textAlignHorizontal": "LEFT"
+   }
+  },
+  {
+   "id": "2712:234",
+   "type": "FRAME",
+   "name": "Input",
+   "parent": "2712:223",
+   "depth": 1,
+   "x": 55,
+   "y": 7164,
+   "w": 261.22,
+   "h": 36,
+   "section": "rsvp",
+   "text": null,
+   "styles": {
+    "cornerRadius": 10,
+    "fills": [
+     "#ffffff"
+    ],
+    "padding": {
+     "bottom": 0,
+     "left": 0,
+     "right": 0,
+     "top": 0
+    },
+    "strokes": [
+     "#566b4c"
+    ]
+   }
+  },
+  {
+   "id": "2712:232",
+   "type": "TEXT",
+   "name": "No Hp:",
+   "parent": "2712:223",
+   "depth": 1,
+   "x": 54,
+   "y": 7206,
+   "w": 48,
+   "h": 23,
+   "section": "rsvp",
+   "text": "No Hp:",
+   "styles": {
+    "fills": [
+     "#631818"
+    ],
+    "fontFamily": "Cormorant Garamond",
+    "fontSize": 16,
+    "fontStyle": "Bold",
+    "fontWeight": 700,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 22.399999618530273
+    },
+    "textAlignHorizontal": "LEFT"
+   }
+  },
+  {
+   "id": "2712:233",
+   "type": "FRAME",
+   "name": "Input",
+   "parent": "2712:223",
+   "depth": 1,
+   "x": 54,
+   "y": 7229,
+   "w": 261.22,
+   "h": 36,
+   "section": "rsvp",
+   "text": null,
+   "styles": {
+    "cornerRadius": 10,
+    "fills": [
+     "#ffffff"
+    ],
+    "padding": {
+     "bottom": 0,
+     "left": 0,
+     "right": 0,
+     "top": 0
+    },
+    "strokes": [
+     "#566b4c"
+    ]
+   }
+  },
+  {
+   "id": "2712:230",
+   "type": "TEXT",
+   "name": "Kehadiran",
+   "parent": "2712:223",
+   "depth": 1,
+   "x": 56,
+   "y": 7269,
+   "w": 66,
+   "h": 23,
+   "section": "rsvp",
+   "text": "Kehadiran  ",
+   "styles": {
+    "fills": [
+     "#631818"
+    ],
+    "fontFamily": "Cormorant Garamond",
+    "fontSize": 16,
+    "fontStyle": "Bold",
+    "fontWeight": 700,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 22.399999618530273
+    },
+    "textAlignHorizontal": "LEFT"
+   }
+  },
+  {
+   "id": "2712:229",
+   "type": "FRAME",
+   "name": "Input",
+   "parent": "2712:223",
+   "depth": 1,
+   "x": 55,
+   "y": 7292,
+   "w": 258,
+   "h": 36,
+   "section": "rsvp",
+   "text": null,
+   "styles": {
+    "cornerRadius": 10,
+    "fills": [
+     "#ffffff"
+    ],
+    "padding": {
+     "bottom": 0,
+     "left": 0,
+     "right": 0,
+     "top": 0
+    },
+    "strokes": [
+     "#4d4d2d"
+    ]
+   }
+  },
+  {
+   "id": "2712:303",
+   "type": "RECTANGLE",
+   "name": "b3d3db19-ebea-4f06-8be7-258f7e1e7201-Photoroom 2",
+   "parent": null,
+   "depth": 0,
+   "x": 226,
+   "y": 7330,
+   "w": 198,
+   "h": 198,
+   "section": "rsvp",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:227",
+   "type": "RECTANGLE",
+   "name": "Rectangle",
+   "parent": "2712:223",
+   "depth": 1,
+   "x": 126,
+   "y": 7360,
+   "w": 115,
+   "h": 32,
+   "section": "rsvp",
+   "text": null,
+   "styles": {
+    "cornerRadius": 6,
+    "fills": [
+     "#767f62"
+    ]
+   }
+  },
+  {
+   "id": "2712:228",
+   "type": "TEXT",
+   "name": "Send",
+   "parent": "2712:223",
+   "depth": 1,
+   "x": 120,
+   "y": 7367,
+   "w": 127,
+   "h": 17,
+   "section": "rsvp",
+   "text": "Send",
+   "styles": {
+    "fills": [
+     "#ffffff"
+    ],
+    "fontFamily": "Jost",
+    "fontSize": 13,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 16.799999237060547
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2712:235",
+   "type": "GROUP",
+   "name": "Ucapan Dan Harapan",
+   "parent": null,
+   "depth": 0,
+   "x": 39,
+   "y": 7496,
+   "w": 286,
+   "h": 129,
+   "section": "wish",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:257",
+   "type": "GROUP",
+   "name": "Group 171",
+   "parent": "2712:235",
+   "depth": 1,
+   "x": 39,
+   "y": 7496,
+   "w": 286,
+   "h": 129,
+   "section": "wish",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:258",
+   "type": "TEXT",
+   "name": "Heading 2 \u23f5 Konfirmasi Kehadiran",
+   "parent": "2712:257",
+   "depth": 2,
+   "x": 69,
+   "y": 7496,
+   "w": 238.5,
+   "h": 32,
+   "section": "wish",
+   "text": "Wedding Wish",
+   "styles": {
+    "fills": [
+     "#9e0f0f"
+    ],
+    "fontFamily": "Comtic Hiden",
+    "fontSize": 20,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 41.599998474121094
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2712:260",
+   "type": "FRAME",
+   "name": "Input",
+   "parent": "2712:257",
+   "depth": 2,
+   "x": 39,
+   "y": 7540,
+   "w": 286,
+   "h": 29,
+   "section": "wish",
+   "text": null,
+   "styles": {
+    "cornerRadius": 10,
+    "fills": [
+     "#ffffff"
+    ],
+    "padding": {
+     "bottom": 0,
+     "left": 0,
+     "right": 0,
+     "top": 0
+    },
+    "strokes": [
+     "#496c59"
+    ]
+   }
+  },
+  {
+   "id": "2712:261",
+   "type": "FRAME",
+   "name": "Textarea",
+   "parent": "2712:257",
+   "depth": 2,
+   "x": 39,
+   "y": 7582,
+   "w": 286,
+   "h": 43,
+   "section": "wish",
+   "text": null,
+   "styles": {
+    "cornerRadius": 10,
+    "fills": [
+     "#ffffff"
+    ],
+    "padding": {
+     "bottom": 0,
+     "left": 0,
+     "right": 0,
+     "top": 0
+    },
+    "strokes": [
+     "#5b7d4a"
+    ]
+   }
+  },
+  {
+   "id": "2729:127",
+   "type": "RECTANGLE",
+   "name": "vdsvdsv 1",
+   "parent": null,
+   "depth": 0,
+   "x": 24,
+   "y": 7641,
+   "w": 327,
+   "h": 532,
+   "section": "wish",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2729:131",
+   "type": "RECTANGLE",
+   "name": "c4246477-7aaa-442b-8e5d-5ea5c9a1403b-Photoroom 5",
+   "parent": null,
+   "depth": 0,
+   "x": 95.57,
+   "y": 8192,
+   "w": 136,
+   "h": 205,
+   "section": "wish",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2729:130",
+   "type": "RECTANGLE",
+   "name": "a0769ff4-efe6-47a0-ba43-2605d687cf79 12",
+   "parent": null,
+   "depth": 0,
+   "x": 207,
+   "y": 8278,
+   "w": 127,
+   "h": 159,
+   "section": "wish",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:315",
+   "type": "RECTANGLE",
+   "name": "c4246477-7aaa-442b-8e5d-5ea5c9a1403b-Photoroom 4",
+   "parent": null,
+   "depth": 0,
+   "x": 351.22,
+   "y": 8290.68,
+   "w": 136,
+   "h": 205,
+   "section": "wish",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2729:132",
+   "type": "RECTANGLE",
+   "name": "a0769ff4-efe6-47a0-ba43-2605d687cf79 13",
+   "parent": null,
+   "depth": 0,
+   "x": 127,
+   "y": 8310,
+   "w": 127,
+   "h": 159,
+   "section": "wish",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:341",
+   "type": "RECTANGLE",
+   "name": "a0769ff4-efe6-47a0-ba43-2605d687cf79 8",
+   "parent": null,
+   "depth": 0,
+   "x": 268,
+   "y": 8315,
+   "w": 127,
+   "h": 159,
+   "section": "wish",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:309",
+   "type": "RECTANGLE",
+   "name": "ad70ac3a-5d7f-49bf-8a5a-999f206707ee-Photoroom 10",
+   "parent": null,
+   "depth": 0,
+   "x": -173,
+   "y": 8358,
+   "w": 307,
+   "h": 462,
+   "section": "wish",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:310",
+   "type": "RECTANGLE",
+   "name": "ad70ac3a-5d7f-49bf-8a5a-999f206707ee-Photoroom 11",
+   "parent": null,
+   "depth": 0,
+   "x": 537,
+   "y": 8358,
+   "w": 307,
+   "h": 462,
+   "section": "wish",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:355",
+   "type": "RECTANGLE",
+   "name": "a0769ff4-efe6-47a0-ba43-2605d687cf79 10",
+   "parent": null,
+   "depth": 0,
+   "x": 256,
+   "y": 8364,
+   "w": 76,
+   "h": 95,
+   "section": "wish",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:314",
+   "type": "RECTANGLE",
+   "name": "c4246477-7aaa-442b-8e5d-5ea5c9a1403b-Photoroom 3",
+   "parent": null,
+   "depth": 0,
+   "x": -50,
+   "y": 8414,
+   "w": 136,
+   "h": 205,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:304",
+   "type": "TEXT",
+   "name": "Heading 2 \u23f5 Konfirmasi Kehadiran",
+   "parent": null,
+   "depth": 0,
+   "x": 50,
+   "y": 8427,
+   "w": 291,
+   "h": 32,
+   "section": "gallery",
+   "text": "Wedding Gallery",
+   "styles": {
+    "fills": [
+     "#9e0f0f"
+    ],
+    "fontFamily": "Comtic Hiden",
+    "fontSize": 20,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 41.599998474121094
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2712:342",
+   "type": "RECTANGLE",
+   "name": "a0769ff4-efe6-47a0-ba43-2605d687cf79 9",
+   "parent": null,
+   "depth": 0,
+   "x": -38,
+   "y": 8453,
+   "w": 142,
+   "h": 178,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:286",
+   "type": "RECTANGLE",
+   "name": "cdcddssaxsx 1",
+   "parent": "2712:284",
+   "depth": 4,
+   "x": 28.31,
+   "y": 8464.56,
+   "w": 315.85,
+   "h": 474.55,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:279",
+   "type": "GROUP",
+   "name": "Group 249",
+   "parent": null,
+   "depth": 0,
+   "x": 10,
+   "y": 8488,
+   "w": 356.78,
+   "h": 367,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:282",
+   "type": "GROUP",
+   "name": "Group 222",
+   "parent": "2712:279",
+   "depth": 1,
+   "x": 10,
+   "y": 8488,
+   "w": 355.5,
+   "h": 367,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:283",
+   "type": "GROUP",
+   "name": "Group 221",
+   "parent": "2712:282",
+   "depth": 2,
+   "x": 10,
+   "y": 8488,
+   "w": 355.5,
+   "h": 367,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:284",
+   "type": "GROUP",
+   "name": "Mask group",
+   "parent": "2712:283",
+   "depth": 3,
+   "x": 32.05,
+   "y": 8488,
+   "w": 307.59,
+   "h": 288.73,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:285",
+   "type": "RECTANGLE",
+   "name": "Rectangle 118",
+   "parent": "2712:284",
+   "depth": 4,
+   "x": 32.05,
+   "y": 8488,
+   "w": 307.59,
+   "h": 288.73,
+   "section": "gallery",
+   "text": null,
+   "styles": {
+    "cornerRadius": 29,
+    "fills": [
+     "#d9d9d9"
+    ]
+   }
+  },
+  {
+   "id": "2712:280",
+   "type": "GROUP",
+   "name": "Mask group",
+   "parent": "2712:279",
+   "depth": 1,
+   "x": 323.5,
+   "y": 8608.69,
+   "w": 43.27,
+   "h": 65.02,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:281",
+   "type": "RECTANGLE",
+   "name": "cdcddssaxsx 1",
+   "parent": "2712:280",
+   "depth": 2,
+   "x": 323.5,
+   "y": 8608.69,
+   "w": 43.27,
+   "h": 65.02,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:287",
+   "type": "GROUP",
+   "name": "Mask group",
+   "parent": "2712:283",
+   "depth": 3,
+   "x": 10,
+   "y": 8608.69,
+   "w": 43.27,
+   "h": 65.02,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:289",
+   "type": "RECTANGLE",
+   "name": "cdcddssaxsx 1",
+   "parent": "2712:287",
+   "depth": 4,
+   "x": 10,
+   "y": 8608.69,
+   "w": 43.27,
+   "h": 65.02,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:288",
+   "type": "RECTANGLE",
+   "name": "Rectangle 118",
+   "parent": "2712:287",
+   "depth": 4,
+   "x": 11.39,
+   "y": 8610.63,
+   "w": 40.39,
+   "h": 41.28,
+   "section": "gallery",
+   "text": null,
+   "styles": {
+    "cornerRadius": 29,
+    "fills": [
+     "#dbd0af"
+    ]
+   }
+  },
+  {
+   "id": "2712:290",
+   "type": "RECTANGLE",
+   "name": "Rectangle 118",
+   "parent": "2712:283",
+   "depth": 3,
+   "x": 325.12,
+   "y": 8610.63,
+   "w": 40.39,
+   "h": 41.28,
+   "section": "gallery",
+   "text": null,
+   "styles": {
+    "cornerRadius": 29,
+    "fills": [
+     "#dbd0af"
+    ]
+   }
+  },
+  {
+   "id": "2712:308",
+   "type": "RECTANGLE",
+   "name": "4a52d730-cc02-4146-baac-31d784320081-Photoroom 5",
+   "parent": null,
+   "depth": 0,
+   "x": -54,
+   "y": 8670,
+   "w": 538,
+   "h": 215,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:305",
+   "type": "RECTANGLE",
+   "name": "gbdn 10",
+   "parent": null,
+   "depth": 0,
+   "x": -66,
+   "y": 8702,
+   "w": 152,
+   "h": 190,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:306",
+   "type": "RECTANGLE",
+   "name": "gbdn 11",
+   "parent": null,
+   "depth": 0,
+   "x": 442,
+   "y": 8702,
+   "w": 152,
+   "h": 190,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:313",
+   "type": "VECTOR",
+   "name": "Vector",
+   "parent": null,
+   "depth": 0,
+   "x": -34,
+   "y": 8757,
+   "w": 440,
+   "h": 369,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:293",
+   "type": "RECTANGLE",
+   "name": "cdcddssaxsx 1",
+   "parent": "2712:291",
+   "depth": 4,
+   "x": 38.99,
+   "y": 8781.02,
+   "w": 74.02,
+   "h": 111.2,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:296",
+   "type": "RECTANGLE",
+   "name": "cdcddssaxsx 1",
+   "parent": "2712:294",
+   "depth": 4,
+   "x": 112.28,
+   "y": 8781.02,
+   "w": 74.02,
+   "h": 111.2,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:299",
+   "type": "RECTANGLE",
+   "name": "cdcddssaxsx 1",
+   "parent": "2712:297",
+   "depth": 4,
+   "x": 185.57,
+   "y": 8781.02,
+   "w": 74.02,
+   "h": 111.2,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:302",
+   "type": "RECTANGLE",
+   "name": "cdcddssaxsx 1",
+   "parent": "2712:300",
+   "depth": 4,
+   "x": 258.86,
+   "y": 8781.02,
+   "w": 74.02,
+   "h": 111.2,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:291",
+   "type": "GROUP",
+   "name": "Mask group",
+   "parent": "2712:283",
+   "depth": 3,
+   "x": 41.49,
+   "y": 8784.14,
+   "w": 68.82,
+   "h": 70.86,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:292",
+   "type": "RECTANGLE",
+   "name": "Rectangle 118",
+   "parent": "2712:291",
+   "depth": 4,
+   "x": 41.49,
+   "y": 8784.14,
+   "w": 68.82,
+   "h": 70.86,
+   "section": "gallery",
+   "text": null,
+   "styles": {
+    "cornerRadius": 29,
+    "fills": [
+     "#d9d9d9"
+    ]
+   }
+  },
+  {
+   "id": "2712:294",
+   "type": "GROUP",
+   "name": "Mask group",
+   "parent": "2712:283",
+   "depth": 3,
+   "x": 114.78,
+   "y": 8784.14,
+   "w": 68.82,
+   "h": 70.86,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:295",
+   "type": "RECTANGLE",
+   "name": "Rectangle 118",
+   "parent": "2712:294",
+   "depth": 4,
+   "x": 114.78,
+   "y": 8784.14,
+   "w": 68.82,
+   "h": 70.86,
+   "section": "gallery",
+   "text": null,
+   "styles": {
+    "cornerRadius": 29,
+    "fills": [
+     "#d9d9d9"
+    ]
+   }
+  },
+  {
+   "id": "2712:297",
+   "type": "GROUP",
+   "name": "Mask group",
+   "parent": "2712:283",
+   "depth": 3,
+   "x": 188.07,
+   "y": 8784.14,
+   "w": 68.82,
+   "h": 70.86,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:298",
+   "type": "RECTANGLE",
+   "name": "Rectangle 118",
+   "parent": "2712:297",
+   "depth": 4,
+   "x": 188.07,
+   "y": 8784.14,
+   "w": 68.82,
+   "h": 70.86,
+   "section": "gallery",
+   "text": null,
+   "styles": {
+    "cornerRadius": 29,
+    "fills": [
+     "#d9d9d9"
+    ]
+   }
+  },
+  {
+   "id": "2712:300",
+   "type": "GROUP",
+   "name": "Mask group",
+   "parent": "2712:283",
+   "depth": 3,
+   "x": 261.36,
+   "y": 8784.14,
+   "w": 68.82,
+   "h": 70.86,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:301",
+   "type": "RECTANGLE",
+   "name": "Rectangle 118",
+   "parent": "2712:300",
+   "depth": 4,
+   "x": 261.36,
+   "y": 8784.14,
+   "w": 68.82,
+   "h": 70.86,
+   "section": "gallery",
+   "text": null,
+   "styles": {
+    "cornerRadius": 29,
+    "fills": [
+     "#d9d9d9"
+    ]
+   }
+  },
+  {
+   "id": "2712:348",
+   "type": "RECTANGLE",
+   "name": "dbd72958-143d-4028-abcc-2e02a5597383-Photoroom 1",
+   "parent": null,
+   "depth": 0,
+   "x": 71,
+   "y": 8831,
+   "w": 101,
+   "h": 88,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:334",
+   "type": "RECTANGLE",
+   "name": "a0769ff4-efe6-47a0-ba43-2605d687cf79 5",
+   "parent": null,
+   "depth": 0,
+   "x": 0,
+   "y": 8837,
+   "w": 142,
+   "h": 210,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:335",
+   "type": "RECTANGLE",
+   "name": "a0769ff4-efe6-47a0-ba43-2605d687cf79 6",
+   "parent": null,
+   "depth": 0,
+   "x": 161,
+   "y": 8837,
+   "w": 142,
+   "h": 210,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:336",
+   "type": "RECTANGLE",
+   "name": "a0769ff4-efe6-47a0-ba43-2605d687cf79 7",
+   "parent": null,
+   "depth": 0,
+   "x": 80,
+   "y": 8837,
+   "w": 142,
+   "h": 210,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:333",
+   "type": "RECTANGLE",
+   "name": "a0769ff4-efe6-47a0-ba43-2605d687cf79 4",
+   "parent": null,
+   "depth": 0,
+   "x": 175,
+   "y": 8891,
+   "w": 268,
+   "h": 335,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:332",
+   "type": "RECTANGLE",
+   "name": "a0769ff4-efe6-47a0-ba43-2605d687cf79 3",
+   "parent": null,
+   "depth": 0,
+   "x": 205,
+   "y": 8892,
+   "w": 268,
+   "h": 335,
+   "section": "gallery",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:330",
+   "type": "TEXT",
+   "name": "Heading 2 \u23f5 Konfirmasi Kehadiran",
+   "parent": null,
+   "depth": 0,
+   "x": 40,
+   "y": 9053,
+   "w": 291,
+   "h": 32,
+   "section": "footer",
+   "text": "Thank You !",
+   "styles": {
+    "fills": [
+     "#9e0f0f"
+    ],
+    "fontFamily": "Comtic Hiden",
+    "fontSize": 24,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 41.599998474121094
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2712:323",
+   "type": "TEXT",
+   "name": "Doa restu Bapak/Ibu/Saudara/i menjadi kebahagiaan bagi kami. Semoga Allah SWT memberkahi pernikahan kami. Terima kasih atas doa dan kasih sayangnya. Wassalamu\u2019alaikum warahmatullahi wabarakatuh.",
+   "parent": null,
+   "depth": 0,
+   "x": 52,
+   "y": 9090,
+   "w": 256,
+   "h": 169,
+   "section": "footer",
+   "text": "Doa restu Bapak/Ibu/Saudara/i menjadi kebahagiaan bagi kami. Semoga Allah SWT memberkahi pernikahan kami. Terima kasih atas doa dan kasih sayangnya.\nWassalamu\u2019alaikum warahmatullahi wabarakatuh.",
+   "styles": {
+    "fills": [
+     "#000000"
+    ],
+    "fontFamily": "Ibarra Real Nova",
+    "fontSize": 14,
+    "fontStyle": "Italic",
+    "fontWeight": 400,
+    "letterSpacing": {
+     "unit": "PERCENT",
+     "value": 1
+    },
+    "lineHeight": {
+     "unit": "PIXELS",
+     "value": 20
+    },
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2712:317",
+   "type": "RECTANGLE",
+   "name": "sx-Photoroom 6",
+   "parent": null,
+   "depth": 0,
+   "x": -132,
+   "y": 9121,
+   "w": 640,
+   "h": 513,
+   "section": "footer",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:346",
+   "type": "RECTANGLE",
+   "name": "b3d3db19-ebea-4f06-8be7-258f7e1e7201-Photoroom 3",
+   "parent": null,
+   "depth": 0,
+   "x": 239,
+   "y": 9287,
+   "w": 117,
+   "h": 117,
+   "section": "footer",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:320",
+   "type": "ELLIPSE",
+   "name": "Ellipse 13",
+   "parent": null,
+   "depth": 0,
+   "x": 57,
+   "y": 9297,
+   "w": 262,
+   "h": 393,
+   "section": "footer",
+   "text": null,
+   "styles": {
+    "fills": [
+     "#f3ece2d6"
+    ]
+   }
+  },
+  {
+   "id": "2712:328",
+   "type": "GROUP",
+   "name": "Group 253",
+   "parent": null,
+   "depth": 0,
+   "x": 136,
+   "y": 9325,
+   "w": 102.52,
+   "h": 126.69,
+   "section": "footer",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:329",
+   "type": "RECTANGLE",
+   "name": "rs logo",
+   "parent": "2712:328",
+   "depth": 1,
+   "x": 136,
+   "y": 9325,
+   "w": 102.52,
+   "h": 126.69,
+   "section": "footer",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:321",
+   "type": "TEXT_PATH",
+   "name": "The Wedding Of",
+   "parent": null,
+   "depth": 0,
+   "x": 104,
+   "y": 9472,
+   "w": 167,
+   "h": 185,
+   "section": "footer",
+   "text": null,
+   "styles": {
+    "cornerRadius": "mixed",
+    "fills": [
+     "#4d4d2d"
+    ]
+   }
+  },
+  {
+   "id": "2712:322",
+   "type": "TEXT",
+   "name": "Ahmad & Salma",
+   "parent": null,
+   "depth": 0,
+   "x": 108,
+   "y": 9494,
+   "w": 159,
+   "h": 102,
+   "section": "footer",
+   "text": "Ahmad \n&\nSalma",
+   "styles": {
+    "fills": [
+     "#732222"
+    ],
+    "fontFamily": "Charoly Demo",
+    "fontSize": 40,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "textAlignHorizontal": "CENTER"
+   }
+  },
+  {
+   "id": "2712:318",
+   "type": "RECTANGLE",
+   "name": "5baf52a6-d425-49ef-8131-9c80a411bacc 2",
+   "parent": null,
+   "depth": 0,
+   "x": -33,
+   "y": 9501,
+   "w": 441,
+   "h": 294,
+   "section": "footer",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:327",
+   "type": "RECTANGLE",
+   "name": "8166e082-6e00-480f-9afd-68a3b9940b49-Photoroom 4",
+   "parent": null,
+   "depth": 0,
+   "x": -172,
+   "y": 9527,
+   "w": 719,
+   "h": 311,
+   "section": "footer",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:337",
+   "type": "RECTANGLE",
+   "name": "d77352ec44f5d78a5fbdd8ea61240614-Photoroom 14",
+   "parent": null,
+   "depth": 0,
+   "x": 284,
+   "y": 9530,
+   "w": 204,
+   "h": 204,
+   "section": "footer",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:338",
+   "type": "RECTANGLE",
+   "name": "d77352ec44f5d78a5fbdd8ea61240614-Photoroom 15",
+   "parent": null,
+   "depth": 0,
+   "x": 104,
+   "y": 9532,
+   "w": 204,
+   "h": 204,
+   "section": "footer",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:319",
+   "type": "RECTANGLE",
+   "name": "c6f66539-5f6c-4fc3-bff1-019c0272ab2f-Photoroom 3",
+   "parent": null,
+   "depth": 0,
+   "x": 91,
+   "y": 9565,
+   "w": 193,
+   "h": 137,
+   "section": "footer",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:339",
+   "type": "RECTANGLE",
+   "name": "4a52d730-cc02-4146-baac-31d784320081-Photoroom 6",
+   "parent": null,
+   "depth": 0,
+   "x": -5,
+   "y": 9674,
+   "w": 413,
+   "h": 165,
+   "section": "footer",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:350",
+   "type": "RECTANGLE",
+   "name": "3eb38f85-f4f7-4485-a930-172e51a6ca12-Photoroom 2",
+   "parent": null,
+   "depth": 0,
+   "x": 190,
+   "y": 9674,
+   "w": 188,
+   "h": 153,
+   "section": "footer",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:351",
+   "type": "RECTANGLE",
+   "name": "dbd72958-143d-4028-abcc-2e02a5597383-Photoroom 2",
+   "parent": null,
+   "depth": 0,
+   "x": 44,
+   "y": 9752,
+   "w": 79,
+   "h": 69,
+   "section": "footer",
+   "text": null,
+   "styles": {}
+  },
+  {
+   "id": "2712:325",
+   "type": "RECTANGLE",
+   "name": "Rectangle 151",
+   "parent": null,
+   "depth": 0,
+   "x": 0,
+   "y": 9838,
+   "w": 375,
+   "h": 28,
+   "section": "footer",
+   "text": null,
+   "styles": {
+    "fills": [
+     "#566b4c"
+    ]
+   }
+  },
+  {
+   "id": "2712:326",
+   "type": "TEXT",
+   "name": "Created by @25ribuaja x Qinvi",
+   "parent": null,
+   "depth": 0,
+   "x": 66,
+   "y": 9846,
+   "w": 244,
+   "h": 18,
+   "section": "footer",
+   "text": "Created by @25ribuaja x Qinvi",
+   "styles": {
+    "fills": [
+     "#ffffff"
+    ],
+    "fontFamily": "Ibarra Real Nova",
+    "fontSize": 12,
+    "fontStyle": "Regular",
+    "fontWeight": 400,
+    "textAlignHorizontal": "CENTER"
+   }
+  }
+ ]
+}

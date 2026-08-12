@@ -1,0 +1,42 @@
+/* Only the families Frame 243 (cover) needs. Frame 244's six more get added per band. */
+@import "@fontsource/playball/400.css";
+@import "@fontsource/almendra-display/400.css";
+@import "@fontsource/ibarra-real-nova/500-italic.css";
+@import "@fontsource/jost/400.css";
+@import "./style/tokens.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--paper);
+  font-family: system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

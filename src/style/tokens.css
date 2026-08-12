@@ -1,0 +1,31 @@
+:root {
+  /* Theme hooks — useWedding() overwrites these from the API's theme_config. */
+  --maroon-title: #ad2124;
+  --maroon-text: #790707;
+  --gold: #ac6f28;
+  --bg-body: #f2ece1;
+
+  /* colors — sampled from Frame 243 text fills */
+  --crimson: #ad2124; /* couple name */
+  --crimson-deep: #790707; /* guest block */
+  --olive: #72703d; /* "The Wedding Of" */
+  --gold-brown: #ac6f28; /* "Click to open" */
+  --paper: #f2ece1; /* the cream ground the chateau plate sits on */
+
+  /*
+   * fonts — Frame 243 uses four families. Two of them (Taldose Script, Norveil
+   * Fantasy Demo) are commercial/demo faces with no webfont, so the display type
+   * runs on the closest fontsource substitute until the real files are licensed.
+   * Swap the two --font-*-sub values and nothing else has to change.
+   */
+  --font-script: "Playball", cursive; /* SUB for Taldose Script — "The Wedding Of" */
+  --font-display: "Almendra Display", serif; /* SUB for Norveil Fantasy Demo — couple name */
+  --font-serif: "Ibarra Real Nova", serif; /* guest block */
+  --font-sans: "Jost", system-ui, sans-serif; /* UI labels */
+
+  /* design frame reference (Figma Frame 243 cover / Frame 244 body) */
+  --frame-w: 375;
+  --frame-h: 725;
+  --body-h: 9866;
+  --card-max: 430px;
+}

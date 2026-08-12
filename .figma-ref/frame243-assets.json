@@ -1,0 +1,350 @@
+{
+  "frame": "2684:108",
+  "scale": 2,
+  "assetDir": "src/assets/opening/",
+  "nodes": {
+    "2684:109": {
+      "asset": "parts/2684-109.webp",
+      "dedupedFrom": false,
+      "figmaName": "Rectangle 124",
+      "x": 0,
+      "y": 0,
+      "w": 375,
+      "h": 725
+    },
+    "2685:141": {
+      "asset": "parts/2685-141.webp",
+      "dedupedFrom": false,
+      "figmaName": "Ellipse 10",
+      "x": 60,
+      "y": 153,
+      "w": 255,
+      "h": 469
+    },
+    "2687:128": {
+      "asset": "parts/2687-128.webp",
+      "dedupedFrom": false,
+      "figmaName": "bdgfxdb 1",
+      "x": -109,
+      "y": 34,
+      "w": 593,
+      "h": 691
+    },
+    "2688:129": {
+      "asset": "parts/2688-129.webp",
+      "dedupedFrom": false,
+      "figmaName": "acf83061-7cf7-4cb2-a0cf-fb51101f1998-Photoroom 1",
+      "x": 327,
+      "y": 550,
+      "w": 117,
+      "h": 175
+    },
+    "2688:130": {
+      "asset": "parts/2688-130.webp",
+      "dedupedFrom": false,
+      "figmaName": "acf83061-7cf7-4cb2-a0cf-fb51101f1998-Photoroom 2",
+      "x": 43,
+      "y": 550,
+      "w": 117,
+      "h": 175
+    },
+    "2688:131": {
+      "asset": "parts/2688-131.webp",
+      "dedupedFrom": false,
+      "figmaName": "acf83061-7cf7-4cb2-a0cf-fb51101f1998-Photoroom 3",
+      "x": 285,
+      "y": 641.53,
+      "w": 117,
+      "h": 175
+    },
+    "2688:133": {
+      "asset": "parts/2688-133.webp",
+      "dedupedFrom": false,
+      "figmaName": "acf83061-7cf7-4cb2-a0cf-fb51101f1998-Photoroom 4",
+      "x": 92.38,
+      "y": 632.53,
+      "w": 117,
+      "h": 175
+    },
+    "2688:134": {
+      "asset": "parts/2688-134.webp",
+      "dedupedFrom": false,
+      "figmaName": "affff668-1c7d-4f2f-a78b-04b76236bafe-Photoroom 1",
+      "x": -39,
+      "y": 231,
+      "w": 86,
+      "h": 210
+    },
+    "2688:135": {
+      "asset": "parts/2688-135.webp",
+      "dedupedFrom": false,
+      "figmaName": "affff668-1c7d-4f2f-a78b-04b76236bafe-Photoroom 2",
+      "x": 404,
+      "y": 231,
+      "w": 86,
+      "h": 210
+    },
+    "2689:136": {
+      "asset": "parts/2689-136.webp",
+      "dedupedFrom": false,
+      "figmaName": "b3646631-4057-4dfb-873a-270289589999-Photoroom 1",
+      "x": 340,
+      "y": 543,
+      "w": 60,
+      "h": 147
+    },
+    "2689:137": {
+      "asset": "parts/2689-137.webp",
+      "dedupedFrom": false,
+      "figmaName": "b3646631-4057-4dfb-873a-270289589999-Photoroom 2",
+      "x": 38,
+      "y": 540,
+      "w": 62,
+      "h": 152
+    },
+    "2689:138": {
+      "asset": "parts/2689-138.webp",
+      "dedupedFrom": false,
+      "figmaName": "affff668-1c7d-4f2f-a78b-04b76236bafe-Photoroom 3",
+      "x": 418,
+      "y": 288,
+      "w": 86,
+      "h": 210
+    },
+    "2689:139": {
+      "asset": "parts/2689-139.webp",
+      "dedupedFrom": false,
+      "figmaName": "affff668-1c7d-4f2f-a78b-04b76236bafe-Photoroom 4",
+      "x": -47,
+      "y": 288,
+      "w": 86,
+      "h": 210
+    },
+    "2689:140": {
+      "asset": "parts/2689-140.webp",
+      "dedupedFrom": false,
+      "figmaName": "fsb 1",
+      "x": -27,
+      "y": 637,
+      "w": 148,
+      "h": 148
+    },
+    "2689:141": {
+      "asset": "parts/2689-141.webp",
+      "dedupedFrom": false,
+      "figmaName": "fsb 2",
+      "x": 270,
+      "y": 634,
+      "w": 148,
+      "h": 148
+    },
+    "2689:142": {
+      "asset": "parts/2689-142.webp",
+      "dedupedFrom": false,
+      "figmaName": "fsb 3",
+      "x": 179,
+      "y": 661,
+      "w": 148,
+      "h": 148
+    },
+    "2689:143": {
+      "asset": "parts/2689-142.webp",
+      "dedupedFrom": true,
+      "figmaName": "fsb 4",
+      "x": 61,
+      "y": 661,
+      "w": 148,
+      "h": 148
+    },
+    "2689:144": {
+      "asset": "parts/2689-144.webp",
+      "dedupedFrom": false,
+      "figmaName": "fsb 5",
+      "x": 114,
+      "y": 637,
+      "w": 148,
+      "h": 148
+    },
+    "2689:145": {
+      "asset": "parts/2689-145.webp",
+      "dedupedFrom": false,
+      "figmaName": "b3646631-4057-4dfb-873a-270289589999-Photoroom 3",
+      "x": 298.01,
+      "y": 629.57,
+      "w": 37,
+      "h": 91
+    },
+    "2689:146": {
+      "asset": "parts/2689-146.webp",
+      "dedupedFrom": false,
+      "figmaName": "b3646631-4057-4dfb-873a-270289589999-Photoroom 4",
+      "x": 76.99,
+      "y": 629.18,
+      "w": 37,
+      "h": 91
+    },
+    "2690:148": {
+      "asset": "parts/2690-148.webp",
+      "dedupedFrom": false,
+      "figmaName": "cbf8fbd0-a12b-46dc-801a-72c26e768333-Photoroom 1",
+      "x": 39,
+      "y": 651,
+      "w": 91,
+      "h": 114
+    },
+    "2690:149": {
+      "asset": "parts/2690-149.webp",
+      "dedupedFrom": false,
+      "figmaName": "cbf8fbd0-a12b-46dc-801a-72c26e768333-Photoroom 2",
+      "x": 332,
+      "y": 646,
+      "w": 91,
+      "h": 114
+    },
+    "2692:126": {
+      "asset": "parts/2692-126.webp",
+      "dedupedFrom": false,
+      "figmaName": "acf83061-7cf7-4cb2-a0cf-fb51101f1998-Photoroom 5",
+      "x": 241,
+      "y": 683,
+      "w": 57,
+      "h": 85
+    },
+    "2692:127": {
+      "asset": "parts/2692-127.webp",
+      "dedupedFrom": false,
+      "figmaName": "acf83061-7cf7-4cb2-a0cf-fb51101f1998-Photoroom 6",
+      "x": 135,
+      "y": 680,
+      "w": 57,
+      "h": 85
+    },
+    "2693:129": {
+      "asset": "parts/2693-129.webp",
+      "dedupedFrom": false,
+      "figmaName": "8166e082-6e00-480f-9afd-68a3b9940b49-Photoroom 1",
+      "x": -39,
+      "y": 431,
+      "w": 453,
+      "h": 198
+    },
+    "2694:130": {
+      "asset": "parts/2694-130.webp",
+      "dedupedFrom": false,
+      "figmaName": "cd dgn 1",
+      "x": -27,
+      "y": 537,
+      "w": 476,
+      "h": 318
+    },
+    "2694:131": {
+      "asset": "parts/2694-131.webp",
+      "dedupedFrom": false,
+      "figmaName": "5dce5bf6-5587-4ec6-bb3d-4faba612878a-Photoroom 1",
+      "x": 95,
+      "y": 651,
+      "w": 80,
+      "h": 80
+    },
+    "2694:132": {
+      "asset": "parts/2694-132.webp",
+      "dedupedFrom": false,
+      "figmaName": "5dce5bf6-5587-4ec6-bb3d-4faba612878a-Photoroom 2",
+      "x": 298,
+      "y": 656,
+      "w": 80,
+      "h": 80
+    },
+    "2694:133": {
+      "asset": "parts/2694-133.webp",
+      "dedupedFrom": false,
+      "figmaName": "5dce5bf6-5587-4ec6-bb3d-4faba612878a-Photoroom 3",
+      "x": 26,
+      "y": 672,
+      "w": 80,
+      "h": 80
+    },
+    "2694:134": {
+      "asset": "parts/2694-134.webp",
+      "dedupedFrom": false,
+      "figmaName": "5dce5bf6-5587-4ec6-bb3d-4faba612878a-Photoroom 4",
+      "x": 342,
+      "y": 654,
+      "w": 80,
+      "h": 80
+    },
+    "2695:150": {
+      "asset": "parts/2695-150.webp",
+      "dedupedFrom": false,
+      "figmaName": "Group 249",
+      "x": 118,
+      "y": 104,
+      "w": 141.2,
+      "h": 173.67
+    },
+    "2695:154": {
+      "asset": "parts/2695-154.webp",
+      "dedupedFrom": false,
+      "figmaName": "d77352ec44f5d78a5fbdd8ea61240614-Photoroom 9",
+      "x": 174,
+      "y": 662,
+      "w": 99,
+      "h": 99
+    },
+    "2695:155": {
+      "asset": "parts/2695-155.webp",
+      "dedupedFrom": false,
+      "figmaName": "d77352ec44f5d78a5fbdd8ea61240614-Photoroom 10",
+      "x": 199,
+      "y": 663,
+      "w": 99,
+      "h": 99
+    },
+    "2695:156": {
+      "asset": "parts/2695-156.webp",
+      "dedupedFrom": false,
+      "figmaName": "d77352ec44f5d78a5fbdd8ea61240614-Photoroom 11",
+      "x": 145,
+      "y": 642,
+      "w": 99,
+      "h": 99
+    },
+    "2695:157": {
+      "asset": "parts/2695-157.webp",
+      "dedupedFrom": false,
+      "figmaName": "d77352ec44f5d78a5fbdd8ea61240614-Photoroom 12",
+      "x": 66,
+      "y": 261,
+      "w": 132,
+      "h": 132
+    },
+    "2695:158": {
+      "asset": "parts/2695-158.webp",
+      "dedupedFrom": false,
+      "figmaName": "d77352ec44f5d78a5fbdd8ea61240614-Photoroom 13",
+      "x": 447,
+      "y": 261,
+      "w": 132,
+      "h": 132
+    },
+    "2695:161": {
+      "asset": "parts/2695-161.webp",
+      "dedupedFrom": false,
+      "figmaName": "96d241ee-d663-4914-8e1e-b93e3c88ba26-Photoroom 1",
+      "x": 56,
+      "y": 466,
+      "w": 265,
+      "h": 265
+    }
+  },
+  "dropped": [
+    {
+      "id": "2684:112",
+      "why": "export is empty/transparent"
+    },
+    {
+      "id": "2695:159",
+      "why": "export is empty/transparent"
+    }
+  ]
+}
