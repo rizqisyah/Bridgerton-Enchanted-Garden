@@ -41,9 +41,13 @@ OUT_DIR = pathlib.Path("src/lib/bands")
 # matches. They are buried in the design, so drawing them anywhere paints an artifact
 # the render does not have -- 2712:161 put a dark moss mound across the Wedding Gift
 # heading. Every other off-frame node is merely occluded, which is not the same thing:
-# dropping those made the sheet measurably worse. Add to this list only with a
-# before/after delta that justifies it.
-PAINTS_NOTHING = {"2712:160", "2712:161"}
+# dropping those wholesale took the sheet from 8.97 to 13.43 mean abs delta.
+#
+# Measured one at a time, not as a set. All four moss mounds share the same rotated
+# 475x159.65 source (c2a52e8a), but the fourth, 2706:144, is genuinely visible:
+# dropping it took akad from 7.62 to 8.58 and the sheet from 8.15 to 8.24, so it stays.
+# Add to this list only with a before/after delta for that node alone.
+PAINTS_NOTHING = {"2706:145", "2712:160", "2712:161"}
 
 
 def reconcile(pos, node_size, exp_size, frame_size):

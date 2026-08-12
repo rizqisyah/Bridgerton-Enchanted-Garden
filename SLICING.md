@@ -126,9 +126,12 @@ When that search *fails*, the layer is either buried under later layers or genui
 and `locate.py` cannot tell the two apart, because it scores over all of a layer's opaque
 pixels and a mostly-buried layer scores badly even where it belongs. Dropping every failure
 took the sheet from 8.97 to 13.43 mean abs delta. So a failed search falls back to the clip
-rule, and only `PAINTS_NOTHING` is dropped: two layers verified by eye to paint an artifact
-the render does not have (`2712:161` laid a dark moss mound across the Wedding Gift heading).
-**Add to that set only with a before/after delta that justifies it.**
+rule, and only `PAINTS_NOTHING` is dropped — three layers that paint an artifact the render
+does not have (`2712:161` laid a dark moss mound across the Wedding Gift heading).
+
+Measure them **one at a time**. All four moss mounds share the same rotated 475×159.65 source
+(`c2a52e8a`), which makes them look like a set, but the fourth (`2706:144`) is genuinely
+visible: dropping it took akad from 7.62 to 8.58 and the sheet from 8.15 to 8.24. It stays.
 
 ### Checking a band
 
@@ -149,6 +152,9 @@ Current state, mean abs delta per band:
 | quote | 4.0 | countdown | 9.3 | rsvp | 3.3 |
 | invite | 4.0 | theday | 11.4 | wish | 11.6 |
 | groom | 7.2 | akad | 7.6 | gallery | 9.3 |
-| divider | 8.7 | resepsi | 18.5 | footer | 7.9 |
+| divider | 8.7 | resepsi | 10.9 | footer | 7.9 |
 
-Whole sheet **8.97**. Resepsi is the worst band and the obvious next thing to look at.
+Whole sheet **8.15**. This is a relative signal across bands, not an absolute fidelity score:
+it carries every deliberate deviation from the render — substitute fonts, the live countdown
+where the design bakes a "0 Hari 0 Jam" plate, the live wish list where it bakes a raster of
+mock comments, and the live gallery where it bakes a mock carousel.
