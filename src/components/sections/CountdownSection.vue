@@ -24,9 +24,20 @@ import { BAND_HEIGHT, LAYERS } from '../../lib/bands/countdown'
 const { el, shown } = useReveal(0.15)
 const { acara } = useWedding()
 
+/*
+ * Frame 244's akad card reads "Minggu, 2 Agustus 2026, 12.00 WIB", so that is the
+ * target when no event is configured -- a real countdown against the design's own
+ * date rather than four hardcoded zeros. That date is in the past, so the design's
+ * own 0 0 0 0 is still what renders, which is the point.
+ */
+const DESIGN_DATE = '2026-08-02'
+const DESIGN_TIME = '12:00'
+
 const target = computed(() => {
   const e = (acara.value as any[])[0]
-  return e ? parseEventStart(e.event_date, e.event_time) : null
+  return e
+    ? parseEventStart(e.event_date, e.event_time)
+    : parseEventStart(DESIGN_DATE, DESIGN_TIME)
 })
 
 // The design ships 0 0 0 0, so an unconfigured render matches the reference.
@@ -77,19 +88,28 @@ function cellBox(cx: number) {
       {{ left.days }} hari {{ left.hours }} jam {{ left.minutes }} menit lagi
     </p>
 
-    <div
-      v-for="c in CELLS"
-      :key="c.key"
-      class="countdown__cell"
-      aria-hidden="true"
-    >
-      <span class="countdown__value" :style="{ top: `calc(${c.digitTop} * var(--px))`, ...cellBox(c.cx) }">{{
-        left[c.key]
-      }}</span>
-      <span class="countdown__caption" :style="{ top: `calc(${c.labelTop} * var(--px))`, ...cellBox(c.cx) }">{{
-        c.label
-      }}</span>
-    </div>
+    <!--
+      A <template> fragment, not a wrapping <div>: every band child is absolutely
+      positioned, so a wrapper would become the containing block and the cells would
+      be placed against a zero-size box instead of the band. That is what left the
+      countdown looking empty.
+    -->
+    <div class="countdown__panel" aria-hidden="true"></div>
+
+    <template v-for="c in CELLS" :key="c.key">
+      <span
+        class="countdown__value"
+        aria-hidden="true"
+        :style="{ top: `calc(${c.digitTop} * var(--px))`, ...cellBox(c.cx) }"
+        >{{ left[c.key] }}</span
+      >
+      <span
+        class="countdown__caption"
+        aria-hidden="true"
+        :style="{ top: `calc(${c.labelTop} * var(--px))`, ...cellBox(c.cx) }"
+        >{{ c.label }}</span
+      >
+    </template>
 
     <!-- 2699:287 button plate, CSS background (single-fill, not a sliced asset). -->
     <div class="countdown__cal">
@@ -106,6 +126,8 @@ function cellBox(cx: number) {
 }
 
 .countdown > * {
+  /* Above every sliced layer: BandArt sets z inline, which beats a rule. */
+  z-index: 900;
   position: absolute;
   margin: 0;
 }
@@ -119,25 +141,29 @@ function cellBox(cx: number) {
 }
 
 .countdown__heading,
-.countdown__cell,
+.countdown__value,
+.countdown__caption,
+.countdown__panel,
 .countdown__cal {
   opacity: 0;
   transform: translateY(calc(30 * var(--px))) scale(0.9);
   transition:
-    opacity 1900ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
-    transform 2600ms cubic-bezier(0.16, 1.02, 0.28, 1) var(--delay, 0ms);
+    opacity 1300ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
+    transform 1800ms cubic-bezier(0.16, 1.02, 0.28, 1) var(--delay, 0ms);
 }
 
 .countdown.is-in .countdown__heading,
-.countdown.is-in .countdown__cell,
+.countdown.is-in .countdown__value,
+.countdown.is-in .countdown__caption,
+.countdown.is-in .countdown__panel,
 .countdown.is-in .countdown__cal {
   opacity: 1;
   transform: none;
 }
 
 .countdown__heading {
-  --delay: 200ms;
-  z-index: 60;
+  --delay: 110ms;
+  z-index: 115; /* 2699:282 */
   left: calc(35 * var(--px));
   top: calc(56 * var(--px));
   width: calc(275 * var(--px));
@@ -147,17 +173,28 @@ function cellBox(cx: number) {
   color: var(--crimson);
 }
 
-.countdown__cell {
-  --delay: 340ms;
-  top: 0;
-  left: 0;
-  z-index: 60;
+
+.countdown__value,
+.countdown__caption {
+  /* Ink sampled off the baked plate: the grid is a raster with no TEXT node. */
+  color: #623c2a;
+  /* cellBox() gives each cell a 110px box and centres the glyph in it — without
+     this the digits sit against the left edge of that box, ~43px off. */
+  text-align: center;
+  z-index: 117; /* where the baked plate 2699:283 sat */
 }
 
-.countdown__cell > span {
-  position: absolute;
-  text-align: center;
-  color: #623c2a;
+/*
+ * The paper card the grid sits on came in the baked plate too, so it is CSS. Its
+ * box is measured off the render; the fill is sampled from its centre.
+ */
+.countdown__panel {
+  z-index: 116;
+  left: calc(96 * var(--px));
+  top: calc(284 * var(--px));
+  width: calc(190 * var(--px));
+  height: calc(208 * var(--px));
+  background: rgba(246, 242, 238, 0.72);
 }
 
 .countdown__value {
@@ -174,8 +211,8 @@ function cellBox(cx: number) {
 }
 
 .countdown__cal {
-  --delay: 460ms;
-  z-index: 60;
+  --delay: 250ms;
+  z-index: 118; /* 2699:289 */
   left: calc(125 * var(--px));
   top: calc(511 * var(--px));
   width: calc(138 * var(--px));
@@ -197,7 +234,8 @@ function cellBox(cx: number) {
 
 @media (prefers-reduced-motion: reduce) {
   .countdown__heading,
-  .countdown__cell,
+  .countdown__value,
+  .countdown__caption,
   .countdown__cal {
     opacity: 1;
     transform: none;

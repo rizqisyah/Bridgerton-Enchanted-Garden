@@ -17,7 +17,9 @@ export function useReveal(
   // edge is still below the fold and the whole reveal plays where nobody is
   // looking. Requiring it to reach a quarter up the viewport fixes that; a band
   // taller than the viewport would never satisfy a percentage threshold anyway.
-  rootMargin = "0px 0px -25% 0px"
+  // Trimmed from -25% once the entrances got longer: the band has to start assembling
+  // earlier, or the reader arrives while its copy is still half-transparent.
+  rootMargin = "0px 0px -12% 0px"
 ): {
   el: (node: Element | ComponentPublicInstance | null) => void;
   shown: Ref<boolean>;

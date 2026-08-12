@@ -65,6 +65,8 @@ const parents = computed(
 }
 
 .groom > * {
+  /* Above every sliced layer: BandArt sets z inline, which beats a rule. */
+  z-index: 900;
   position: absolute;
   margin: 0;
   text-align: center;
@@ -75,8 +77,8 @@ const parents = computed(
   opacity: 0;
   transform: translateY(calc(10 * var(--px)));
   transition:
-    opacity 1900ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
-    transform 2600ms cubic-bezier(0.16, 1.02, 0.28, 1) var(--delay, 0ms);
+    opacity 1300ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
+    transform 1800ms cubic-bezier(0.16, 1.02, 0.28, 1) var(--delay, 0ms);
 }
 
 .groom.is-in .groom__name,
@@ -97,7 +99,7 @@ const parents = computed(
 }
 
 .groom__name {
-  --delay: 200ms;
+  --delay: 110ms;
   z-index: 150;
   left: calc(62 * var(--px));
   top: calc(34 * var(--px));
@@ -111,7 +113,7 @@ const parents = computed(
 }
 
 .groom__parents {
-  --delay: 340ms;
+  --delay: 190ms;
   z-index: 151;
   left: calc(22 * var(--px));
   top: calc(706 * var(--px));

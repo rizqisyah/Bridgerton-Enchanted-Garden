@@ -27,6 +27,8 @@ const { quoteText, quoteVerse } = useWedding()
 }
 
 .quote > * {
+  /* Above every sliced layer: BandArt sets z inline, which beats a rule. */
+  z-index: 900;
   position: absolute;
   margin: 0;
 }
@@ -36,8 +38,8 @@ const { quoteText, quoteVerse } = useWedding()
   opacity: 0;
   transform: translateY(calc(30 * var(--px))) scale(0.9);
   transition:
-    opacity 1900ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
-    transform 2600ms cubic-bezier(0.16, 1.02, 0.28, 1) var(--delay, 0ms);
+    opacity 1300ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
+    transform 1800ms cubic-bezier(0.16, 1.02, 0.28, 1) var(--delay, 0ms);
 }
 
 .quote.is-in .quote__text,
@@ -47,7 +49,7 @@ const { quoteText, quoteVerse } = useWedding()
 }
 
 .quote__text {
-  --delay: 240ms;
+  --delay: 130ms;
   z-index: 250;
   left: calc(48 * var(--px));
   top: calc(65 * var(--px));
@@ -61,7 +63,7 @@ const { quoteText, quoteVerse } = useWedding()
 }
 
 .quote__verse {
-  --delay: 380ms;
+  --delay: 210ms;
   z-index: 251;
   left: calc(16 * var(--px));
   top: calc(162 * var(--px));

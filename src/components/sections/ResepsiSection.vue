@@ -58,6 +58,8 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
 }
 
 .resepsi > * {
+  /* Above every sliced layer: BandArt sets z inline, which beats a rule. */
+  z-index: 900;
   position: absolute;
   margin: 0;
   text-align: center;
@@ -72,8 +74,8 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
   opacity: 0;
   transform: translateY(calc(10 * var(--px)));
   transition:
-    opacity 1900ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
-    transform 2600ms cubic-bezier(0.16, 1.02, 0.28, 1) var(--delay, 0ms);
+    opacity 1300ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
+    transform 1800ms cubic-bezier(0.16, 1.02, 0.28, 1) var(--delay, 0ms);
 }
 
 .resepsi.is-in .resepsi__heading,
@@ -87,7 +89,7 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
 }
 
 .resepsi__heading {
-  --delay: 120ms;
+  --delay: 70ms;
   z-index: 158;
   left: calc(60 * var(--px));
   top: calc(442 * var(--px));
@@ -100,7 +102,7 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
 }
 
 .resepsi__date {
-  --delay: 220ms;
+  --delay: 120ms;
   z-index: 160;
   left: calc(60 * var(--px));
   top: calc(487 * var(--px));
@@ -113,7 +115,7 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
 }
 
 .resepsi__time {
-  --delay: 300ms;
+  --delay: 160ms;
   z-index: 162;
   left: calc(60 * var(--px));
   top: calc(537 * var(--px));
@@ -126,7 +128,7 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
 }
 
 .resepsi__venue {
-  --delay: 380ms;
+  --delay: 210ms;
   z-index: 164;
   left: calc(64 * var(--px));
   top: calc(587 * var(--px));
@@ -139,7 +141,7 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
 }
 
 .resepsi__address {
-  --delay: 460ms;
+  --delay: 250ms;
   z-index: 166;
   left: calc(80 * var(--px));
   top: calc(610 * var(--px));
@@ -152,7 +154,7 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
 }
 
 .resepsi__maps {
-  --delay: 540ms;
+  --delay: 300ms;
   z-index: 170;
   left: calc(156 * var(--px));
   top: calc(698 * var(--px));

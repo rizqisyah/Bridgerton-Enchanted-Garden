@@ -59,6 +59,8 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
 }
 
 .akad > * {
+  /* Above every sliced layer: BandArt sets z inline, which beats a rule. */
+  z-index: 900;
   position: absolute;
   margin: 0;
   text-align: center;
@@ -73,8 +75,8 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
   opacity: 0;
   transform: translateY(calc(10 * var(--px)));
   transition:
-    opacity 1900ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
-    transform 2600ms cubic-bezier(0.16, 1.02, 0.28, 1) var(--delay, 0ms);
+    opacity 1300ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
+    transform 1800ms cubic-bezier(0.16, 1.02, 0.28, 1) var(--delay, 0ms);
 }
 
 .akad.is-in .akad__heading,
@@ -88,7 +90,7 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
 }
 
 .akad__heading {
-  --delay: 120ms;
+  --delay: 70ms;
   z-index: 157;
   left: calc(66 * var(--px));
   top: calc(442 * var(--px));
@@ -101,7 +103,7 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
 }
 
 .akad__date {
-  --delay: 220ms;
+  --delay: 120ms;
   z-index: 159;
   left: calc(66 * var(--px));
   top: calc(487 * var(--px));
@@ -114,7 +116,7 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
 }
 
 .akad__time {
-  --delay: 300ms;
+  --delay: 160ms;
   z-index: 161;
   left: calc(66 * var(--px));
   top: calc(537 * var(--px));
@@ -127,7 +129,7 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
 }
 
 .akad__venue {
-  --delay: 380ms;
+  --delay: 210ms;
   z-index: 163;
   left: calc(70 * var(--px));
   top: calc(587 * var(--px));
@@ -140,7 +142,7 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
 }
 
 .akad__address {
-  --delay: 460ms;
+  --delay: 250ms;
   z-index: 165;
   left: calc(86 * var(--px));
   top: calc(610 * var(--px));
@@ -153,7 +155,7 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
 }
 
 .akad__maps {
-  --delay: 540ms;
+  --delay: 300ms;
   z-index: 169;
   left: calc(162 * var(--px));
   top: calc(698 * var(--px));

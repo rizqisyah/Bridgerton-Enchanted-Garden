@@ -28,6 +28,8 @@ const { el, shown } = useReveal(0.15)
 }
 
 .invite > * {
+  /* Above every sliced layer: BandArt sets z inline, which beats a rule. */
+  z-index: 900;
   position: absolute;
   margin: 0;
 }
@@ -36,9 +38,9 @@ const { el, shown } = useReveal(0.15)
   opacity: 0;
   transform: translateY(calc(10 * var(--px)));
   transition:
-    opacity 1900ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
-    transform 2600ms cubic-bezier(0.16, 1.02, 0.28, 1) var(--delay, 0ms);
-  --delay: 120ms;
+    opacity 1300ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
+    transform 1800ms cubic-bezier(0.16, 1.02, 0.28, 1) var(--delay, 0ms);
+  --delay: 70ms;
   z-index: 1;
   left: calc(9 * var(--px));
   top: 0;

@@ -48,6 +48,8 @@ const heroSkip = computed(() => (couplePhoto.value ? ['2695:173'] : []))
 }
 
 .hero > * {
+  /* Above every sliced layer: BandArt sets z inline, which beats a rule. */
+  z-index: 900;
   position: absolute;
   margin: 0;
   text-align: center;
@@ -68,8 +70,8 @@ const heroSkip = computed(() => (couplePhoto.value ? ['2695:173'] : []))
   opacity: 0;
   transform: translateY(calc(30 * var(--px))) scale(0.9);
   transition:
-    opacity 1900ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
-    transform 2600ms cubic-bezier(0.16, 1.02, 0.28, 1) var(--delay, 0ms);
+    opacity 1300ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
+    transform 1800ms cubic-bezier(0.16, 1.02, 0.28, 1) var(--delay, 0ms);
 }
 
 .hero.is-in .hero__couple,
@@ -79,7 +81,7 @@ const heroSkip = computed(() => (couplePhoto.value ? ['2695:173'] : []))
 }
 
 .hero__couple {
-  --delay: 240ms;
+  --delay: 130ms;
   z-index: 60;
   left: calc(45 * var(--px));
   top: calc(69 * var(--px));
@@ -93,7 +95,7 @@ const heroSkip = computed(() => (couplePhoto.value ? ['2695:173'] : []))
 }
 
 .hero__kicker {
-  --delay: 380ms;
+  --delay: 210ms;
   z-index: 60;
   left: calc(53 * var(--px));
   top: calc(131 * var(--px));

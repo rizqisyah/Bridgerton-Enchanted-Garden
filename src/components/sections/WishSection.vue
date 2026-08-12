@@ -162,6 +162,8 @@ async function submit() {
 }
 
 .wish > * {
+  /* Above every sliced layer: BandArt sets z inline, which beats a rule. */
+  z-index: 900;
   position: absolute;
   margin: 0;
 }
