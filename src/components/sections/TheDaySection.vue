@@ -30,7 +30,7 @@ const { el, shown } = useReveal(0.3)
 
 .theday__heading {
   opacity: 0;
-  transform: translateY(calc(12 * var(--px)));
+  transform: translateY(calc(30 * var(--px))) scale(0.9);
   transition:
     opacity 900ms cubic-bezier(0.16, 1, 0.3, 1) 200ms,
     transform 1100ms cubic-bezier(0.16, 1, 0.3, 1) 200ms;

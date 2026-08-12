@@ -76,7 +76,7 @@ const brideFirst = computed(() => (bride.value?.name as string)?.split(' ')[0] |
   top: 0;
   left: calc(40 * var(--px));
   width: calc(291 * var(--px));
-  transform: translateY(calc(14 * var(--px)));
+  transform: translateY(calc(30 * var(--px))) scale(0.9);
   font-family: var(--font-heading-script);
   font-size: calc(24 * var(--px));
   line-height: calc(42 * var(--px));
@@ -90,7 +90,7 @@ const brideFirst = computed(() => (bride.value?.name as string)?.split(' ')[0] |
   top: calc(37 * var(--px));
   left: calc(52 * var(--px));
   width: calc(256 * var(--px));
-  transform: translateY(calc(12 * var(--px)));
+  transform: translateY(calc(30 * var(--px))) scale(0.9);
   font-family: var(--font-serif);
   font-style: italic;
   font-size: calc(14 * var(--px));
@@ -120,7 +120,7 @@ const brideFirst = computed(() => (bride.value?.name as string)?.split(' ')[0] |
   top: calc(452 * var(--px));
   left: calc(108 * var(--px));
   width: calc(159 * var(--px));
-  transform: translateY(calc(12 * var(--px)));
+  transform: translateY(calc(30 * var(--px))) scale(0.9);
   font-family: var(--font-display-alt);
   font-size: calc(40 * var(--px));
   line-height: calc(40 * var(--px));

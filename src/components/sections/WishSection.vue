@@ -201,7 +201,7 @@ async function submit() {
   top: 0;
   left: calc(69 * var(--px));
   width: calc(238.5 * var(--px));
-  transform: translateY(calc(14 * var(--px)));
+  transform: translateY(calc(30 * var(--px))) scale(0.9);
   font-family: var(--font-heading-script);
   font-size: calc(20 * var(--px));
   line-height: calc(42 * var(--px));

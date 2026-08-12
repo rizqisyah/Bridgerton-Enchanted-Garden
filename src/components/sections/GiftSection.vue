@@ -221,7 +221,7 @@ const px = (n: number) => `calc(${n} * var(--px))`
   left: calc(30 * var(--px));
   top: 0;
   width: calc(230 * var(--px));
-  transform: translateY(calc(14 * var(--px)));
+  transform: translateY(calc(30 * var(--px))) scale(0.9);
   font-family: var(--font-heading-script);
   font-size: calc(20 * var(--px));
   line-height: calc(28 * var(--px));
@@ -234,7 +234,7 @@ const px = (n: number) => `calc(${n} * var(--px))`
   left: calc(26 * var(--px));
   top: calc(72 * var(--px));
   width: calc(324 * var(--px));
-  transform: translateY(calc(12 * var(--px)));
+  transform: translateY(calc(30 * var(--px))) scale(0.9);
   font-family: var(--font-quote);
   font-size: calc(11 * var(--px));
   line-height: calc(22 * var(--px));

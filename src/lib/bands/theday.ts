@@ -13,7 +13,7 @@ export const BAND_TOP = 3746
 export const BAND_HEIGHT = 212
 
 export const LAYERS: BandLayer[] = [
-  { z: 114, id: '2699:284', src: assets['theday/parts/2699-284.webp'], x: 0, y: 150, w: 375, h: 202 },
+  { z: 114, id: '2699:284', src: assets['theday/parts/2699-284.webp'], x: 0, y: -52, w: 375, h: 202 },
   { z: 132, id: '2706:142', src: assets['theday/parts/2706-142.webp'], x: 168, y: 77, w: 207, h: 329 },
   { z: 173, id: '2712:180', src: assets['theday/parts/2712-180.webp'], x: 28, y: 0, w: 146, h: 146 },
   { z: 184, id: '2712:220', src: assets['theday/parts/2712-220.webp'], x: 220, y: 152, w: 155, h: 281 },

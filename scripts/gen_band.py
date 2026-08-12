@@ -34,7 +34,12 @@ import locate  # noqa: E402  -- must follow the LOCATE_REF default above
 
 FRAME_W, FRAME_H = 375, 9866
 SCALE = 2
-GOOD_ERR = 40.0  # locate.py's own threshold for "this is a real match"
+GOOD_ERR = 40.0  # locate.py: above this an asset is not visible at that spot
+# A full-width rescue is a search over the whole frame, so it will always find SOME
+# least-bad spot. Overriding the clip rule on that needs locate.py's stronger bar --
+# "under ~15 is a real match" -- or it moves layers the clip rule had right. At 40 it
+# took hero from 4.32 to 9.20 and quote from 4.00 to 8.83.
+SURE_ERR = 15.0
 OUT_DIR = pathlib.Path("src/lib/bands")
 
 # Rotated nodes whose reported bounds are fiction AND which no position in the frame
@@ -48,6 +53,13 @@ OUT_DIR = pathlib.Path("src/lib/bands")
 # dropping it took akad from 7.62 to 8.58 and the sheet from 8.15 to 8.24, so it stays.
 # Add to this list only with a before/after delta for that node alone.
 PAINTS_NOTHING = {"2706:145", "2712:160", "2712:161"}
+
+# Layers where the clip rule is right and the search is wrong. A layer buried under
+# most of its band scores badly WHERE IT BELONGS, so the search wanders off to open
+# ground and wins on points while being visibly wrong. 2695:182 is hero's 375x516
+# backdrop: the search moved it 479px down and took hero 4.32 -> 9.20, quote
+# 4.00 -> 8.83 and invite 3.97 -> 6.53 with it. Same evidence bar as PAINTS_NOTHING.
+TRUST_CLIP = {"2695:182"}
 
 
 def reconcile(pos, node_size, exp_size, frame_size):
@@ -65,6 +77,28 @@ def reconcile(pos, node_size, exp_size, frame_size):
     return round(pos)
 
 
+def _scorer(path):
+    """Return (score_fn, asset_w, asset_h) for matching this asset against the render."""
+    im = locate.load_asset(path)
+    pts = locate.opaque_points(im, 400)
+    if not pts:
+        return None, 0, 0
+    ref = Image.open(locate.REF).convert("RGB")
+    rp = ref.load()
+
+    def score(ox, oy):
+        if ox < 0 or oy < 0 or ox + im.width > ref.width or oy + im.height > ref.height:
+            return float("inf")
+        return sum(
+            abs(rp[x + ox, y + oy][0] - r)
+            + abs(rp[x + ox, y + oy][1] - g)
+            + abs(rp[x + ox, y + oy][2] - b)
+            for x, y, (r, g, b) in pts
+        ) / len(pts)
+
+    return score, im.width, im.height
+
+
 def rescue(path, hint_y, span=700, step=8):
     """Search the whole frame width for a layer whose reported box is off-frame.
 
@@ -76,20 +110,11 @@ def rescue(path, hint_y, span=700, step=8):
 
     Returns (x, y, err) for the best position within +/-span of the reported y.
     """
-    im = locate.load_asset(path)
-    pts = locate.opaque_points(im, 400)
-    if not pts:
+    score, aw, ah = _scorer(path)
+    if score is None:
         return None
-    ref = Image.open(locate.REF).convert("RGB")
-    rp = ref.load()
-
-    def score(ox, oy):
-        return sum(
-            abs(rp[x + ox, y + oy][0] - r)
-            + abs(rp[x + ox, y + oy][1] - g)
-            + abs(rp[x + ox, y + oy][2] - b)
-            for x, y, (r, g, b) in pts
-        ) / len(pts)
+    ref = Image.open(locate.REF)
+    im = type("S", (), {"width": aw, "height": ah})
 
     y_lo = max(0, hint_y - span)
     y_hi = min(ref.height - im.height, hint_y + span)
@@ -161,11 +186,25 @@ def main():
             if found and found[4] < GOOD_ERR:
                 x, y = found[0], found[1]
                 matched += 1
-            elif c["x"] >= FRAME_W or c["x"] + c["w"] <= 0:
-                # Reported wholly outside the frame: the bounds are fiction, so the
-                # render is the only authority. Match it or drop it.
+            elif w < round(c["w"]) or h < round(c["h"]):
+                # Figma clipped this export, which means the node bleeds off an edge --
+                # and a bleeding node in this file is usually a rotated one, whose
+                # reported position is fiction. The clip rule can only guess which edge
+                # cut it; the render knows. 2699:284 sat 202px low until this ran.
+                cx = reconcile(c["x"], c["w"], w, FRAME_W)
+                cy = reconcile(c["y"], c["h"], h, FRAME_H)
                 hit = rescue(path, max(0, round(c["y"])))
-                if hit and hit[2] < GOOD_ERR:
+                score, _, _ = _scorer(path)
+                clip_err = score(cx, cy) if score else float("inf")
+                # A full-width search always finds SOME least-bad spot, and for a big
+                # mostly-transparent layer that spot is often nowhere near the truth.
+                # It has to beat where the clip rule already put it, clearly.
+                if (
+                    hit
+                    and c["id"] not in TRUST_CLIP
+                    and hit[2] < SURE_ERR
+                    and hit[2] < clip_err - 3
+                ):
                     x, y = hit[0], hit[1]
                     matched += 1
                 else:

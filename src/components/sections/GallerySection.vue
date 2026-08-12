@@ -179,7 +179,7 @@ onBeforeUnmount(() => {
   width: calc(291 * var(--px));
   margin: 0;
   opacity: 0;
-  transform: translateY(calc(14 * var(--px)));
+  transform: translateY(calc(30 * var(--px))) scale(0.9);
   transition:
     opacity 1100ms ease-out,
     transform 1500ms cubic-bezier(0.16, 1, 0.3, 1);

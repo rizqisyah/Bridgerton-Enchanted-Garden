@@ -129,6 +129,14 @@ took the sheet from 8.97 to 13.43 mean abs delta. So a failed search falls back 
 rule, and only `PAINTS_NOTHING` is dropped — three layers that paint an artifact the render
 does not have (`2712:161` laid a dark moss mound across the Wedding Gift heading).
 
+`rescue()` runs for any export Figma clipped, not only the wholly-outside ones — a clipped
+export means the node bleeds, and in this file a bleeding node is usually a rotated one. But
+the search always finds *some* least-bad spot, so it only wins when it scores under 15 **and**
+beats where the clip rule put it by 3. Even that is not enough on its own: `2695:182`, hero's
+375×516 backdrop, is buried under most of its band, so it scores badly where it belongs and
+the search moved it 479px down — hero 4.32 → 9.20, quote 4.00 → 8.83. It is pinned in
+`TRUST_CLIP`. Both exception sets carry the numbers that put each entry there.
+
 Measure them **one at a time**. All four moss mounds share the same rotated 475×159.65 source
 (`c2a52e8a`), which makes them look like a set, but the fourth (`2706:144`) is genuinely
 visible: dropping it took akad from 7.62 to 8.58 and the sheet from 8.15 to 8.24. It stays.
@@ -148,13 +156,13 @@ Current state, mean abs delta per band:
 
 | band | delta | band | delta | band | delta |
 |---|---|---|---|---|---|
-| hero | 4.3 | bride | 6.5 | gift | 10.5 |
-| quote | 4.0 | countdown | 9.3 | rsvp | 3.3 |
-| invite | 4.0 | theday | 11.4 | wish | 11.6 |
+| hero | 4.4 | bride | 6.5 | gift | 6.7 |
+| quote | 4.0 | countdown | 6.3 | rsvp | 3.3 |
+| invite | 4.0 | theday | 3.0 | wish | 11.6 |
 | groom | 7.2 | akad | 7.6 | gallery | 9.3 |
-| divider | 8.7 | resepsi | 10.9 | footer | 7.9 |
+| divider | 8.6 | resepsi | 10.9 | footer | 7.9 |
 
-Whole sheet **8.15**. This is a relative signal across bands, not an absolute fidelity score:
+Whole sheet **7.39**. This is a relative signal across bands, not an absolute fidelity score:
 it carries every deliberate deviation from the render — substitute fonts, the live countdown
 where the design bakes a "0 Hari 0 Jam" plate, the live wish list where it bakes a raster of
 mock comments, and the live gallery where it bakes a mock carousel.

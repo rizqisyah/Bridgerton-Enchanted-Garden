@@ -73,10 +73,10 @@ const parents = computed(
 .bride__name,
 .bride__parents {
   opacity: 0;
-  transform: translateY(calc(12 * var(--px)));
+  transform: translateY(calc(30 * var(--px))) scale(0.9);
   transition:
-    opacity 900ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
-    transform 1100ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms);
+    opacity 1100ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
+    transform 1500ms cubic-bezier(0.16, 1.02, 0.28, 1) var(--delay, 0ms);
 }
 
 .bride.is-in .bride__name,

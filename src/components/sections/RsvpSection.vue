@@ -200,7 +200,7 @@ async function submit() {
   top: 0;
   left: calc(35 * var(--px));
   width: calc(305 * var(--px));
-  transform: translateY(calc(14 * var(--px)));
+  transform: translateY(calc(30 * var(--px))) scale(0.9);
   font-family: var(--font-heading-script);
   font-size: calc(20 * var(--px));
   line-height: calc(38 * var(--px));
@@ -213,7 +213,7 @@ async function submit() {
   top: calc(44 * var(--px));
   left: calc(72 * var(--px));
   width: calc(231 * var(--px));
-  transform: translateY(calc(12 * var(--px)));
+  transform: translateY(calc(30 * var(--px))) scale(0.9);
   font-family: var(--font-quote);
   font-size: calc(16 * var(--px));
   line-height: calc(20 * var(--px));
