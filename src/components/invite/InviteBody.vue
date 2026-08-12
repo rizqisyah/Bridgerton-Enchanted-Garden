@@ -3,6 +3,7 @@
 // One component per band of the frame; each one positions its own children
 // relative to its own top, so inserting a band never renumbers the others.
 // Band map and asset inventory: ../../../SLICING.md
+import HeroSection from '../sections/HeroSection.vue'
 </script>
 
 <template>
@@ -12,7 +13,8 @@
       hero, quote, invite, groom, divider, bride, countdown, theday, akad,
       resepsi, gift, rsvp, wish, gallery, footer.
     -->
-    <p class="sheet__placeholder">Frame 244 — bands not sliced yet.</p>
+    <HeroSection />
+    <p class="sheet__placeholder">quote &rarr; footer: not sliced yet.</p>
   </div>
 </template>
 

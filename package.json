@@ -10,8 +10,13 @@
   },
   "dependencies": {
     "@fontsource/almendra-display": "5.3.0",
+    "@fontsource/cinzel-decorative": "5.3.0",
+    "@fontsource/cormorant-garamond": "5.3.0",
+    "@fontsource/eb-garamond": "5.3.0",
     "@fontsource/ibarra-real-nova": "5.3.0",
     "@fontsource/jost": "5.3.0",
+    "@fontsource/libre-caslon-condensed": "5.3.0",
+    "@fontsource/mohave": "5.3.0",
     "@fontsource/playball": "5.3.0",
     "vue": "^3.5.39"
   },

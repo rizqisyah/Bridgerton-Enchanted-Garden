@@ -3,6 +3,13 @@
 @import "@fontsource/almendra-display/400.css";
 @import "@fontsource/ibarra-real-nova/500-italic.css";
 @import "@fontsource/jost/400.css";
+/* Frame 244 (invitation body). */
+@import "@fontsource/cinzel-decorative/400.css";
+@import "@fontsource/mohave/400.css";
+@import "@fontsource/eb-garamond/400.css";
+@import "@fontsource/eb-garamond/400-italic.css";
+@import "@fontsource/cormorant-garamond/400.css";
+@import "@fontsource/libre-caslon-condensed/400.css";
 @import "./style/tokens.css";
 
 *,

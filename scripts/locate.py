@@ -17,7 +17,10 @@ import sys
 import random
 from PIL import Image
 
-REF = ".figma-tmp/frame243-full.png"  # scale 1, so 1px == 1 design px
+import os
+
+# scale 1, so 1px == 1 design px. Override per frame: LOCATE_REF=.figma-tmp/exports244/frame244-full.png
+REF = os.environ.get("LOCATE_REF", ".figma-tmp/frame243-full.png")
 SCALE = 2  # every other asset is exported at 2x
 RADIUS = 160  # how far from the hint to search
 SAMPLES = 900

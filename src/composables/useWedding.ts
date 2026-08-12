@@ -132,7 +132,8 @@ export function useWedding() {
     if (groom.value?.name && bride.value?.name) {
       return `${groom.value.name.split(' ')[0]} & ${bride.value.name.split(' ')[0]}`
     }
-    return 'Pengantin'
+    // Frame 243/244 print "Ahmad & Salma", so an unconfigured render matches the design.
+    return 'Ahmad & Salma'
   })
 
   const quoteText = computed(

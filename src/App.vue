@@ -5,7 +5,7 @@ import InviteBody from './components/invite/InviteBody.vue'
 import { usePreloadAssets } from './composables/usePreloadAssets'
 import { useWedding } from './composables/useWedding'
 
-const { guest, wedding, groom, bride, quoteText, quoteVerse, refetch } = useWedding()
+const { guest, wedding, coupleNickname, quoteText, quoteVerse, refetch } = useWedding()
 const { coverLoaded, preloadCover, preloadInviteBody } = usePreloadAssets()
 
 const isOpen = ref(false)
@@ -21,13 +21,7 @@ const contentVisible = ref(false)
 const guestName = computed(
   () => new URLSearchParams(location.search).get('to') || guest.value?.name || 'Nama Tamu',
 )
-const coupleName = computed(() => {
-  if (wedding.value?.title) return wedding.value.title
-  if (groom.value?.name && bride.value?.name) {
-    return `${groom.value.name.split(' ')[0]} & ${bride.value.name.split(' ')[0]}`
-  }
-  return 'Ahmad & Salma'
-})
+const coupleName = coupleNickname
 
 const leftBackgroundStyle = computed(() => {
   const img = wedding.value?.image_bg1 || wedding.value?.image_cover || ''

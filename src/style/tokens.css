@@ -22,6 +22,11 @@
   --font-display: "Almendra Display", serif; /* SUB for Norveil Fantasy Demo — couple name */
   --font-serif: "Ibarra Real Nova", serif; /* guest block */
   --font-sans: "Jost", system-ui, sans-serif; /* UI labels */
+  --font-display-alt: "Cinzel Decorative", serif; /* SUB for Charoly Demo — body couple name */
+  --font-caps: "Mohave", sans-serif; /* "WEDDING INVITATION" and its siblings */
+  --font-quote: "EB Garamond", serif; /* SUB for Roben Elegante — the quote block */
+  --font-body: "Cormorant Garamond", serif; /* body copy */
+  --font-condensed: "Libre Caslon Condensed", serif;
 
   /* design frame reference (Figma Frame 243 cover / Frame 244 body) */
   --frame-w: 375;
