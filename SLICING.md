@@ -102,6 +102,33 @@ EB Garamond, Libre Caslon Condensed, Mohave.
 | `2684:112`, `2695:159` | export came back empty (149 bytes, fully transparent) |
 | `2689:143` | byte-identical to `2689:142`, deduped to one asset |
 
+## Design mode
+
+`DESIGN_MODE` lives in `src/lib/api.ts` — at the boundary, not in a composable. It is on
+unless `VITE_LIVE_DATA=1`, and it does three things: `getHome` is never called, so every
+band renders Frame 243/244's own content; `submitRsvp` and `submitUcapan` throw instead of
+posting; and a wish submitted in this state is answered locally so the form still works
+end to end.
+
+It has to sit at the boundary because `RsvpSection` imports `submitRsvp` directly. A guard
+that lived only in `useWedding` let that POST straight through to production.
+
+Design-mode wishes are held in a module ref, **not** in `state.data`. Seeding `state.data`
+to hold them would make `wedding` non-null and every band would abandon its design fallback
+mid-session.
+
+## Two traps that cost real time
+
+**A positioned wrapper eats the coordinate system.** Every band child is `position: absolute`
+in design px against the band. Wrapping children in a plain `<div>` makes that div the
+containing block, and since it has no offsets of its own everything inside lands against a
+zero-size box. This rendered the whole countdown blank. Use `<template v-for>`.
+
+**z-index is the GLOBAL Figma order.** `BandArt` sets each layer's z inline from
+`frame244-zorder.json`, and inline beats a rule. Anything a band draws on top needs its own
+node's real global z — hero tops out at z48, but countdown's art runs to z118 and footer's to
+z205. A z of 60 copied from `HeroSection` puts the control underneath the art.
+
 ## Deployment
 
 `VITE_DEFAULT_SLUG` must be set per deployment — without it `src/lib/api.ts` falls back to
@@ -157,12 +184,12 @@ Current state, mean abs delta per band:
 | band | delta | band | delta | band | delta |
 |---|---|---|---|---|---|
 | hero | 4.4 | bride | 6.5 | gift | 6.7 |
-| quote | 4.0 | countdown | 6.3 | rsvp | 3.3 |
-| invite | 4.0 | theday | 3.0 | wish | 11.6 |
-| groom | 7.2 | akad | 7.6 | gallery | 9.3 |
-| divider | 8.6 | resepsi | 10.9 | footer | 7.9 |
+| quote | 4.0 | countdown | 3.9 | rsvp | 3.3 |
+| invite | 4.0 | theday | 3.0 | wish | 9.1 |
+| groom | 7.2 | akad | 7.6 | gallery | 8.5 |
+| divider | 8.6 | resepsi | 10.9 | footer | 7.6 |
 
-Whole sheet **7.39**. This is a relative signal across bands, not an absolute fidelity score:
+Whole sheet **6.91**. Worst three: resepsi, wish, divider. This is a relative signal across bands, not an absolute fidelity score:
 it carries every deliberate deviation from the render — substitute fonts, the live countdown
 where the design bakes a "0 Hari 0 Jam" plate, the live wish list where it bakes a raster of
 mock comments, and the live gallery where it bakes a mock carousel.

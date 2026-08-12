@@ -1,15 +1,7 @@
 import { ref, computed, onMounted } from 'vue'
 
-/*
- * DESIGN MODE (the default): never call the API, so every band renders Frame 243/244's
- * own content -- Ahmad & Salma, Nama Tamu, the design's dates, venues, accounts, wishes
- * and illustrated portraits. Each component already reads this composable first and
- * falls back to the design string, so nothing else has to change.
- *
- * Set VITE_LIVE_DATA=1 to fetch a real wedding instead.
- */
-const DESIGN_MODE = !import.meta.env.VITE_LIVE_DATA
-import { resolveSlug, getHome, submitUcapan } from '../lib/api'
+
+import { resolveSlug, getHome, submitUcapan, DESIGN_MODE } from '../lib/api'
 
 const state = ref<{
   loading: boolean
@@ -53,6 +45,13 @@ function applyTheme(themeData: any, weddingData: any) {
  * mounts see it and skip. Only the explicit `refetch` bypasses this.
  */
 let inflight: Promise<void> | null = null
+
+/*
+ * Wishes posted while in design mode. Kept outside `state` on purpose: seeding
+ * state.data to hold them would make `wedding` non-null, and every band would drop
+ * its design fallback mid-session.
+ */
+const designWishes = ref<any[]>([])
 
 export function useWedding() {
   const slug = ref(resolveSlug())
@@ -102,7 +101,7 @@ export function useWedding() {
   const gallery = computed(() => content.value?.gallery ?? [])
   // The API calls the account list `rekening`.
   const gift = computed(() => content.value?.rekening ?? content.value?.gift ?? [])
-  const wishes = computed(() => content.value?.ucapan ?? content.value?.wishes ?? [])
+  const wishes = computed(() => designWishes.value.length ? designWishes.value : content.value?.ucapan ?? content.value?.wishes ?? [])
 
   /**
    * Post a wish and get it into the list without a refetch. The API may answer with the
@@ -112,12 +111,23 @@ export function useWedding() {
   // Writes `ucapan` back where `content` reads it from, or the new row is invisible.
   function putWishes(list: any[]) {
     const data = state.value.data
+    if (!data) return
     state.value.data = data.content
       ? { ...data, content: { ...data.content, ucapan: list } }
       : { ...data, ucapan: list }
   }
 
   async function sendWish(body: { guest_name: string; message: string }): Promise<any> {
+    /*
+     * Design mode must not write to the live backend. The wish form is real and has
+     * to keep working -- validation, pending, success, and the new wish appearing in
+     * the list -- so the post is answered locally instead of being sent.
+     */
+    if (DESIGN_MODE) {
+      const row = { id: `local-${Date.now()}`, ...body, created_at: new Date().toISOString() }
+      designWishes.value = [row, ...designWishes.value]
+      return { success: true, data: row }
+    }
     const res = await submitUcapan(slug.value, body)
     if (!state.value.data) return res
 

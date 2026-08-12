@@ -22,6 +22,7 @@ import { computed, ref } from 'vue'
 import BandArt from '../invite/BandArt.vue'
 import { useReveal } from '../../composables/useReveal'
 import { useWedding } from '../../composables/useWedding'
+import { DESIGN_MODE } from '../../lib/api'
 import { relativeTime } from '../../lib/format'
 import { BAND_HEIGHT, LAYERS } from '../../lib/bands/wish'
 
@@ -63,15 +64,45 @@ const FALLBACK: Wish[] = [
     time: '22 Jun 2026, 20:55',
     message: 'Dear Paulina and Michael, wishing you a wonderful wedding, blessed marriage, full of love and laughter.',
   },
+  /* Past the render's own 4 cards — held back behind "Show more comments" so the pill has
+     something real to reveal instead of sitting there as decoration. */
+  {
+    id: 'd5',
+    guest_name: 'Rian & Keluarga',
+    time: '21 Jun 2026, 09:32',
+    message: 'Selamat menempuh hidup baru Ahmad & Salma, semoga sakinah mawaddah warahmah🤍',
+  },
+  {
+    id: 'd6',
+    guest_name: 'Dewi Anggraini',
+    time: '20 Jun 2026, 19:14',
+    message: 'Barakallahu lakuma wa baraka alaikuma, happy wedding!',
+  },
 ]
+
+const WISH_PAGE_SIZE = 4
 
 const { el, shown } = useReveal()
 const { wishes, sendWish, guest } = useWedding()
 
 const list = computed<Wish[]>(() => {
   const live = (wishes.value as Wish[]).filter((w) => w.guest_name || w.message)
-  return live.length ? live : FALLBACK
+  if (!live.length) return FALLBACK
+  /*
+   * In design mode the only live wishes are ones posted in this session, and they
+   * must not wipe out the design's own cards -- the band is meant to look like the
+   * frame. Newest first, then the design's four. With real data the API list is
+   * authoritative and the fallback drops out.
+   */
+  return DESIGN_MODE ? [...live, ...FALLBACK] : live
 })
+
+const shownCount = ref(WISH_PAGE_SIZE)
+const visible = computed(() => list.value.slice(0, shownCount.value))
+const hasMore = computed(() => shownCount.value < list.value.length)
+const showMore = () => {
+  shownCount.value += WISH_PAGE_SIZE
+}
 
 const stamp = (w: Wish) => w.time ?? relativeTime(w.created_at)
 
@@ -140,10 +171,12 @@ async function submit() {
 
     <p class="wish__sr" aria-live="polite">{{ sent ? 'Ucapan Anda sudah terkirim.' : '' }}</p>
 
-    <!-- Replaces 2729:127 (skipped above): a live, scrollable list instead of a raster. -->
+    <!-- Replaces 2729:127 (skipped above): a live list instead of a raster, "Show more
+         comments" (also baked into that raster) rebuilt as a real button that pages
+         the list in, instead of the scrollbar the raster's fixed-height box implied. -->
     <div class="wish__panel">
       <ul class="wish__list">
-        <li v-for="(w, i) in list" :key="w.id ?? i" class="wish__card">
+        <li v-for="(w, i) in visible" :key="w.id ?? i" class="wish__card">
           <p class="wish__row">
             <span class="wish__name">{{ w.guest_name }}</span>
             <span class="wish__time">{{ stamp(w) }}</span>
@@ -151,6 +184,9 @@ async function submit() {
           <p class="wish__message">{{ w.message }}</p>
         </li>
       </ul>
+      <button v-if="hasMore" type="button" class="wish__more" @click="showMore">
+        Show more comments
+      </button>
     </div>
   </section>
 </template>
@@ -206,7 +242,12 @@ async function submit() {
   transform: translateY(calc(30 * var(--px))) scale(0.9);
   font-family: var(--font-heading-script);
   font-size: calc(20 * var(--px));
-  line-height: calc(42 * var(--px));
+  /* Spec's 42px line-height is Comtic Hiden's own metric; Sacramento (the
+     substitute, no fontsource for Comtic Hiden) carries far less internal
+     leading at the same size, so 42 stacks ~6px of blank half-leading above
+     the ink. Tightened to the substitute's natural leading, same fix as
+     FooterSection's heading. */
+  line-height: calc(30 * var(--px));
   text-align: center;
   color: var(--crimson-title);
 }
@@ -311,34 +352,38 @@ async function submit() {
   color: #7a2f2f;
 }
 
+/*
+ * 2729:127's own raster ran x24 y145 w327 h532 (measured off wish.png: cards start
+ * y152, last card ends y624, the button itself spans y635-670, x44-328). A fixed
+ * 500px scroller doesn't match that — the render shows 4 cards and a pill in normal
+ * flow with no scrollbar, so height is auto here and the list grows into it instead.
+ */
 .wish__panel {
   --in: 400ms;
   z-index: 224;
   top: calc(145 * var(--px));
   left: calc(24 * var(--px));
   width: calc(327 * var(--px));
-  height: calc(500 * var(--px));
-  overflow-y: auto;
   transform: translateY(calc(20 * var(--px)));
-  scrollbar-width: none;
-}
-
-.wish__panel::-webkit-scrollbar {
-  display: none;
 }
 
 .wish__list {
   display: flex;
   flex-direction: column;
-  gap: calc(10 * var(--px));
+  /* ~7px between cards in the render (measured gaps: 6, 8, 7px). */
+  gap: calc(7 * var(--px));
   margin: 0;
-  padding: 0 calc(6 * var(--px));
+  /* 15px each side lands the cards at x39 — the same left edge as the Nama/textarea
+     fields above, which is exactly what the render does. */
+  padding: 0 calc(15 * var(--px));
   list-style: none;
 }
 
-/* Colour sampled off wish.png's own pixels — there is no TEXT node behind these mock cards. */
+/* Colour and padding sampled off wish.png's own pixels — there is no TEXT node behind
+   these mock cards. Vertical padding measured ~19px top / ~17px bottom around the name
+   row and message text in card 2 of the render. */
 .wish__card {
-  padding: calc(12 * var(--px)) calc(16 * var(--px));
+  padding: calc(18 * var(--px)) calc(16 * var(--px));
   border-radius: calc(14 * var(--px));
   background: #f4e7d4;
 }
@@ -376,6 +421,35 @@ async function submit() {
   overflow-wrap: break-word;
 }
 
+/* Rebuilds the pill baked into 2729:127 — its colour is sampled off wish.png the same
+   way the card background is; there's no TEXT/fill node behind it to read a token from.
+   margin-top tuned against the render's own button position (measured y635, x44-328). */
+.wish__more {
+  display: block;
+  width: 100%;
+  margin: calc(30 * var(--px)) 0 0;
+  padding: calc(9 * var(--px)) 0;
+  border: 0;
+  border-radius: calc(999 * var(--px));
+  background: #788064;
+  font-family: var(--font-sans);
+  font-size: calc(14 * var(--px));
+  line-height: calc(18 * var(--px));
+  color: #ffffff;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wish__more:hover,
+.wish__more:focus-visible {
+  transform: scale(1.02);
+}
+
+.wish__more:active {
+  transform: scale(0.98);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .wish__heading,
   .wish__form,
@@ -385,7 +459,8 @@ async function submit() {
     transition: none;
   }
 
-  .wish__send {
+  .wish__send,
+  .wish__more {
     transition: none;
   }
 }

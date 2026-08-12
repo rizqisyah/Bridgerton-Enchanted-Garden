@@ -81,7 +81,12 @@ const brideFirst = computed(() => (bride.value?.name as string)?.split(' ')[0] |
   transform: translateY(calc(30 * var(--px))) scale(0.9);
   font-family: var(--font-heading-script);
   font-size: calc(24 * var(--px));
-  line-height: calc(42 * var(--px));
+  /* Spec's 42px line-height is Comtic Hiden's own metric; Sacramento (the
+     substitute, no fontsource for Comtic Hiden) has far less internal leading
+     at the same size, so 42 stacks ~8px of blank half-leading above the ink.
+     Tightened to the substitute's natural leading so the glyphs sit where the
+     render has them. */
+  line-height: calc(30 * var(--px));
   text-align: center;
   color: var(--crimson-title);
 }
@@ -90,8 +95,14 @@ const brideFirst = computed(() => (bride.value?.name as string)?.split(' ')[0] |
   --in: 380ms;
   z-index: 203;
   top: calc(37 * var(--px));
-  left: calc(52 * var(--px));
-  width: calc(256 * var(--px));
+  /* Spec box is 256px wide (x52). At 14px Ibarra Real Nova italic + 1% tracking,
+     "Terima kasih atas doa dan kasih sayangnya." measures ~258.4px in-browser —
+     just over the spec width, enough to wrap where the render keeps it on one
+     line. Widened to 259px (the narrowest width that still fits that sentence
+     without also pulling "SWT" up onto the line above, which starts at 260px),
+     re-centred so the other five lines keep the render's own breaks. */
+  left: calc(50.5 * var(--px));
+  width: calc(259 * var(--px));
   transform: translateY(calc(30 * var(--px))) scale(0.9);
   font-family: var(--font-serif);
   font-style: italic;
