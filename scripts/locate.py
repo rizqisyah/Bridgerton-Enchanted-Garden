@@ -17,7 +17,7 @@ import sys
 import random
 from PIL import Image
 
-REF = ".figma-tmp/frame242-full.png"  # scale 1, so 1px == 1 design px
+REF = ".figma-tmp/frame243-full.png"  # scale 1, so 1px == 1 design px
 SCALE = 2  # every other asset is exported at 2x
 RADIUS = 160  # how far from the hint to search
 SAMPLES = 900
