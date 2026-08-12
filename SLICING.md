@@ -6,7 +6,7 @@ file templates 2 and 3 were cut from, a different pair of frames:
 | Frame | Node | Size | What it is | Assets |
 |-------|------|------|------------|--------|
 | Frame 243 | `2684:108` | 375 × 725 | Opening cover — chateau garden, A&S monogram, "Click to open" | `src/assets/opening/` |
-| Frame 244 | `2695:163` | 375 × 9866 | The scrolling invitation behind it | not sliced yet |
+| Frame 244 | `2695:163` | 375 × 9866 | The scrolling invitation behind it | every other `src/assets/*` |
 
 The file's frames come in cover/body pairs, x-adjacent: 241+242 became template 3, 243+244
 is this one. Frame 244 is 1117px taller than template 3's Frame 242, so **do not assume
@@ -26,6 +26,7 @@ data-driven via `useWedding()`, so those are placeholders.
 | `.figma-ref/frame243-raw.json` | Same, for the cover |
 | `.figma-ref/frame243-layout.json` | Cover: 67 nodes, plus `liveText` and `dropCandidates` blocks |
 | `.figma-ref/frame243-assets.json` | Which node became which webp, what deduped, what was dropped empty |
+| `.figma-ref/frame244-assets.json` | Same, for the body: 199 nodes → 168 webp across 14 sections |
 
 `get_node` already returns **frame-local** coordinates. Do not subtract the frame origin.
 
@@ -56,7 +57,7 @@ node scripts/shot.mjs 5176          # writes .figma-tmp/web-*.png
 The cover currently sits at **4.9 mean abs delta** against `frame243-full.png` once the
 status bar and the text nodes are masked out.
 
-## Fonts — five of the twelve have no webfont
+## Fonts — six of the twelve have no webfont
 
 Frame 243 uses 4 families, Frame 244 uses 10, and these have no fontsource package:
 
@@ -64,13 +65,14 @@ Frame 243 uses 4 families, Frame 244 uses 10, and these have no fontsource packa
 |---|---|---|
 | Taldose Script | cover "The Wedding Of" | Playball |
 | Norveil Fantasy Demo | cover couple name, 48px | Almendra Display |
-| Charoly Demo | body couple name (`2695:171`, `2712:322`) | none yet |
-| Activists | body | none yet |
-| Comtic Hiden | body | none yet |
-| Roben Elegante | body | none yet |
+| Charoly Demo | body couple name (`2695:171`, `2712:322`) | Cinzel Decorative |
+| Activists | divider "And" — one node | Cinzel Decorative, shared |
+| Comtic Hiden | **every band heading**, 11 nodes | Sacramento |
+| Roben Elegante | the quote block | EB Garamond |
 
-The substitutes are wired through `--font-script` / `--font-display` in `tokens.css`; swapping
-in the real files means changing those two values and nothing else. **Never bake the type into
+Each substitute is one token in `tokens.css` — `--font-script`, `--font-display`,
+`--font-display-alt`, `--font-heading-script`, `--font-quote` — so swapping in a licensed
+file means changing that one value and nothing else. **Never bake the type into
 an image to dodge this** — every text node stays live so `useWedding()` can drive it.
 
 Available upstream and already correct: Ibarra Real Nova, Jost, Cormorant Garamond,
