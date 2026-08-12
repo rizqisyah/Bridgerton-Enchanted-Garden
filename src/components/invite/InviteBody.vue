@@ -1,20 +1,42 @@
 <script setup lang="ts">
 // The invitation sheet: Figma Frame 244, 375 x 9866.
-// One component per band of the frame; each one positions its own children
-// relative to its own top, so inserting a band never renumbers the others.
+// One component per band of the frame, in Figma order; each one positions its own
+// children relative to its own top, so inserting a band never renumbers the others.
 // Band map and asset inventory: ../../../SLICING.md
 import HeroSection from '../sections/HeroSection.vue'
+import QuoteSection from '../sections/QuoteSection.vue'
+import InviteSection from '../sections/InviteSection.vue'
+import GroomSection from '../sections/GroomSection.vue'
+import DividerSection from '../sections/DividerSection.vue'
+import BrideSection from '../sections/BrideSection.vue'
+import CountdownSection from '../sections/CountdownSection.vue'
+import TheDaySection from '../sections/TheDaySection.vue'
+import AkadSection from '../sections/AkadSection.vue'
+import ResepsiSection from '../sections/ResepsiSection.vue'
+import GiftSection from '../sections/GiftSection.vue'
+import RsvpSection from '../sections/RsvpSection.vue'
+import WishSection from '../sections/WishSection.vue'
+import GallerySection from '../sections/GallerySection.vue'
+import FooterSection from '../sections/FooterSection.vue'
 </script>
 
 <template>
   <div class="sheet">
-    <!--
-      Bands land here in Figma order, walking .figma-ref/frame244-zorder.json:
-      hero, quote, invite, groom, divider, bride, countdown, theday, akad,
-      resepsi, gift, rsvp, wish, gallery, footer.
-    -->
     <HeroSection />
-    <p class="sheet__placeholder">quote &rarr; footer: not sliced yet.</p>
+    <QuoteSection />
+    <InviteSection />
+    <GroomSection />
+    <DividerSection />
+    <BrideSection />
+    <CountdownSection />
+    <TheDaySection />
+    <AkadSection />
+    <ResepsiSection />
+    <GiftSection />
+    <RsvpSection />
+    <WishSection />
+    <GallerySection />
+    <FooterSection />
   </div>
 </template>
 
@@ -33,18 +55,14 @@ import HeroSection from '../sections/HeroSection.vue'
    */
   width: 100%;
   overflow: hidden;
-  background: var(--paper);
+  /*
+   * Frame 244's base plate (2695:162) is a single colour across all 14.8M pixels,
+   * so it is this background rather than a 19732px-tall asset.
+   */
+  background: #f3ece2;
 }
 
 .sheet > * {
   --px: 0.26667cqw;
-}
-
-.sheet__placeholder {
-  padding: 6rem 1.5rem;
-  text-align: center;
-  font-family: var(--font-serif);
-  font-style: italic;
-  color: var(--crimson-deep);
 }
 </style>

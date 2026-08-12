@@ -92,7 +92,7 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
   left: calc(60 * var(--px));
   top: calc(442 * var(--px));
   width: calc(243 * var(--px));
-  /* Comtic Hiden has no webfont; --font-heading-script is the substitute.
+  /* Comtic Hiden has no webfont; --font-heading-script is the substitute. */
   font-family: var(--font-heading-script);
   font-size: calc(20 * var(--px));
   line-height: calc(23 * var(--px));

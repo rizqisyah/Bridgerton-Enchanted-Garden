@@ -103,7 +103,7 @@ const parents = computed(
   top: calc(34 * var(--px));
   width: calc(254 * var(--px));
   white-space: pre-line;
-  /* Comtic Hiden has no webfont; --font-heading-script is the substitute.
+  /* Comtic Hiden has no webfont; --font-heading-script is the substitute. */
   font-family: var(--font-heading-script);
   font-size: calc(13 * var(--px));
   line-height: calc(23 * var(--px));
