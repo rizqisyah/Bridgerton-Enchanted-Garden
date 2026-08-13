@@ -46,7 +46,11 @@ const PITCH = 153
 const FALLBACK: Account[] = [
   { bank_name: 'BCA', account_number: '8715154435', account_name: 'Muhammad Arif' },
   { bank_name: 'BCA', account_number: '8715154435', account_name: 'Muhammad Arif' },
-  { address: ['Alamat', '65, Jalan Raya Tanjung Barat'], account_name: 'Muhammad Arif' },
+  {
+    address: ['Alamat', '65, Jalan Raya Tanjung Barat'],
+    account_number: '65, Jalan Raya Tanjung Barat',
+    account_name: 'Muhammad Arif',
+  },
 ]
 
 const { el, shown } = useReveal()

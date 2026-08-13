@@ -52,7 +52,7 @@ OUT_DIR = pathlib.Path("src/lib/bands")
 # 475x159.65 source (c2a52e8a), but the fourth, 2706:144, is genuinely visible:
 # dropping it took akad from 7.62 to 8.58 and the sheet from 8.15 to 8.24, so it stays.
 # Add to this list only with a before/after delta for that node alone.
-PAINTS_NOTHING = {"2706:145", "2712:160", "2712:161"}
+PAINTS_NOTHING = {"2706:145", "2712:160", "2712:161", "2699:240", "2699:256"}
 
 # Layers where the clip rule is right and the search is wrong. A layer buried under
 # most of its band scores badly WHERE IT BELONGS, so the search wanders off to open
@@ -60,6 +60,13 @@ PAINTS_NOTHING = {"2706:145", "2712:160", "2712:161"}
 # backdrop: the search moved it 479px down and took hero 4.32 -> 9.20, quote
 # 4.00 -> 8.83 and invite 3.97 -> 6.53 with it. Same evidence bar as PAINTS_NOTHING.
 TRUST_CLIP = {"2695:182"}
+
+# The clip rule guesses WHICH edge cut an export, and for a node that bleeds past both
+# it guesses wrong. 2712:333 reports x 175 w 268 and exports 175 wide, so the rule reads
+# it as right-clipped and pins it to 375-175=200 -- stacking it on top of its own mirror
+# and leaving the frame's left third bare. It is the left half of the pair: the render
+# has a full-height vine curtain at x 0 and locate.py picks x 0 over x 200.
+PIN_X = {"2712:333": 0}
 
 
 def reconcile(pos, node_size, exp_size, frame_size):
@@ -217,6 +224,7 @@ def main():
             else:
                 x = reconcile(c["x"], c["w"], w, FRAME_W)
                 y = reconcile(c["y"], c["h"], h, FRAME_H)
+            x = PIN_X.get(c["id"], x)
             rows.append((c["z"], c["id"], a["asset"], x, y - top, w, h))
 
         rows.sort(key=lambda r: r[0])

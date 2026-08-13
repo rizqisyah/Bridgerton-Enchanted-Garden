@@ -15,10 +15,11 @@ rows past its last card. Padding a window with bare paper only drags the mean do
 the resulting number is not comparable to any other band's. Whatever you pick, write it
 into the band record next to the figure.
 """
+import os
 import sys
 from PIL import Image, ImageChops
 
-REF = '.figma-tmp/frame242-full.png'  # scale 1, so 1px == 1 design px
+REF = os.environ.get('BAND_REF', '.figma-tmp/exports244/frame244-full.png')  # scale 1, so 1px == 1 design px
 LIVE = '.figma-tmp/web-sheet-1x.png'
 OUT = '.figma-tmp/band-live-3up.png'
 

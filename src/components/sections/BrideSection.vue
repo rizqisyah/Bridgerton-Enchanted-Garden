@@ -100,7 +100,8 @@ const parents = computed(
 
 .bride__name {
   --delay: 110ms;
-  z-index: 60;
+  /* 2699:247's own global Figma order — see SLICING.md, "z-index is the GLOBAL order". */
+  z-index: 108;
   left: calc(87 * var(--px));
   top: calc(40 * var(--px));
   width: calc(205 * var(--px));
@@ -116,7 +117,8 @@ const parents = computed(
 
 .bride__parents {
   --delay: 190ms;
-  z-index: 60;
+  /* 2699:275, above bride's z105 willow sheet. z60 put the line underneath it. */
+  z-index: 107;
   left: calc(22 * var(--px));
   top: calc(690 * var(--px));
   width: calc(331 * var(--px));

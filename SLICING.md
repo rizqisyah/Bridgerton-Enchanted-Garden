@@ -129,6 +129,12 @@ zero-size box. This rendered the whole countdown blank. Use `<template v-for>`.
 node's real global z — hero tops out at z48, but countdown's art runs to z118 and footer's to
 z205. A z of 60 copied from `HeroSection` puts the control underneath the art.
 
+It bit twice more after that: bride's two text nodes carried hero's z60 while bride's art
+runs to z105, so both lines rendered *through* a translucent willow sheet and read as washed
+out rather than hidden — they are z107/z108. `DividerSection`'s "And" carried z1 against a
+real z109 and sat under the groom band's foliage bleed. Neither looked like a z bug; both
+looked like an opacity bug.
+
 ## Deployment
 
 `VITE_DEFAULT_SLUG` must be set per deployment — without it `src/lib/api.ts` falls back to
@@ -164,9 +170,20 @@ beats where the clip rule put it by 3. Even that is not enough on its own: `2695
 the search moved it 479px down — hero 4.32 → 9.20, quote 4.00 → 8.83. It is pinned in
 `TRUST_CLIP`. Both exception sets carry the numbers that put each entry there.
 
+`PIN_X` is the third exception set. The clip rule guesses *which* edge cut an export, and
+for a node bleeding past both it guesses wrong: `2712:333` reports x 175 w 268 and exports
+175 wide, so the rule read it as right-clipped and pinned it to `375-175 = 200` — stacking
+the left half of a mirrored vine pair on top of its own mirror and leaving the frame's left
+third bare under the Thank You copy. It is the left one: pinning x to 0 took gallery 8.53 ->
+4.69 and footer 7.54 -> 6.81.
+
 Measure them **one at a time**. All four moss mounds share the same rotated 475×159.65 source
 (`c2a52e8a`), which makes them look like a set, but the fourth (`2706:144`) is genuinely
 visible: dropping it took akad from 7.62 to 8.58 and the sheet from 8.15 to 8.24. It stays.
+
+`2699:240` / `2699:256` (the same rotated leaf sprig, groom and bride) are the other two
+drops: both re-centre onto open paper where the render draws nothing at all, and the leaf
+read as a foreign object floating over the willow. Groom 7.21 -> 6.99, bride 6.52 -> 6.44.
 
 ### Checking a band
 
@@ -183,13 +200,13 @@ Current state, mean abs delta per band:
 
 | band | delta | band | delta | band | delta |
 |---|---|---|---|---|---|
-| hero | 4.4 | bride | 6.5 | gift | 6.7 |
-| quote | 4.0 | countdown | 3.9 | rsvp | 3.3 |
+| hero | 4.3 | bride | 6.4 | gift | 6.7 |
+| quote | 4.0 | countdown | 3.6 | rsvp | 3.3 |
 | invite | 4.0 | theday | 3.0 | wish | 9.1 |
-| groom | 7.2 | akad | 7.6 | gallery | 8.5 |
-| divider | 8.6 | resepsi | 10.9 | footer | 7.6 |
+| groom | 6.9 | akad | 7.6 | gallery | 4.7 |
+| divider | 8.7 | resepsi | 10.9 | footer | 6.8 |
 
-Whole sheet **6.91**. Worst three: resepsi, wish, divider. This is a relative signal across bands, not an absolute fidelity score:
+Whole sheet **6.56**. Worst three: resepsi, wish, divider. This is a relative signal across bands, not an absolute fidelity score:
 it carries every deliberate deviation from the render — substitute fonts, the live countdown
 where the design bakes a "0 Hari 0 Jam" plate, the live wish list where it bakes a raster of
 mock comments, and the live gallery where it bakes a mock carousel.
