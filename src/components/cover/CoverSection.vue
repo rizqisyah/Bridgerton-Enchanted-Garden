@@ -56,20 +56,27 @@ const delayFor = (z: number) => Math.min(z * 38, 1080)
   justify-content: center;
   width: 100%;
   min-height: 100dvh;
+  overflow: hidden;
   background: var(--paper);
 }
 
 /*
  * One design pixel = 1cqw / 3.75, so the whole composition scales as a unit
- * instead of reflowing. Width is capped so 725 design px never exceeds the
- * viewport height. `overflow: hidden` is what clips the layers that bleed past
- * the 375px frame — several florals are authored well outside it on purpose.
+ * instead of reflowing. Width is driven purely by the viewport height so the
+ * card always fills the screen exactly; on screens that are too narrow for
+ * that width, `.cover`'s `overflow: hidden` crops the sides evenly. The
+ * 725px-tall design on a 375px frame is squatter than real phones, so a
+ * height-derived width is what closes the bottom gap. `overflow: hidden` is
+ * what clips the layers that bleed past the 375px frame — several florals are
+ * authored well outside it on purpose.
  */
 .cover__frame {
   container-type: inline-size;
   position: relative;
   overflow: hidden;
-  width: min(100%, var(--card-max), calc(100dvh * 375 / 725));
+  /* flex-shrink: 0 — otherwise the 430px column squashes the width-driven frame back down */
+  flex: 0 0 auto;
+  width: calc(100dvh * 375 / 725);
   aspect-ratio: 375 / 725;
   background: var(--paper);
 }
