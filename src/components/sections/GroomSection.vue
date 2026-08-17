@@ -107,7 +107,10 @@ const parents = computed(
   white-space: pre-line;
   /* Comtic Hiden has no webfont; --font-heading-script is the substitute. */
   font-family: var(--font-heading-script);
-  font-size: calc(13 * var(--px));
+  /* Spec says 13px, but that is Comtic Hiden's number and Sacramento (the substitute,
+     no fontsource for Comtic Hiden) sets ~1.6x narrower at the same size: 13px measured
+     123px of ink against the render's 206. 21px matches the render's ink box. */
+  font-size: calc(21 * var(--px));
   line-height: calc(23 * var(--px));
   color: var(--crimson);
 }
