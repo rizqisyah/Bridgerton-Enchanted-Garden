@@ -94,8 +94,6 @@ function cellBox(cx: number) {
       be placed against a zero-size box instead of the band. That is what left the
       countdown looking empty.
     -->
-    <div class="countdown__panel" aria-hidden="true"></div>
-
     <template v-for="c in CELLS" :key="c.key">
       <span
         class="countdown__value"
@@ -143,7 +141,6 @@ function cellBox(cx: number) {
 .countdown__heading,
 .countdown__value,
 .countdown__caption,
-.countdown__panel,
 .countdown__cal {
   opacity: 0;
   transform: translateY(calc(30 * var(--px))) scale(0.9);
@@ -155,7 +152,6 @@ function cellBox(cx: number) {
 .countdown.is-in .countdown__heading,
 .countdown.is-in .countdown__value,
 .countdown.is-in .countdown__caption,
-.countdown.is-in .countdown__panel,
 .countdown.is-in .countdown__cal {
   opacity: 1;
   transform: none;
@@ -182,19 +178,6 @@ function cellBox(cx: number) {
      this the digits sit against the left edge of that box, ~43px off. */
   text-align: center;
   z-index: 117; /* where the baked plate 2699:283 sat */
-}
-
-/*
- * The paper card the grid sits on came in the baked plate too, so it is CSS. Its
- * box is measured off the render; the fill is sampled from its centre.
- */
-.countdown__panel {
-  z-index: 116;
-  left: calc(96 * var(--px));
-  top: calc(284 * var(--px));
-  width: calc(190 * var(--px));
-  height: calc(208 * var(--px));
-  background: rgba(246, 242, 238, 0.72);
 }
 
 .countdown__value {
