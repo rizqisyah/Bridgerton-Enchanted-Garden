@@ -92,6 +92,16 @@ EB Garamond, Libre Caslon Condensed, Mohave.
   Kehadiran" while their actual text is "Wedding Gallery" and "Thank You !". Key off ids.
 - `section` in `frame244-zorder.json` is **derived from heading y positions, not verified
   against a render**. Treat it as a hint.
+- **A flat-colour layer defeats `locate.py`.** Cream matches cream anywhere, so a blurred
+  `#f3ece2` plate scores under `GOOD_ERR` at a position 200px from where it belongs. That is
+  how the four haze plates over the portrait hedges (`2699:207/208` groom, `2699:249/250`
+  bride) landed below the hedge instead of over it — the hedge rendered at full saturation
+  and the portraits lost their halo. They are in `TRUST_CLIP`, which `gen_band.py` now
+  honours **before** the first `locate` hit, not only in the clip branch.
+- **Both-edges-bleed breaks the clip rule.** `2695:181` reports x 197 w 224 and exports 197
+  wide; the rule read that as right-clipped and pinned it to 375−197=178, stacking it on its
+  own twin `2695:180` at x 176 and leaving the frame's left third bare under the urns. 197
+  wide means x 0. Same failure as `2712:333`, same fix: `PIN_X`.
 
 ### Dropped from the cover
 

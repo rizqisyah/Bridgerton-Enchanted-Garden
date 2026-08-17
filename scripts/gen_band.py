@@ -59,14 +59,23 @@ PAINTS_NOTHING = {"2706:145", "2712:160", "2712:161", "2699:240", "2699:256"}
 # ground and wins on points while being visibly wrong. 2695:182 is hero's 375x516
 # backdrop: the search moved it 479px down and took hero 4.32 -> 9.20, quote
 # 4.00 -> 8.83 and invite 3.97 -> 6.53 with it. Same evidence bar as PAINTS_NOTHING.
-TRUST_CLIP = {"2695:182"}
+# 2699:207/208 (groom) and 2699:249/250 (bride) are the same trap in the first branch:
+# four 484x175 #f3ece2 rectangles blurred to 375x375, the white haze that mutes the hedge
+# behind each portrait. A cream blob matches cream anywhere, so locate.py scored under
+# GOOD_ERR 200px too low and the haze landed below the hedge instead of over it -- the
+# hedge rendered at full saturation and the portraits lost their halo.
+TRUST_CLIP = {"2695:182", "2699:207", "2699:208", "2699:249", "2699:250"}
 
 # The clip rule guesses WHICH edge cut an export, and for a node that bleeds past both
 # it guesses wrong. 2712:333 reports x 175 w 268 and exports 175 wide, so the rule reads
 # it as right-clipped and pins it to 375-175=200 -- stacking it on top of its own mirror
 # and leaving the frame's left third bare. It is the left half of the pair: the render
 # has a full-height vine curtain at x 0 and locate.py picks x 0 over x 200.
-PIN_X = {"2712:333": 0}
+# 2695:181 is hero's bush cluster, the left half of a pair sharing one 224x149 source.
+# It reports x 197 and exports 197 wide -- both-edges-bleed again, so the clip rule read
+# it as right-clipped and pinned it to 375-197=178, stacking it on its twin 2695:180 at
+# x 176 and leaving the frame's left third bare under the urns. 197 wide means x 0.
+PIN_X = {"2712:333": 0, "2695:181": 0}
 
 
 def reconcile(pos, node_size, exp_size, frame_size):
@@ -190,7 +199,7 @@ def main():
             w, h = im.width // scale, im.height // scale
 
             found, err = locate.locate(path, max(0, round(c["x"])), max(0, round(c["y"])))
-            if found and found[4] < GOOD_ERR:
+            if found and found[4] < GOOD_ERR and c["id"] not in TRUST_CLIP:
                 x, y = found[0], found[1]
                 matched += 1
             elif w < round(c["w"]) or h < round(c["h"]):
