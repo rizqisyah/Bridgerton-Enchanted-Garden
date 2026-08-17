@@ -39,7 +39,7 @@ const { quoteText, quoteVerse } = useWedding()
   transform: translateY(calc(30 * var(--px))) scale(0.9);
   transition:
     opacity 1300ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
-    transform 1800ms cubic-bezier(0.16, 1.02, 0.28, 1) var(--delay, 0ms);
+    transform 1800ms cubic-bezier(0.16, 1, 0.28, 1) var(--delay, 0ms);
 }
 
 .quote.is-in .quote__text,

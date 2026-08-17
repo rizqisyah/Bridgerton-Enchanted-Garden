@@ -76,7 +76,7 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
   transform: translateY(calc(10 * var(--px)));
   transition:
     opacity 1300ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
-    transform 1800ms cubic-bezier(0.16, 1.02, 0.28, 1) var(--delay, 0ms);
+    transform 1800ms cubic-bezier(0.16, 1, 0.28, 1) var(--delay, 0ms);
 }
 
 .akad.is-in .akad__heading,

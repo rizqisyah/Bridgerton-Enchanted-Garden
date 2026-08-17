@@ -114,7 +114,7 @@ const stagger = () => Math.min(props.step, MAX_STAGGER / Math.max(1, visible().l
 
 .band-art.is-in {
   visibility: visible;
-  animation: layer-in var(--dur, 2700ms) cubic-bezier(0.16, 1.02, 0.28, 1) backwards;
+  animation: layer-in var(--dur, 2700ms) cubic-bezier(0.16, 1, 0.28, 1) backwards;
 }
 
 @keyframes layer-in {
@@ -122,19 +122,6 @@ const stagger = () => Math.min(props.step, MAX_STAGGER / Math.max(1, visible().l
     opacity: 0;
     transform: translate3d(calc(var(--tx) * var(--px)), calc(var(--ty) * var(--px)), 0)
       rotate(var(--rot)) scale(var(--scale));
-  }
-  /*
-   * The overshoot is the whole point — it lands past its mark and rocks back, which
-   * is what makes the assembly read as physical instead of as a fade.
-   */
-  62% {
-    opacity: 1;
-    transform: translate3d(
-        calc(var(--tx) * -0.06 * var(--px)),
-        calc(var(--ty) * -0.14 * var(--px)),
-        0
-      )
-      rotate(calc(var(--rot) * -0.16)) scale(calc(1 + (1 - var(--scale)) * 0.13));
   }
   to {
     opacity: 1;

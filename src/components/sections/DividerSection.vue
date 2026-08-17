@@ -39,7 +39,7 @@ const { el, shown } = useReveal(0.15)
   transform: translateY(calc(10 * var(--px)));
   transition:
     opacity 1300ms cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0ms),
-    transform 1800ms cubic-bezier(0.16, 1.02, 0.28, 1) var(--delay, 0ms);
+    transform 1800ms cubic-bezier(0.16, 1, 0.28, 1) var(--delay, 0ms);
   --delay: 70ms;
   /* 2699:276's global Figma order. z1 put it under the groom band's foliage bleed. */
   z-index: 109;
