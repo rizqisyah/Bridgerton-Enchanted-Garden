@@ -80,7 +80,11 @@ const fitCouple = useFitText()
   overflow: hidden;
   /* flex-shrink: 0 — otherwise the 430px column squashes the width-driven frame back down */
   flex: 0 0 auto;
-  width: calc(100dvh * 375 / 725);
+  /* max(), not the bare height-derived width: Safari's dvh excludes the toolbars,
+     so the derived width lands ~18px short of the screen on a phone and leaves paper
+     down both sides. Filling the width instead and letting `.cover` crop the extra
+     height keeps the scene full-bleed. */
+  width: max(100%, calc(100dvh * 375 / 725));
   aspect-ratio: 375 / 725;
   background: var(--paper);
 }
