@@ -64,7 +64,12 @@ PAINTS_NOTHING = {"2706:145", "2712:160", "2712:161", "2699:240", "2699:256"}
 # behind each portrait. A cream blob matches cream anywhere, so locate.py scored under
 # GOOD_ERR 200px too low and the haze landed below the hedge instead of over it -- the
 # hedge rendered at full saturation and the portraits lost their halo.
-TRUST_CLIP = {"2695:182", "2699:207", "2699:208", "2699:249", "2699:250"}
+# 2712:127 is akad's lone rose, the same trap: it reports 62,4189, tucked into the left
+# dome cluster where 2706:155/152 cover most of it, so it scores badly WHERE IT BELONGS
+# and the search moved it to 90,4345 -- bare lattice inside the arch, where the render
+# shows nothing but the "Akad Nikah" backdrop. Cropping the render at both spots settles
+# it: the rose is at 62,4189 and 90,4345 is empty.
+TRUST_CLIP = {"2695:182", "2699:207", "2699:208", "2699:249", "2699:250", "2712:127"}
 
 # The clip rule guesses WHICH edge cut an export, and for a node that bleeds past both
 # it guesses wrong. 2712:333 reports x 175 w 268 and exports 175 wide, so the rule reads

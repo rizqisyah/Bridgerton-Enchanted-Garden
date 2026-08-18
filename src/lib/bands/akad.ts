@@ -29,5 +29,5 @@ export const LAYERS: BandLayer[] = [
   { z: 153, id: '2706:155', src: assets['akad/parts/2706-155.webp'], x: 0, y: 251, w: 103, h: 264 },
   { z: 155, id: '2706:156', src: assets['akad/parts/2706-156.webp'], x: 262, y: 216, w: 78, h: 191 },
   { z: 167, id: '2706:163', src: assets['akad/parts/2706-163.webp'], x: 158, y: 697, w: 59, h: 24 },
-  { z: 171, id: '2712:127', src: assets['akad/parts/2712-127.webp'], x: 90, y: 387, w: 47, h: 47 },
+  { z: 171, id: '2712:127', src: assets['akad/parts/2712-127.webp'], x: 62, y: 231, w: 47, h: 47 },
 ]
