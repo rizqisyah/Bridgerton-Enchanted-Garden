@@ -85,6 +85,19 @@ const fitCouple = useFitText()
   background: var(--paper);
 }
 
+/*
+ * Desktop hosts the cover in a fixed 430px column (App.vue), so a width derived purely
+ * from viewport height overshoots it -- 465px inside 430 at 1440x900, which is a 1.24x
+ * zoom with 18px eaten off each side by `overflow: hidden` and the fountain cut off the
+ * bottom. Phones have no such column (the right column is the whole viewport), so the
+ * fill-the-screen rule above still holds there and only this case is clamped.
+ */
+@media (min-width: 768px) {
+  .cover__frame {
+    width: min(100%, calc(100dvh * 375 / 725));
+  }
+}
+
 .cover__frame > * {
   --px: 0.26667cqw; /* 100cqw / 375 */
   position: absolute;
