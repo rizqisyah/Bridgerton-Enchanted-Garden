@@ -55,9 +55,12 @@ const { quoteText, quoteVerse } = useWedding()
   top: calc(65 * var(--px));
   width: calc(230 * var(--px));
   text-align: left;
-  /* Roben Elegante has no webfont; --font-quote (EB Garamond) is the closest stand-in on hand. */
-  font-family: var(--font-quote);
-  font-size: calc(10 * var(--px));
+  /* Roben Elegante has no webfont; --font-verse (Sacramento) is the closest script on hand.
+     Sized to the render rather than to the spec's 10px: Sacramento sets ~20% more
+     characters per line at the same size, so 10px folded the frame's 8 lines into 6.
+     Same font-substitution correction as the bride/groom names. */
+  font-family: var(--font-verse);
+  font-size: calc(13 * var(--px));
   line-height: calc(13 * var(--px));
   color: #4b4742;
 }
@@ -69,8 +72,9 @@ const { quoteText, quoteVerse } = useWedding()
   top: calc(162 * var(--px));
   width: calc(185 * var(--px));
   text-align: center;
-  font-family: var(--font-quote);
-  font-size: calc(13 * var(--px));
+  font-family: var(--font-verse);
+  /* 13px in Roben Elegante measures 129px wide on the render; Sacramento needs 18. */
+  font-size: calc(18 * var(--px));
   line-height: calc(48 * var(--px));
   color: #3b3835;
 }

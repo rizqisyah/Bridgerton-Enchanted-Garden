@@ -370,6 +370,17 @@ async function submit() {
 .wish__list {
   display: flex;
   flex-direction: column;
+  /*
+   * The band is a fixed 918px box, and the panel starts at y145 -- so a list that
+   * grows (every "Show more", every wish posted in-session) used to paint straight
+   * over the gallery band below. Capped at the render's own panel height, 532, which
+   * is what its four default cards occupy: at rest there is nothing to scroll and the
+   * band still matches the frame, and only the 5th card onward scrolls. 145 + 532
+   * leaves 241 of the band's 773 usable rows for the pill and the error line.
+   */
+  max-height: calc(532 * var(--px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
   /* ~7px between cards in the render (measured gaps: 6, 8, 7px). */
   gap: calc(7 * var(--px));
   margin: 0;

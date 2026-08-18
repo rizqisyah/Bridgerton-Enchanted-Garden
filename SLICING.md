@@ -64,14 +64,22 @@ Frame 243 uses 4 families, Frame 244 uses 10, and these have no fontsource packa
 | Figma family | Used for | Substitute in use |
 |---|---|---|
 | Taldose Script | cover "The Wedding Of" | Playball |
-| Norveil Fantasy Demo | cover couple name, 48px | Almendra Display |
+| Norveil Fantasy Demo | cover couple name, 48px | Cinzel Decorative at 32px |
 | Charoly Demo | body couple name (`2695:171`, `2712:322`) | Cinzel Decorative |
 | Activists | divider "And" — one node | Cinzel Decorative, shared |
 | Comtic Hiden | **every band heading**, 11 nodes | Sacramento |
-| Roben Elegante | the quote block | EB Garamond |
+| Roben Elegante | the quote block | Sacramento at 13/18px |
+
+Two of those substitutes are sized to the RENDER, not to the spec number, because the
+stand-in's advance widths are nothing like the original's — the same correction the
+bride/groom names needed. Norveil is condensed and Cinzel Decorative is not, so 48px
+overshot Figma's own ink by 50% (Figma sets "AHMAD" 128px wide; Cinzel hits 127.6 at 32).
+Sacramento sets ~30% more characters per line than Roben Elegante, so the spec's 10px
+folded the quote's 8 lines into 6. **Changing either substitute means re-measuring the
+size, not just swapping the family.**
 
 Each substitute is one token in `tokens.css` — `--font-script`, `--font-display`,
-`--font-display-alt`, `--font-heading-script`, `--font-quote` — so swapping in a licensed
+`--font-display-alt`, `--font-heading-script`, `--font-verse` — so swapping in a licensed
 file means changing that one value and nothing else. **Never bake the type into
 an image to dodge this** — every text node stays live so `useWedding()` can drive it.
 
@@ -98,6 +106,18 @@ EB Garamond, Libre Caslon Condensed, Mohave.
   bride) landed below the hedge instead of over it — the hedge rendered at full saturation
   and the portraits lost their halo. They are in `TRUST_CLIP`, which `gen_band.py` now
   honours **before** the first `locate` hit, not only in the clip branch.
+- **A reported position can be fiction with nothing to flag it.** `2712:162`, resepsi's
+  fountain, reports x 310 and exports its full 249 wide, so neither `reconcile` branch
+  fires and the lie stands — the fountain hung half off the right edge instead of sitting
+  centred in the pond. `locate.py` puts it at x 61, err 7.32. `2712:169` is the same class
+  with the y wrong too: it reports 111,5258, bare lattice in the middle of the arch, when
+  it belongs in the LEFT DOME cluster at 34,5143. It overlaps `2712:167`/`2712:171` there,
+  which is exactly why `locate` scores it at err 76 where it belongs and never fires —
+  its visible siblings score 59-152 at their own correct spots for the same reason. **An
+  err above `GOOD_ERR` on a layer that overlaps its siblings is not evidence of anything.**
+  Settle those by compositing the band offline and scoring it against the render: 5.350 at
+  the reported position, 4.496 with the layer dropped, 3.696 at 34,5143. `PIN_X`/`PIN_Y`.
+
 - **Both-edges-bleed breaks the clip rule.** `2695:181` reports x 197 w 224 and exports 197
   wide; the rule read that as right-clipped and pinned it to 375−197=178, stacking it on its
   own twin `2695:180` at x 176 and leaving the frame's left third bare under the urns. 197

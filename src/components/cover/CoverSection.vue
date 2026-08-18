@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { COVER_LAYERS } from '../../lib/coverLayers'
+import { useFitText } from '../../composables/useFitText'
 
 // `ready` gates the reveal on the 36 layers being decoded — see App.vue.
 defineProps<{ guestName: string; coupleName: string; ready: boolean }>()
@@ -11,6 +12,9 @@ defineEmits<{ open: [] }>()
  * is placed straight from the Figma table.
  */
 const delayFor = (z: number) => Math.min(z * 38, 1080)
+
+// The couple name is the one box on the cover with a fixed height — see its rule below.
+const fitCouple = useFitText()
 </script>
 
 <template>
@@ -37,7 +41,7 @@ const delayFor = (z: number) => Math.min(z * 38, 1080)
 
       <!-- Group 251 (2695:152) — z 17 in Figma child order. -->
       <p class="cover__eyebrow">The Wedding Of</p>
-      <h1 class="cover__couple">{{ coupleName }}</h1>
+      <h1 :ref="fitCouple" class="cover__couple">{{ coupleName }}</h1>
 
       <!-- Group 250 (2695:151) — z 18. -->
       <p class="cover__dear">Dear Mr/ Mrs/ Ms</p>
@@ -136,18 +140,35 @@ const delayFor = (z: number) => Math.min(z * 38, 1080)
   color: var(--olive);
 }
 
-/* 2684:116 — Norveil Fantasy Demo 48/47, -6% tracking, #ad2124. */
+/*
+ * 2684:116 — Norveil Fantasy Demo 48/47, -6% tracking, #ad2124.
+ *
+ * Sized to the RENDER, not to the spec number, the same way the bride/groom names are.
+ * Norveil is condensed and --font-display's substitute (Cinzel Decorative) is not, so
+ * 48px overshot the frame's own ink by 50%: measured against frame243-full.png, Figma
+ * sets "AHMAD" 128px wide and "& SALMA" 145px, and Cinzel Decorative hits 127.6/139.3
+ * at 32px. Its -6% tracking is Norveil's own metric and goes with it.
+ *
+ * The 289px box is Figma's, and it is what makes the name break after "AHMAD" there --
+ * Norveil at 48 runs 286px for the full string, 3px shy of wrapping on the ampersand.
+ * Cinzel at 32 runs 275, so the same box would set it on one line. The box is narrowed
+ * to 150 (centred on Figma's own 187.5) which lands between "& SALMA" and "AHMAD &":
+ * the break falls where the render puts it. useFitText keeps a longer name from
+ * spilling out the bottom of the two lines instead of silently painting over the guest
+ * block -- which is why the height is fixed at all.
+ */
 .cover__couple {
   --delay: 1400ms;
   z-index: 17;
   top: calc(320 * var(--px));
-  left: calc(43 * var(--px));
-  width: calc(289 * var(--px));
+  left: calc(113 * var(--px));
+  width: calc(150 * var(--px));
+  height: calc(94 * var(--px));
+  overflow: hidden;
   font-family: var(--font-display);
-  font-size: calc(48 * var(--px));
+  font-size: calc(32 * var(--px) * var(--fit, 1));
   font-weight: 400;
   line-height: calc(47 * var(--px));
-  letter-spacing: -0.06em;
   text-transform: uppercase;
   color: var(--crimson);
 }

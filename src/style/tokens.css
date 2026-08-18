@@ -21,12 +21,21 @@
    * Swap the two --font-*-sub values and nothing else has to change.
    */
   --font-script: "Playball", cursive; /* SUB for Taldose Script — "The Wedding Of" */
-  --font-display: "Almendra Display", serif; /* SUB for Norveil Fantasy Demo — couple name */
+  /* SUB for Norveil Fantasy Demo — couple name. Almendra Display was the first pick and
+     is wrong on the one property that matters: it is an OUTLINE face, so the cover name
+     rendered hollow where Figma has it solid crimson. Cinzel Decorative is the closest
+     solid display serif already installed. */
+  --font-display: "Cinzel Decorative", serif;
   --font-serif: "Ibarra Real Nova", serif; /* guest block */
   --font-sans: "Jost", system-ui, sans-serif; /* UI labels */
   --font-display-alt: "Cinzel Decorative", serif; /* SUB for Charoly Demo — body couple name */
   --font-caps: "Mohave", sans-serif; /* "WEDDING INVITATION" and its siblings */
-  --font-quote: "EB Garamond", serif; /* SUB for Roben Elegante — the quote block */
+  --font-quote: "EB Garamond", serif; /* the serif the countdown/gift/rsvp/wish copy runs on */
+  /* SUB for Roben Elegante — the QuoteSection block only. It was on --font-quote above,
+     but Roben Elegante is a fine calligraphic script and EB Garamond is a book serif, so
+     the verse read as body copy instead of handwriting. Its own token because
+     --font-quote is shared with four sections that really do want the serif. */
+  --font-verse: "Sacramento", cursive;
   --font-body: "Cormorant Garamond", serif; /* body copy */
   --font-condensed: "Libre Caslon Condensed", serif;
   --font-heading-script: "Sacramento", cursive; /* SUB for Comtic Hiden — every band heading */

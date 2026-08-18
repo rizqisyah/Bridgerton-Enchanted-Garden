@@ -75,7 +75,22 @@ TRUST_CLIP = {"2695:182", "2699:207", "2699:208", "2699:249", "2699:250"}
 # It reports x 197 and exports 197 wide -- both-edges-bleed again, so the clip rule read
 # it as right-clipped and pinned it to 375-197=178, stacking it on its twin 2695:180 at
 # x 176 and leaving the frame's left third bare under the urns. 197 wide means x 0.
-PIN_X = {"2712:333": 0, "2695:181": 0}
+# 2712:162 is resepsi's fountain: it reports x 310 and exports its full 249 wide, so
+# neither reconcile branch fires and the fiction stands -- the fountain hangs half off
+# the right edge instead of sitting centred in the pond. locate.py puts it at x 61,
+# err 7.32, well inside the "under ~15 is a real match" bar.
+PIN_X = {"2712:333": 0, "2695:181": 0, "2712:162": 61, "2712:169": 34}
+
+# Same class of failure, but the y is wrong too, so PIN_X alone cannot fix it.
+# 2712:169 is resepsi's third flower cluster. It reports 111,5258 -- the bare lattice
+# in the middle of the arch, where the render shows nothing -- because it belongs in
+# the LEFT DOME cluster, overlapping 2712:167/171. That overlap is also why locate.py
+# scores it at err 76 where it belongs (its visible siblings score 59-152 at their own
+# correct spots for the same reason), so the search never fires and the reported
+# bounds stand. Settled by compositing the band offline and scoring rows 0-560 against
+# the render: 5.350 at the reported 111,5258, 4.496 with the layer dropped entirely,
+# 3.696 at 34,5143 -- which is exactly where locate.py put it too.
+PIN_Y = {"2712:169": 5143}
 
 
 def reconcile(pos, node_size, exp_size, frame_size):
@@ -234,6 +249,7 @@ def main():
                 x = reconcile(c["x"], c["w"], w, FRAME_W)
                 y = reconcile(c["y"], c["h"], h, FRAME_H)
             x = PIN_X.get(c["id"], x)
+            y = PIN_Y.get(c["id"], y)
             rows.append((c["z"], c["id"], a["asset"], x, y - top, w, h))
 
         rows.sort(key=lambda r: r[0])
