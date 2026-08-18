@@ -154,35 +154,38 @@ const fitCouple = useFitText()
 }
 
 /*
- * 2684:116 — Norveil Fantasy Demo 48/47, -6% tracking, #ad2124.
+ * 2684:116 — Norveil Fantasy Demo 48/47, -6% tracking, #ad2124. The real face, self-
+ * hosted (see style.css), so every number here is Figma's own and there is no
+ * substitute compensation to carry.
  *
- * Sized to the RENDER, not to the spec number, the same way the bride/groom names are.
- * Norveil is condensed and --font-display's substitute (Cinzel Decorative) is not, so
- * 48px overshot the frame's own ink by 50%: measured against frame243-full.png, Figma
- * sets "AHMAD" 128px wide and "& SALMA" 145px, and Cinzel Decorative hits 127.6/139.3
- * at 32px. Its -6% tracking is Norveil's own metric and goes with it.
+ * NO text-transform. The Figma string is "Ahmad \n& Salma" in title case, and in this
+ * face the lowercase are drawn as cap-height alternates while the actual capitals are
+ * fraktur -- uppercasing it swaps the whole word onto the fraktur set and the name stops
+ * looking like the render at all. Feed it the string as it comes.
  *
- * The 289px box is Figma's, and it is what makes the name break after "AHMAD" there --
- * Norveil at 48 runs 286px for the full string, 3px shy of wrapping on the ampersand.
- * Cinzel at 32 runs 275, so the same box would set it on one line. The box is narrowed
- * to 150 (centred on Figma's own 187.5) which lands between "& SALMA" and "AHMAD &":
- * the break falls where the render puts it. useFitText keeps a longer name from
- * spilling out the bottom of the two lines instead of silently painting over the guest
- * block -- which is why the height is fixed at all.
+ * The break after "Ahmad" is Figma's authored newline, which useWedding()'s coupleName
+ * cannot carry. `text-wrap: balance` reproduces it: the full string is 290.6px against
+ * a 289px box so it has to wrap, and balancing prefers "Ahmad"/"& Salma" (max line
+ * 154.8) over the greedy "Ahmad &"/"Salma" (160.2). Browsers without balance fall back
+ * to the greedy split -- still two lines, just the other one.
+ *
+ * The fixed height and useFitText stay: a longer name would otherwise paint down over
+ * the guest block instead of shrinking to fit.
  */
 .cover__couple {
   --delay: 1400ms;
   z-index: 17;
   top: calc(320 * var(--px));
-  left: calc(113 * var(--px));
-  width: calc(150 * var(--px));
+  left: calc(43 * var(--px));
+  width: calc(289 * var(--px));
   height: calc(94 * var(--px));
   overflow: hidden;
   font-family: var(--font-display);
-  font-size: calc(32 * var(--px) * var(--fit, 1));
+  font-size: calc(48 * var(--px) * var(--fit, 1));
   font-weight: 400;
   line-height: calc(47 * var(--px));
-  text-transform: uppercase;
+  letter-spacing: -0.06em;
+  text-wrap: balance;
   color: var(--crimson);
 }
 

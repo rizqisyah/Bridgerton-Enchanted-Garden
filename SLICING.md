@@ -64,19 +64,29 @@ Frame 243 uses 4 families, Frame 244 uses 10, and these have no fontsource packa
 | Figma family | Used for | Substitute in use |
 |---|---|---|
 | Taldose Script | cover "The Wedding Of" | Playball |
-| Norveil Fantasy Demo | cover couple name, 48px | Cinzel Decorative at 32px |
+| Norveil Fantasy Demo | cover couple name, 48px | **none — real file, self-hosted** |
 | Charoly Demo | body couple name (`2695:171`, `2712:322`) | Cinzel Decorative |
 | Activists | divider "And" — one node | Cinzel Decorative, shared |
 | Comtic Hiden | **every band heading**, 11 nodes | Sacramento |
 | Roben Elegante | the quote block | Sacramento at 13/18px |
 
-Two of those substitutes are sized to the RENDER, not to the spec number, because the
-stand-in's advance widths are nothing like the original's — the same correction the
-bride/groom names needed. Norveil is condensed and Cinzel Decorative is not, so 48px
-overshot Figma's own ink by 50% (Figma sets "AHMAD" 128px wide; Cinzel hits 127.6 at 32).
-Sacramento sets ~30% more characters per line than Roben Elegante, so the spec's 10px
-folded the quote's 8 lines into 6. **Changing either substitute means re-measuring the
-size, not just swapping the family.**
+Norveil Fantasy Demo is no longer substituted — the demo cut is in `src/assets/fonts/`
+with an `@font-face` in `style.css`, so the cover name runs at Figma's own 48/47/-6% with
+no compensation. **It is the DEMO cut, personal-use only; shipping commercially needs the
+paid family.** Two traps came with it:
+
+- **Do not uppercase it.** Figma's string is `"Ahmad \n& Salma"` in title case, and in this
+  face the lowercase are cap-height alternates while the real capitals are fraktur. A
+  `text-transform: uppercase` swaps the whole word onto the fraktur set.
+- **The line break is an authored newline**, not a wrap, and `coupleName` from
+  `useWedding()` cannot carry one. The full string is 290.6px against a 289px box so it
+  has to wrap, and `text-wrap: balance` picks Figma's split ("Ahmad"/"& Salma", max line
+  154.8) over the greedy one ("Ahmad &"/"Salma", 160.2).
+
+The remaining substitute that is sized to the RENDER rather than the spec number is the
+quote: Sacramento sets ~30% more characters per line than Roben Elegante, so the spec's
+10px folded its 8 lines into 6, and it runs at 13/18. **Changing a substitute means
+re-measuring the size, not just swapping the family.**
 
 Each substitute is one token in `tokens.css` — `--font-script`, `--font-display`,
 `--font-display-alt`, `--font-heading-script`, `--font-verse` — so swapping in a licensed

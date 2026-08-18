@@ -13,6 +13,24 @@
 @import "@fontsource/libre-caslon-condensed/400.css";
 @import "./style/tokens.css";
 
+/*
+ * The one face in this design with no fontsource package that we actually have the file
+ * for. Self-hosted rather than CDN so it survives the CSP and works offline. It ships as
+ * the .ttf the foundry distributes -- 45KB, and converting to woff2 needs a toolchain
+ * this repo does not carry.
+ *
+ * LICENSE: this is the DEMO cut (Letterhend Studio, fontspace.com/norveil-fantasy-font-f166318),
+ * which is personal-use only. Shipping this template commercially needs the paid family.
+ * Swapping it is one url() here -- the metrics are the same.
+ */
+@font-face {
+  font-family: "Norveil Fantasy Demo";
+  src: url("./assets/fonts/norveil-fantasy-demo.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 *,
 *::before,
 *::after {

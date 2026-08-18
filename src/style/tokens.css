@@ -21,11 +21,9 @@
    * Swap the two --font-*-sub values and nothing else has to change.
    */
   --font-script: "Playball", cursive; /* SUB for Taldose Script — "The Wedding Of" */
-  /* SUB for Norveil Fantasy Demo — couple name. Almendra Display was the first pick and
-     is wrong on the one property that matters: it is an OUTLINE face, so the cover name
-     rendered hollow where Figma has it solid crimson. Cinzel Decorative is the closest
-     solid display serif already installed. */
-  --font-display: "Cinzel Decorative", serif;
+  /* Frame 243's real face — self-hosted, see the @font-face in style.css. No substitute
+     and therefore no size compensation: the cover name runs at Figma's own 48/47/-6%. */
+  --font-display: "Norveil Fantasy Demo", serif;
   --font-serif: "Ibarra Real Nova", serif; /* guest block */
   --font-sans: "Jost", system-ui, sans-serif; /* UI labels */
   --font-display-alt: "Cinzel Decorative", serif; /* SUB for Charoly Demo — body couple name */

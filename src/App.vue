@@ -200,7 +200,8 @@ function onSplashLeave() {
     font-weight: 400;
     line-height: 1.15;
     letter-spacing: -0.04em;
-    text-transform: uppercase;
+    /* No uppercase: --font-display is Norveil Fantasy Demo now, whose capitals are a
+       fraktur set and whose lowercase are the cap-height forms the design uses. */
     color: #f0d9a8;
   }
 

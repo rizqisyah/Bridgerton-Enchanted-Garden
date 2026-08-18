@@ -37,3 +37,6 @@ __pycache__/
 
 # Playwright screenshots + Figma scratch renders.
 .figma-tmp/
+
+# Font source archives — the face actually used lives in src/assets/fonts/.
+font/
