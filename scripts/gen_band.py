@@ -84,7 +84,13 @@ TRUST_CLIP = {"2695:182", "2699:207", "2699:208", "2699:249", "2699:250", "2712:
 # neither reconcile branch fires and the fiction stands -- the fountain hangs half off
 # the right edge instead of sitting centred in the pond. locate.py puts it at x 61,
 # err 7.32, well inside the "under ~15 is a real match" bar.
-PIN_X = {"2712:333": 0, "2695:181": 0, "2712:162": 61, "2712:169": 34}
+# 2706:153 is akad's right dome rose cluster. It reports x 363 and exports its full 77
+# wide -- neither reconcile branch fires -- so it hangs 12px onto the right edge while the
+# render has it tucked against the dome at x 286. Same overlap trap as 2712:169: it sits
+# under 2706:157 and 2706:156, so locate.py only scores 60 there and the search never
+# fires. Offline composite over rows 140-360, x 230-375: 6.358 at the reported 363,
+# 2.582 at 286 (measured after 2706:157's PIN_Y below, which overlaps it).
+PIN_X = {"2712:333": 0, "2695:181": 0, "2712:162": 61, "2712:169": 34, "2706:153": 286}
 
 # Same class of failure, but the y is wrong too, so PIN_X alone cannot fix it.
 # 2712:169 is resepsi's third flower cluster. It reports 111,5258 -- the bare lattice
@@ -95,7 +101,12 @@ PIN_X = {"2712:333": 0, "2695:181": 0, "2712:162": 61, "2712:169": 34}
 # bounds stand. Settled by compositing the band offline and scoring rows 0-560 against
 # the render: 5.350 at the reported 111,5258, 4.496 with the layer dropped entirely,
 # 3.696 at 34,5143 -- which is exactly where locate.py put it too.
-PIN_Y = {"2712:169": 5143}
+# 2706:157 is akad's other right-side rose cluster. It reports 262,4270 -- hanging low
+# off the right pillar, below the arch spring -- but the render has it up in the dome
+# cluster at 262,4155, which is also where locate.py puts it (err 77.69: the same
+# occlusion trap, 2706:156's vine paints over it). Offline composite over rows 140-360,
+# x 230-375: 14.473 at the reported 4270, 6.358 at 4155.
+PIN_Y = {"2712:169": 5143, "2706:157": 4155}
 
 
 def reconcile(pos, node_size, exp_size, frame_size):
