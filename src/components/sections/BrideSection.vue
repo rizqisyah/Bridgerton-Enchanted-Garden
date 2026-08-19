@@ -47,7 +47,7 @@ const parents = computed(
       @error="photoFailed = true"
     />
 
-    <!-- 2699:247 — Comtic Hiden 13/23, #ad2124. No fontsource for Comtic Hiden; --font-heading-script is the substitute. -->
+    <!-- 2699:247 — Comtic Hiden 13/23, #ad2124. -->
     <h2 id="bride-heading" class="bride__name">
       <span>{{ nickname }}</span>
       <span>{{ fullName }}</span>
@@ -106,10 +106,7 @@ const parents = computed(
   top: calc(40 * var(--px));
   width: calc(205 * var(--px));
   font-family: var(--font-heading-script);
-  /* Spec says 13px, but that is Comtic Hiden's number and Sacramento (the substitute,
-     no fontsource for Comtic Hiden) sets ~1.6x narrower at the same size: 13px measured
-     123px of ink against the render's 206. 21px matches the render's ink box. */
-  font-size: calc(21 * var(--px));
+  font-size: calc(13 * var(--px));
   line-height: calc(23 * var(--px));
   color: var(--crimson);
 }

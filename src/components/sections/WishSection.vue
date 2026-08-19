@@ -236,18 +236,17 @@ async function submit() {
 .wish__heading {
   --in: 0ms;
   z-index: 187;
-  top: 0;
+  /* Comtic Hiden's line box lands 2-4px below Figma's: these three headings are
+     component instances whose text is centred in a taller auto-layout box, so the
+     spec's 41.6 leading is not the whole story. Measured ink-box delta against the
+     render, not guessed. */
+  top: calc(-4 * var(--px));
   left: calc(69 * var(--px));
   width: calc(238.5 * var(--px));
   transform: translateY(calc(30 * var(--px))) scale(0.9);
   font-family: var(--font-heading-script);
   font-size: calc(20 * var(--px));
-  /* Spec's 42px line-height is Comtic Hiden's own metric; Sacramento (the
-     substitute, no fontsource for Comtic Hiden) carries far less internal
-     leading at the same size, so 42 stacks ~6px of blank half-leading above
-     the ink. Tightened to the substitute's natural leading, same fix as
-     FooterSection's heading. */
-  line-height: calc(30 * var(--px));
+  line-height: calc(41.6 * var(--px));
   text-align: center;
   color: var(--crimson-title);
 }

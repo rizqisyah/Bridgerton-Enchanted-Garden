@@ -127,7 +127,7 @@ const px = (n: number) => `calc(${n} * var(--px))`
   <section :ref="el" class="gift" :class="{ 'is-in': shown }" aria-labelledby="gift-heading">
     <BandArt :layers="LAYERS" :skip="['2712:209', '2712:210', '2712:211']" :shown="shown" />
 
-    <!-- 2712:185 — Comtic Hiden 20/28, #9e0f0f. No fontsource; --font-heading-script substitutes. -->
+    <!-- 2712:185 — Comtic Hiden 20/28, #9e0f0f. -->
     <h2 id="gift-heading" class="gift__heading">Wedding<br />Gift</h2>
     <!-- 2712:208 — EB Garamond 11/22, #000000. -->
     <p class="gift__body">

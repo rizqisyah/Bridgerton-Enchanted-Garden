@@ -51,7 +51,7 @@ const parents = computed(
       @error="photoFailed = true"
     />
 
-    <!-- 2699:214 -- Comtic Hiden 13/23, #ad2124. No fontsource for Comtic Hiden; see report. -->
+    <!-- 2699:214 -- Comtic Hiden 13/23, #ad2124. -->
     <h2 id="groom-heading" class="groom__name">{{ groomName }}</h2>
     <!-- 2699:244 -- Ibarra Real Nova 16/20 Medium Italic, #5c5050. -->
     <p class="groom__parents">{{ parents }}</p>
@@ -105,12 +105,8 @@ const parents = computed(
   top: calc(34 * var(--px));
   width: calc(254 * var(--px));
   white-space: pre-line;
-  /* Comtic Hiden has no webfont; --font-heading-script is the substitute. */
   font-family: var(--font-heading-script);
-  /* Spec says 13px, but that is Comtic Hiden's number and Sacramento (the substitute,
-     no fontsource for Comtic Hiden) sets ~1.6x narrower at the same size: 13px measured
-     123px of ink against the render's 206. 21px matches the render's ink box. */
-  font-size: calc(21 * var(--px));
+  font-size: calc(13 * var(--px));
   line-height: calc(23 * var(--px));
   color: var(--crimson);
 }

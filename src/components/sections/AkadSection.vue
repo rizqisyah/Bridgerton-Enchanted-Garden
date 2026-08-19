@@ -35,7 +35,7 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
   <section :ref="el" class="akad" :class="{ 'is-in': shown }" aria-labelledby="akad-heading">
     <BandArt :layers="LAYERS" :shown="shown" />
 
-    <!-- 2706:158 -- Comtic Hiden 20/23, var(--crimson-heading). No fontsource for Comtic Hiden; see report. -->
+    <!-- 2706:158 -- Comtic Hiden 20/23, var(--crimson-heading). -->
     <h2 id="akad-heading" class="akad__heading">Akad Nikah</h2>
     <!-- 2706:159 -- Libre Caslon Condensed 15/23 Italic, #000. -->
     <p class="akad__date">{{ dateText }}</p>
@@ -95,7 +95,6 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
   left: calc(66 * var(--px));
   top: calc(442 * var(--px));
   width: calc(243 * var(--px));
-  /* Comtic Hiden has no webfont; --font-heading-script is the substitute. */
   font-family: var(--font-heading-script);
   font-size: calc(20 * var(--px));
   line-height: calc(23 * var(--px));

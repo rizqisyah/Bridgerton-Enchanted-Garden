@@ -262,7 +262,11 @@ onBeforeUnmount(() => {
 .gallery__heading {
   position: absolute;
   z-index: 190;
-  top: calc(13 * var(--px));
+  /* Comtic Hiden's line box lands 2-4px below Figma's: these three headings are
+     component instances whose text is centred in a taller auto-layout box, so the
+     spec's 41.6 leading is not the whole story. Measured ink-box delta against the
+     render, not guessed. */
+  top: calc(9 * var(--px));
   left: calc(50 * var(--px));
   width: calc(291 * var(--px));
   margin: 0;

@@ -90,7 +90,10 @@ const heroSkip = computed(() => (couplePhoto.value ? ['2695:173'] : []))
   font-size: calc(32 * var(--px));
   font-weight: 400;
   line-height: calc(28 * var(--px));
-  text-transform: uppercase;
+  /* No text-transform: Charoly Demo draws its lowercase as plain capitals and its
+     uppercase as swash capitals, so the design's mixed-case "Ahmad & Salma" is what
+     produces the render's swash A and S over plain caps. Uppercasing it swashes every
+     letter and the words collide -- same trap as the cover's Norveil Fantasy Demo. */
   color: var(--crimson);
 }
 

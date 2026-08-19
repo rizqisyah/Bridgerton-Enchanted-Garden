@@ -15,10 +15,10 @@
   --paper: #f2ece1; /* the cream ground the chateau plate sits on */
 
   /*
-   * fonts — Frame 243 uses four families. Two of them (Taldose Script, Norveil
-   * Fantasy Demo) are commercial/demo faces with no webfont, so the display type
-   * runs on the closest fontsource substitute until the real files are licensed.
-   * Swap the two --font-*-sub values and nothing else has to change.
+   * fonts — Taldose Script (--font-script) and Roben Elegante (--font-verse) are
+   * still commercial/demo faces with no webfont, so those two run on the closest
+   * fontsource substitute until the real files are licensed. Every other display
+   * face below is now self-hosted from the real file.
    */
   --font-script: "Playball", cursive; /* SUB for Taldose Script — "The Wedding Of" */
   /* Frame 243's real face — self-hosted, see the @font-face in style.css. No substitute
@@ -26,8 +26,9 @@
   --font-display: "Norveil Fantasy Demo", serif;
   --font-serif: "Ibarra Real Nova", serif; /* guest block */
   --font-sans: "Jost", system-ui, sans-serif; /* UI labels */
-  --font-display-alt: "Cinzel Decorative", serif; /* SUB for Charoly Demo — body couple name */
+  --font-display-alt: "Charoly Demo", serif; /* real face, no substitute — body couple name */
   --font-caps: "Mohave", sans-serif; /* "WEDDING INVITATION" and its siblings */
+  --font-and: "Activists", serif; /* real face, no substitute — divider's "and" connector word, its own token now that it no longer borrows --font-display-alt */
   --font-quote: "EB Garamond", serif; /* the serif the countdown/gift/rsvp/wish copy runs on */
   /* SUB for Roben Elegante — the QuoteSection block only. It was on --font-quote above,
      but Roben Elegante is a fine calligraphic script and EB Garamond is a book serif, so
@@ -36,7 +37,7 @@
   --font-verse: "Sacramento", cursive;
   --font-body: "Cormorant Garamond", serif; /* body copy */
   --font-condensed: "Libre Caslon Condensed", serif;
-  --font-heading-script: "Sacramento", cursive; /* SUB for Comtic Hiden — every band heading */
+  --font-heading-script: "Comtic Hiden", cursive; /* real face, no substitute — every band heading */
 
   /* design frame reference (Figma Frame 243 cover / Frame 244 body) */
   --frame-w: 375;

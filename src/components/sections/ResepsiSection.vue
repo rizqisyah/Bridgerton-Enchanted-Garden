@@ -34,7 +34,7 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
   <section :ref="el" class="resepsi" :class="{ 'is-in': shown }" aria-labelledby="resepsi-heading">
     <BandArt :layers="LAYERS" :shown="shown" />
 
-    <!-- 2712:172 -- Comtic Hiden 20/23, var(--crimson-heading). No fontsource for Comtic Hiden; see report. -->
+    <!-- 2712:172 -- Comtic Hiden 20/23, var(--crimson-heading). -->
     <h2 id="resepsi-heading" class="resepsi__heading">Resepsi Nikah</h2>
     <!-- 2712:173 -- Libre Caslon Condensed 15/23 Italic, #000. -->
     <p class="resepsi__date">{{ dateText }}</p>
@@ -94,7 +94,6 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
   left: calc(60 * var(--px));
   top: calc(442 * var(--px));
   width: calc(243 * var(--px));
-  /* Comtic Hiden has no webfont; --font-heading-script is the substitute. */
   font-family: var(--font-heading-script);
   font-size: calc(20 * var(--px));
   line-height: calc(23 * var(--px));

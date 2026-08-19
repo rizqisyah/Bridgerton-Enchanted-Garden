@@ -11,7 +11,7 @@ const { el, shown } = useReveal(0.15)
 
 <template>
   <section :ref="el" class="divider" :class="{ 'is-in': shown }">
-    <!-- 2699:276 -- Activists (high-contrast swash display; shares --font-display-alt with the body couple name rather than pulling in a 7th family) 64/48, #5a6a52. Design's own connector word. -->
+    <!-- 2699:276 -- Activists (high-contrast swash display), 64/48, #5a6a52. Design's own connector word. -->
     <p class="divider__and">And</p>
   </section>
 </template>
@@ -29,11 +29,7 @@ const { el, shown } = useReveal(0.15)
   margin: 0;
 }
 
-/*
- * 64/48 is the Figma spec, but Activists has no webfont and Almendra Display sets
- * ~30% wider at the same size: at 64 the word overran the design's ink box and the
- * band scored 10.55 against the render. 48/6 matches the reference's extents (8.68).
- */
+/* Activists is now self-hosted, so the word runs at the Figma spec's own 64/48. */
 .divider__and {
   opacity: 0;
   transform: translateY(calc(10 * var(--px)));
@@ -44,12 +40,13 @@ const { el, shown } = useReveal(0.15)
   /* 2699:276's global Figma order. z1 put it under the groom band's foliage bleed. */
   z-index: 109;
   left: calc(95 * var(--px));
-  top: calc(6 * var(--px));
+  /* 6 is the spec, but Activists' line box sits 5px lower than Figma's at 64/48 --
+     ink-box measured against the render, glyph size and width already match. */
+  top: calc(1 * var(--px));
   width: calc(185 * var(--px));
   text-align: center;
-  /* Activists (high-contrast swash display; shares --font-display-alt with the body couple name rather than pulling in a 7th family) has no webfont; --font-display (Almendra Display) is the closest display stand-in on hand. */
-  font-family: var(--font-display-alt);
-  font-size: calc(48 * var(--px));
+  font-family: var(--font-and);
+  font-size: calc(64 * var(--px));
   line-height: calc(48 * var(--px));
   color: #5a6a52;
 }

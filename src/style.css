@@ -1,10 +1,8 @@
 /* Only the families Frame 243 (cover) needs. Frame 244's six more get added per band. */
 @import "@fontsource/playball/400.css";
-@import "@fontsource/almendra-display/400.css";
 @import "@fontsource/ibarra-real-nova/500-italic.css";
 @import "@fontsource/jost/400.css";
 /* Frame 244 (invitation body). */
-@import "@fontsource/cinzel-decorative/400.css";
 @import "@fontsource/mohave/400.css";
 @import "@fontsource/sacramento/400.css";
 @import "@fontsource/eb-garamond/400.css";
@@ -26,6 +24,42 @@
 @font-face {
   font-family: "Norveil Fantasy Demo";
   src: url("./assets/fonts/norveil-fantasy-demo.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*
+ * Client-supplied file, no fontsource package, no stated license.
+ * LICENSE: provided by the client with no license terms attached.
+ */
+@font-face {
+  font-family: "Comtic Hiden";
+  src: url("./assets/fonts/comtic-hiden-regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*
+ * Client-supplied file, no fontsource package, no stated license.
+ * LICENSE: provided by the client with no license terms attached.
+ */
+@font-face {
+  font-family: "Activists";
+  src: url("./assets/fonts/activists-regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*
+ * LICENSE: this is the DEMO cut (fontspace.com/charoly-signature-font-f126461),
+ * which is personal-use only. Shipping this template commercially needs the paid family.
+ */
+@font-face {
+  font-family: "Charoly Demo";
+  src: url("./assets/fonts/charoly-demo-regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;

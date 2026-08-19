@@ -42,7 +42,7 @@ const brideFirst = computed(() => (bride.value?.name as string)?.split(' ')[0] |
 
     <!-- 2712:321 TEXT_PATH, string only in `name`; #4d4d2d, rendered straight (see note above). -->
     <p class="footer__of">The Wedding Of</p>
-    <!-- 2712:322 — Charoly Demo 40, #732222. No fontsource; --font-display-alt substitutes. -->
+    <!-- 2712:322 — Charoly Demo 40, #732222. -->
     <p class="footer__couple">{{ groomFirst }}<br />&amp;<br />{{ brideFirst }}</p>
 
     <!-- 2712:326 — Ibarra Real Nova 12, #ffffff, on the olive bar (2712:325, art). -->
@@ -75,18 +75,17 @@ const brideFirst = computed(() => (bride.value?.name as string)?.split(' ')[0] |
 .footer__thanks {
   --in: 200ms;
   z-index: 191;
-  top: 0;
+  /* Comtic Hiden's line box lands 2-4px below Figma's: these three headings are
+     component instances whose text is centred in a taller auto-layout box, so the
+     spec's 41.6 leading is not the whole story. Measured ink-box delta against the
+     render, not guessed. */
+  top: calc(-2 * var(--px));
   left: calc(40 * var(--px));
   width: calc(291 * var(--px));
   transform: translateY(calc(30 * var(--px))) scale(0.9);
   font-family: var(--font-heading-script);
   font-size: calc(24 * var(--px));
-  /* Spec's 42px line-height is Comtic Hiden's own metric; Sacramento (the
-     substitute, no fontsource for Comtic Hiden) has far less internal leading
-     at the same size, so 42 stacks ~8px of blank half-leading above the ink.
-     Tightened to the substitute's natural leading so the glyphs sit where the
-     render has them. */
-  line-height: calc(30 * var(--px));
+  line-height: calc(41.6 * var(--px));
   text-align: center;
   color: var(--crimson-title);
 }
@@ -130,8 +129,11 @@ const brideFirst = computed(() => (bride.value?.name as string)?.split(' ')[0] |
 .footer__couple {
   --in: 1050ms;
   z-index: 202;
-  top: calc(452 * var(--px));
-  left: calc(108 * var(--px));
+  /* Spec is 452,108. Charoly Demo sets the block 7px lower and, because its swash
+     capitals hang left of the glyph origin, 5px right of where the render has it --
+     ink box measured against the render, the block's own width already matches. */
+  top: calc(445 * var(--px));
+  left: calc(103 * var(--px));
   width: calc(159 * var(--px));
   transform: translateY(calc(30 * var(--px))) scale(0.9);
   font-family: var(--font-display-alt);
