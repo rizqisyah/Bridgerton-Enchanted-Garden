@@ -57,17 +57,17 @@ node scripts/shot.mjs 5176          # writes .figma-tmp/web-*.png
 The cover currently sits at **4.9 mean abs delta** against `frame243-full.png` once the
 status bar and the text nodes are masked out.
 
-## Fonts — six of the twelve have no webfont
+## Fonts — two of the twelve are still substituted
 
-Frame 243 uses 4 families, Frame 244 uses 10, and these have no fontsource package:
+Frame 243 uses 4 families, Frame 244 uses 10, and two of them still run on a substitute:
 
 | Figma family | Used for | Substitute in use |
 |---|---|---|
 | Taldose Script | cover "The Wedding Of" | Playball |
 | Norveil Fantasy Demo | cover couple name, 48px | **none — real file, self-hosted** |
-| Charoly Demo | body couple name (`2695:171`, `2712:322`) | Cinzel Decorative |
-| Activists | divider "And" — one node | Cinzel Decorative, shared |
-| Comtic Hiden | **every band heading**, 11 nodes | Sacramento |
+| Charoly Demo | body couple name (`2695:171`, `2712:322`) | **none — real file, self-hosted** |
+| Activists | divider "And" — one node | **none — real file, self-hosted** |
+| Comtic Hiden | **every band heading**, 11 nodes | **none — real file, self-hosted** |
 | Roben Elegante | the quote block | Sacramento at 13/18px |
 
 Norveil Fantasy Demo is no longer substituted — the demo cut is in `src/assets/fonts/`
@@ -83,14 +83,37 @@ paid family.** Two traps came with it:
   has to wrap, and `text-wrap: balance` picks Figma's split ("Ahmad"/"& Salma", max line
   154.8) over the greedy one ("Ahmad &"/"Salma", 160.2).
 
+Charoly Demo, Activists and Comtic Hiden are self-hosted the same way now: the file sits in
+`src/assets/fonts/` (`charoly-demo-regular.ttf`, `activists-regular.ttf`,
+`comtic-hiden-regular.ttf`) with its own `@font-face` in `style.css`. `@fontsource/cinzel-decorative`
+and `@fontsource/almendra-display` are gone from `package.json` — nothing consumes them now.
+Activists also got its own token, `--font-and`, instead of borrowing `--font-display-alt`.
+**License:** Charoly Demo is the DEMO cut (fontspace.com/charoly-signature-font-f126461,
+personal-use only) — same caveat as Norveil's demo cut. Comtic Hiden and Activists came from
+the client with no stated license.
+
+Charoly Demo carries Norveil's exact trap, which is why it is worth stating twice: its lowercase are plain
+capitals and its uppercase are SWASH capitals. Figma's string for `2695:171` is mixed case
+("Ahmad \nand Salma"), and that is exactly what produces the render's swash A and S over
+otherwise plain caps. `text-transform: uppercase` swashes every letter and the words visibly
+collide. It was removed from `.hero__couple`.
+
+Retiring a substitute means re-measuring, not just swapping the family, and this swap proved
+it in both directions. Compensations that existed only for the substitutes' metrics were
+reverted to the Figma spec: groom/bride names 21/23 back to the spec's 13/23; wish and footer
+headings 30px leading back to 41.6; the divider's "And" 48px back to 64. And four positions
+had to be re-measured by ink box against the render, because the real faces set their line
+boxes differently than Figma does: the gallery, wish and footer headings moved up 2-4px, the
+divider's "And" up 5px, and the footer couple name up 7px and left 5px.
+
 The remaining substitute that is sized to the RENDER rather than the spec number is the
 quote: Sacramento sets ~30% more characters per line than Roben Elegante, so the spec's
 10px folded its 8 lines into 6, and it runs at 13/18. **Changing a substitute means
 re-measuring the size, not just swapping the family.**
 
 Each substitute is one token in `tokens.css` — `--font-script`, `--font-display`,
-`--font-display-alt`, `--font-heading-script`, `--font-verse` — so swapping in a licensed
-file means changing that one value and nothing else. **Never bake the type into
+`--font-display-alt`, `--font-heading-script`, `--font-verse`, `--font-and` — so swapping in a
+licensed file means changing that one value and nothing else. **Never bake the type into
 an image to dodge this** — every text node stays live so `useWedding()` can drive it.
 
 Available upstream and already correct: Ibarra Real Nova, Jost, Cormorant Garamond,
@@ -235,6 +258,9 @@ node scripts/shot.mjs 5176
 Screenshot the running sheet and difference it against `.figma-tmp/exports244/frame244-full.png`.
 Scroll the **window**, not `.desktop-right-column` — that column only scrolls at >=768px, and
 below that the bands never reveal, which reads as a blank sheet rather than a scroll bug.
+
+This table predates the real-font swap in the Fonts section above and has not been
+re-measured since.
 
 Current state, mean abs delta per band:
 
