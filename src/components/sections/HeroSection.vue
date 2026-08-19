@@ -19,6 +19,19 @@ const couplePhoto = computed(
   () => (wedding.value?.image_cover as string) || (wedding.value?.image_bg1 as string) || '',
 )
 const heroSkip = computed(() => (couplePhoto.value ? ['2695:173'] : []))
+
+/*
+ * 2695:171's Figma string is "Ahmad \nand Salma" — the break before the connector is
+ * authored, not a wrap, and coupleNickname cannot carry a newline. The cover gets the
+ * same split for free because its 48px string overruns its box; here Charoly Demo sets
+ * "Ahmad & Salma" in 233px against a 289px box, so nothing wraps and the break has to
+ * be put back. Rendered with white-space: pre-line.
+ */
+const coupleLines = computed(() => {
+  const name = coupleNickname.value
+  const at = name.search(/\s(?:[&+]|dan|and)\s/i)
+  return at === -1 ? name : `${name.slice(0, at)}\n${name.slice(at + 1)}`
+})
 </script>
 
 <template>
@@ -35,7 +48,7 @@ const heroSkip = computed(() => (couplePhoto.value ? ['2695:173'] : []))
     />
 
     <!-- 2695:171 — Charoly Demo 32/28, #ad2124. -->
-    <h2 id="hero-heading" class="hero__couple">{{ coupleNickname }}</h2>
+    <h2 id="hero-heading" class="hero__couple">{{ coupleLines }}</h2>
     <!-- 2695:170 — Mohave 20/30, #72703d. -->
     <p class="hero__kicker">Wedding Invitation</p>
   </section>
@@ -90,6 +103,7 @@ const heroSkip = computed(() => (couplePhoto.value ? ['2695:173'] : []))
   font-size: calc(32 * var(--px));
   font-weight: 400;
   line-height: calc(28 * var(--px));
+  white-space: pre-line;
   /* No text-transform: Charoly Demo draws its lowercase as plain capitals and its
      uppercase as swash capitals, so the design's mixed-case "Ahmad & Salma" is what
      produces the render's swash A and S over plain caps. Uppercasing it swashes every
