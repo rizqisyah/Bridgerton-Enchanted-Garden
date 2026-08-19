@@ -70,13 +70,15 @@ const { quoteText, quoteVerse } = useWedding()
 .quote__verse {
   --delay: 210ms;
   z-index: 251;
-  left: calc(16 * var(--px));
-  top: calc(195 * var(--px));
+  left: calc(18 * var(--px));
+  top: calc(163 * var(--px));
   width: calc(185 * var(--px));
   text-align: center;
-  font-family: var(--font-verse);
-  /* 13px in Roben Elegante measures 129px wide on the render; Sacramento needs 18. */
-  font-size: calc(18 * var(--px));
+  /* Comtic Hiden, the same face every band heading runs on -- Roben Elegante has no
+     webfont and Sacramento read too thin next to the rest of the sheet. Size and top
+     are measured against the reference ink box, not the spec's 13/48. */
+  font-family: var(--font-heading-script);
+  font-size: calc(14 * var(--px));
   line-height: calc(48 * var(--px));
   color: #3b3835;
 }
