@@ -25,12 +25,17 @@ const heroSkip = computed(() => (couplePhoto.value ? ['2695:173'] : []))
  * authored, not a wrap, and coupleNickname cannot carry a newline. The cover gets the
  * same split for free because its 48px string overruns its box; here Charoly Demo sets
  * "Ahmad & Salma" in 233px against a 289px box, so nothing wraps and the break has to
- * be put back. Rendered with white-space: pre-line.
+ * be put back -- with the design's spelled-out "and". Rendered with white-space: pre-line.
  */
+const CONNECTOR = /\s(?:[&+]|dan|and)\s/i
+
 const coupleLines = computed(() => {
   const name = coupleNickname.value
-  const at = name.search(/\s(?:[&+]|dan|and)\s/i)
-  return at === -1 ? name : `${name.slice(0, at)}\n${name.slice(at + 1)}`
+  const at = name.search(CONNECTOR)
+  if (at === -1) return name
+  // The connector is spelled out here, not "&": that is the design's own word, and
+  // coupleNickname joins on "&" because Frame 243's cover does use the ampersand.
+  return `${name.slice(0, at)}\nand ${name.slice(at).replace(CONNECTOR, '')}`
 })
 </script>
 
