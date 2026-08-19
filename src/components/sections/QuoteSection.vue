@@ -53,15 +53,17 @@ const { quoteText, quoteVerse } = useWedding()
   z-index: 250;
   left: calc(48 * var(--px));
   top: calc(65 * var(--px));
-  width: calc(285 * var(--px));
+  width: calc(230 * var(--px));
   text-align: left;
-  /* Roben Elegante has no webfont; --font-verse (Sacramento) is the closest script on hand.
-     Sized to the render rather than to the spec's 10px: Sacramento sets ~20% more
-     characters per line at the same size, so 10px folded the frame's 8 lines into 6.
-     Same font-substitution correction as the bride/groom names. */
-  font-family: var(--font-verse);
-  font-size: calc(17 * var(--px));
-  line-height: calc(17 * var(--px));
+  /* Roben Elegante has no webfont. The translation runs on --font-serif -- the same
+     italic the parent lines use -- rather than the script substitute: at 8 lines of body
+     copy a script is a legibility problem the design does not have, since Roben Elegante
+     is far tighter than Sacramento. Back to the spec's own 10/13 and 230px box. */
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: calc(10 * var(--px));
+  line-height: calc(13 * var(--px));
   color: #4b4742;
 }
 
