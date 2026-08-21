@@ -20,7 +20,7 @@ export function formatEventDate(raw?: string | null, lang: string = 'indonesia')
    * as the day before -- the wedding would read Friday to a guest in New York.
    * Build those as a local date instead; anything with a time keeps its own offset.
    */
-  const parts = raw.match(/^(\d{4})-(\d{2})-(\d{2})$/)
+  const parts = raw.match(/^(\d{4})-(\d{2})-(\d{2})/)
   const d = parts
     ? new Date(Number(parts[1]), Number(parts[2]) - 1, Number(parts[3]))
     : new Date(raw)
@@ -46,7 +46,7 @@ export function formatEventDate(raw?: string | null, lang: string = 'indonesia')
  */
 export function parseEventStart(date?: string | null, time?: string | null): Date | null {
   if (!date) return null
-  const d = date.match(/^(\d{4})-(\d{2})-(\d{2})$/)
+  const d = date.match(/^(\d{4})-(\d{2})-(\d{2})/)
   if (!d) {
     const loose = new Date(date)
     return Number.isNaN(loose.getTime()) ? null : loose

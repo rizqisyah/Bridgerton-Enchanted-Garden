@@ -26,7 +26,6 @@ const artSkip = computed(() => (photo.value ? ['2699:251'] : []))
 
 // Frame 244 prints the short name on its own line, then the full name/title
 // below it — the design's own strings are the fallback for an unconfigured render.
-const nickname = computed(() => bride.value?.nickname?.trim() || 'Salma')
 const fullName = computed(() => bride.value?.name?.trim() || 'Putri Kartika, S.E')
 const parents = computed(
   () => parentLine(bride.value, lang.value) || 'Putri Pertama dari  Bapak Harith Satyo\n& Ibu Nuri Mulyana',
@@ -49,7 +48,6 @@ const parents = computed(
 
     <!-- 2699:247 — Comtic Hiden 13/23, #ad2124. -->
     <h2 id="bride-heading" class="bride__name">
-      <span>{{ nickname }}</span>
       <span>{{ fullName }}</span>
     </h2>
 

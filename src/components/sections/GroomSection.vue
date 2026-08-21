@@ -27,10 +27,7 @@ const artSkip = computed(() => (photo.value ? ['2699:211'] : []))
 // 2699:214 is one text node, "Ahmad \nSoetrisno Budianto, S.Pd" -- first name on its
 // own line, the rest of the name below. Fallback is the design's exact node text.
 const groomName = computed(() => {
-  const name = groom.value?.name?.trim()
-  if (!name) return 'Ahmad \nSoetrisno Budianto, S.Pd'
-  const sp = name.indexOf(' ')
-  return sp === -1 ? name : `${name.slice(0, sp)} \n${name.slice(sp + 1)}`
+  return groom.value?.name?.trim() || 'Ahmad Soetrisno Budianto, S.Pd'
 })
 const parents = computed(
   () => parentLine(groom.value, lang.value) || 'Putra Pertama dari  Bapak Hasbih Muhammad  & Ibu Siti Nurhamidin',
