@@ -1,4 +1,4 @@
-name: Deploy Frontend (Bridgerton-Enchanted-Garden) to VPS
+name: Deploy Frontend (TemaBridgerton) to VPS
 
 on:
   push:
