@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { COVER_LAYERS } from '../../lib/coverLayers'
 import { useFitText } from '../../composables/useFitText'
+import { useWedding } from '../../composables/useWedding'
 
 // `ready` gates the reveal on the 36 layers being decoded — see App.vue.
-defineProps<{ guestName: string; coupleName: string; ready: boolean }>()
+defineProps<{ guestName: string; coupleName: string; imageLogo?: string; ready: boolean }>()
 defineEmits<{ open: [] }>()
 
 /*
@@ -15,6 +16,7 @@ const delayFor = (z: number) => Math.min(z * 38, 1080)
 
 // The couple name is the one box on the cover with a fixed height — see its rule below.
 const fitCouple = useFitText()
+const { lang } = useWedding()
 </script>
 
 <template>
@@ -25,7 +27,7 @@ const fitCouple = useFitText()
         v-for="layer in COVER_LAYERS"
         :key="layer.id"
         class="cover__layer"
-        :src="layer.src"
+        :src="(layer.id === '2695:150' && imageLogo) ? imageLogo : layer.src"
         alt=""
         :width="layer.w"
         :height="layer.h"
@@ -35,6 +37,7 @@ const fitCouple = useFitText()
           top: `calc(${layer.y} * var(--px))`,
           width: `calc(${layer.w} * var(--px))`,
           height: `calc(${layer.h} * var(--px))`,
+          objectFit: (layer.id === '2695:150' && imageLogo) ? 'contain' : 'fill',
           animationDelay: `${delayFor(layer.z)}ms`,
         }"
       />
@@ -44,11 +47,13 @@ const fitCouple = useFitText()
       <h1 :ref="fitCouple" class="cover__couple">{{ coupleName }}</h1>
 
       <!-- Group 250 (2695:151) — z 18. -->
-      <p class="cover__dear">Dear Mr/ Mrs/ Ms</p>
+      <p class="cover__dear">{{ lang === 'english' ? 'Dear Mr/ Mrs/ Ms' : 'Kepada Yth.' }}</p>
       <p class="cover__guest">{{ guestName }}</p>
 
       <!-- 2695:153 — z 37, above the monogram, below the foreground florals. -->
-      <button type="button" class="cover__open" @click="$emit('open')">Click to open</button>
+      <button type="button" class="cover__open" @click="$emit('open')">
+        {{ lang === 'english' ? 'Click to open' : 'Buka Undangan' }}
+      </button>
     </div>
   </section>
 </template>

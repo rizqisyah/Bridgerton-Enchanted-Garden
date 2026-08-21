@@ -8,7 +8,7 @@ import { parentLine } from '../../lib/format'
 import { BAND_HEIGHT, LAYERS } from '../../lib/bands/bride'
 
 const { el, shown } = useReveal(0.15)
-const { bride } = useWedding()
+const { bride, lang } = useWedding()
 
 /*
  * 2699:251 is the design's illustrated portrait; 2699:254 (z64) is the ornate plate
@@ -29,7 +29,7 @@ const artSkip = computed(() => (photo.value ? ['2699:251'] : []))
 const nickname = computed(() => bride.value?.nickname?.trim() || 'Salma')
 const fullName = computed(() => bride.value?.name?.trim() || 'Putri Kartika, S.E')
 const parents = computed(
-  () => parentLine(bride.value) || 'Putri Pertama dari  Bapak Harith Satyo\n& Ibu Nuri Mulyana',
+  () => parentLine(bride.value, lang.value) || 'Putri Pertama dari  Bapak Harith Satyo\n& Ibu Nuri Mulyana',
 )
 </script>
 

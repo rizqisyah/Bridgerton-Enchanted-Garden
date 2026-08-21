@@ -8,7 +8,7 @@ import { parentLine } from '../../lib/format'
 import { BAND_HEIGHT, LAYERS } from '../../lib/bands/groom'
 
 const { el, shown } = useReveal(0.15)
-const { groom } = useWedding()
+const { groom, lang } = useWedding()
 
 /*
  * 2699:211 is the design's illustrated portrait; 2699:212 (z63/z64) is the ornate
@@ -33,7 +33,7 @@ const groomName = computed(() => {
   return sp === -1 ? name : `${name.slice(0, sp)} \n${name.slice(sp + 1)}`
 })
 const parents = computed(
-  () => parentLine(groom.value) || 'Putra Pertama dari  Bapak Hasbih Muhammad  & Ibu Siti Nurhamidin',
+  () => parentLine(groom.value, lang.value) || 'Putra Pertama dari  Bapak Hasbih Muhammad  & Ibu Siti Nurhamidin',
 )
 </script>
 

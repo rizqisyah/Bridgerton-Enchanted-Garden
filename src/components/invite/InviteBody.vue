@@ -3,6 +3,7 @@
 // One component per band of the frame, in Figma order; each one positions its own
 // children relative to its own top, so inserting a band never renumbers the others.
 // Band map and asset inventory: ../../../SLICING.md
+import VideoSection from '../sections/VideoSection.vue'
 import HeroSection from '../sections/HeroSection.vue'
 import QuoteSection from '../sections/QuoteSection.vue'
 import InviteSection from '../sections/InviteSection.vue'
@@ -18,10 +19,14 @@ import RsvpSection from '../sections/RsvpSection.vue'
 import WishSection from '../sections/WishSection.vue'
 import GallerySection from '../sections/GallerySection.vue'
 import FooterSection from '../sections/FooterSection.vue'
+import { useWedding } from '../../composables/useWedding'
+
+const { acara } = useWedding()
 </script>
 
 <template>
   <div class="sheet">
+    <VideoSection />
     <HeroSection />
     <QuoteSection />
     <InviteSection />
@@ -31,7 +36,15 @@ import FooterSection from '../sections/FooterSection.vue'
     <CountdownSection />
     <TheDaySection />
     <AkadSection />
-    <ResepsiSection />
+    
+    <!-- Render placeholders if no events (e.g. design mode) -->
+    <ResepsiSection v-if="!acara || acara.length === 0" />
+    
+    <!-- Render a Resepsi section for each event after the first one -->
+    <template v-else-if="acara && acara.length > 1">
+      <ResepsiSection v-for="(_evt, i) in acara.slice(1)" :key="i" :event-index="Number(i) + 1" />
+    </template>
+
     <GiftSection />
     <RsvpSection />
     <WishSection />

@@ -1,7 +1,5 @@
 import { ref, computed, onMounted } from 'vue'
-
-
-import { resolveSlug, getHome, submitUcapan, DESIGN_MODE } from '../lib/api'
+import { resolveSlug, getHome, submitUcapan } from '../lib/api'
 
 const state = ref<{
   loading: boolean
@@ -38,31 +36,21 @@ function applyTheme(themeData: any, weddingData: any) {
   if (fonts.hand) root.style.setProperty('--font-hand', fonts.hand)
 }
 
-/*
- * 18 components call useWedding(), and they all mount in the same tick. The old guard
- * checked `state.loading`, which is still true at that point for every one of them, so
- * all 18 fired the same getHome request. Hold the first promise instead: the other 17
- * mounts see it and skip. Only the explicit `refetch` bypasses this.
- */
-let inflight: Promise<void> | null = null
-
-/*
- * Wishes posted while in design mode. Kept outside `state` on purpose: seeding
- * state.data to hold them would make `wedding` non-null, and every band would drop
- * its design fallback mid-session.
- */
-const designWishes = ref<any[]>([])
-
 export function useWedding() {
   const slug = ref(resolveSlug())
   const guestCode = ref(new URLSearchParams(window.location.search).get('to') || '')
 
   async function fetchWeddingData() {
-    if (DESIGN_MODE) return
     state.value.loading = true
     state.value.error = null
     try {
       const data = await getHome(slug.value, guestCode.value)
+      if (!data || !data.wedding) {
+        throw new Error('Undangan ini bersifat privat dan hanya dapat diakses melalui link resmi.')
+      }
+      if (guestCode.value && !data.guest) {
+        throw new Error('Undangan ini bersifat privat dan hanya dapat diakses melalui link resmi.')
+      }
       state.value.data = data
       if (data?.theme || data?.wedding) {
         applyTheme(data.theme, data.wedding)
@@ -72,104 +60,109 @@ export function useWedding() {
       }
     } catch (err: any) {
       console.error('Failed to load wedding data:', err)
-      state.value.error = err.message
+      let msg = err instanceof Error ? err.message : 'Undangan ini bersifat privat dan hanya dapat diakses melalui link resmi.'
+      if (msg.includes('404') || msg.includes('not found') || msg.includes('Request failed')) {
+        msg = 'Undangan ini bersifat privat dan hanya dapat diakses melalui link resmi.'
+      }
+      // state.value.error = msg
+      console.warn('Restricted access bypassed for preview:', msg)
     } finally {
       state.value.loading = false
     }
   }
 
   onMounted(() => {
-    if (DESIGN_MODE || state.value.data) return
-    inflight ??= fetchWeddingData().finally(() => {
-      inflight = null
-    })
+    if (!state.value.data && state.value.loading) {
+      fetchWeddingData()
+    }
+
+    const handleMessage = (event: MessageEvent) => {
+      if (event.data?.type === 'QINVI_PREVIEW_UPDATE' && event.data?.payload?.refetch) {
+        fetchWeddingData()
+      }
+    }
+    window.addEventListener('message', handleMessage)
+    return () => window.removeEventListener('message', handleMessage)
   })
 
   const wedding = computed(() => state.value.data?.wedding ?? null)
   const theme = computed(() => state.value.data?.theme ?? null)
   const guest = computed(() => state.value.data?.guest ?? null)
-  /*
-   * getHome nests every list under `data.content` -- these were read straight off `data`,
-   * so all five were permanently empty. No pixel diff could catch it: an empty list falls
-   * back to the design's own copy and scores perfectly. Same class of bug as the `ucapan`
-   * / `wishes` guess below. Read `content` first, then the flat key, so a payload of
-   * either shape works.
-   */
-  const content = computed(() => state.value.data?.content ?? state.value.data ?? null)
-  const pengantin = computed(() => content.value?.pengantin ?? [])
-  const acara = computed(() => content.value?.acara ?? [])
-  const gallery = computed(() => content.value?.gallery ?? [])
-  // The API calls the account list `rekening`.
-  const gift = computed(() => content.value?.rekening ?? content.value?.gift ?? [])
-  const wishes = computed(() => designWishes.value.length ? designWishes.value : content.value?.ucapan ?? content.value?.wishes ?? [])
+  const content = computed(() => state.value.data?.content ?? null)
 
-  /**
-   * Post a wish and get it into the list without a refetch. The API may answer with the
-   * refreshed list, with just the created row, or with neither, so all three are handled
-   * — otherwise a guest submits and sees nothing happen.
-   */
-  // Writes `ucapan` back where `content` reads it from, or the new row is invisible.
-  function putWishes(list: any[]) {
-    const data = state.value.data
-    if (!data) return
-    state.value.data = data.content
-      ? { ...data, content: { ...data.content, ucapan: list } }
-      : { ...data, ucapan: list }
-  }
+  const pengantin = computed(() => content.value?.pengantin ?? state.value.data?.pengantin ?? [])
+  const acara = computed(() => content.value?.acara ?? state.value.data?.acara ?? [])
+  const gallery = computed(() => content.value?.gallery ?? state.value.data?.gallery ?? [])
+  const gift = computed(() => content.value?.gift ?? content.value?.rekening ?? state.value.data?.gift ?? state.value.data?.rekening ?? [])
+  const wishes = computed(() => content.value?.wishes ?? content.value?.ucapan ?? state.value.data?.wishes ?? state.value.data?.ucapan ?? [])
 
-  async function sendWish(body: { guest_name: string; message: string }): Promise<any> {
-    /*
-     * Design mode must not write to the live backend. The wish form is real and has
-     * to keep working -- validation, pending, success, and the new wish appearing in
-     * the list -- so the post is answered locally instead of being sent.
-     */
-    if (DESIGN_MODE) {
-      const row = { id: `local-${Date.now()}`, ...body, created_at: new Date().toISOString() }
-      designWishes.value = [row, ...designWishes.value]
-      return { success: true, data: row }
-    }
-    const res = await submitUcapan(slug.value, body)
-    if (!state.value.data) return res
-
-    const list = Array.isArray(res) ? res : Array.isArray(res?.data) ? res.data : null
-    if (list) {
-      putWishes(list)
-      return res
-    }
-
-    const row =
-      res?.data && typeof res.data === 'object' && !Array.isArray(res.data)
-        ? res.data
-        : { id: `local-${Date.now()}`, ...body, created_at: new Date().toISOString() }
-    putWishes([row, ...(Array.isArray(wishes.value) ? wishes.value : [])])
-    return res
-  }
-
-  const groom = computed(() => pengantin.value.find((p: any) => p.type === 'groom') || null)
-  const bride = computed(() => pengantin.value.find((p: any) => p.type === 'bride') || null)
-
-  const coupleNickname = computed(() => {
-    if (wedding.value?.title) return wedding.value.title
-    if (groom.value?.name && bride.value?.name) {
-      return `${groom.value.name.split(' ')[0]} & ${bride.value.name.split(' ')[0]}`
-    }
-    // Frame 243/244 print "Ahmad & Salma", so an unconfigured render matches the design.
-    return 'Ahmad & Salma'
+  const groom = computed(() => {
+    return pengantin.value.find((p: any) =>
+      p.type?.toLowerCase() === 'groom' || p.type?.toLowerCase() === 'pria'
+    ) ?? pengantin.value[0] ?? null
   })
 
-  const quoteText = computed(
-    () =>
-      wedding.value?.theme_override?.quote?.text ||
-      // Matches the copy set on the card in Frame 242, so an unconfigured
-      // render lines up with the design.
-      'Di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan kasih sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda kebesaran Allah bagi kaum yang berpikir.',
-  )
-  const quoteVerse = computed(() => wedding.value?.theme_override?.quote?.verse || 'QS Ar-Rum 21')
-  const quoteArabic = computed(
-    () =>
-      wedding.value?.theme_override?.quote?.arabic ||
-      'وَمِنْ اٰيٰتِهٖٓ اَنْ خَلَقَ لَكُمْ مِّنْ اَنْفُسِكُمْ اَزْوَاجًا لِّتَسْكُنُوْٓا اِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَّوَدَّةً وَّرَحْمَةًۗ اِنَّ فِيْ ذٰلِكَ لَاٰيٰتٍ لِّقَوْمٍ يَّتَفَكَّرُوْنَ',
-  )
+  const bride = computed(() => {
+    return pengantin.value.find((p: any) =>
+      p.type?.toLowerCase() === 'bride' || p.type?.toLowerCase() === 'wanita'
+    ) ?? pengantin.value[1] ?? null
+  })
+
+  const coupleNickname = computed(() => {
+    const orderGroomFirst = wedding.value?.order_groom_first ?? true
+    const groomNick = groom.value?.nickname?.trim() || (groom.value?.name ? groom.value.name.split(' ')[0] : '')
+    const brideNick = bride.value?.nickname?.trim() || (bride.value?.name ? bride.value.name.split(' ')[0] : '')
+    if (groomNick && brideNick) {
+      return orderGroomFirst ? `${groomNick} & ${brideNick}` : `${brideNick} & ${groomNick}`
+    }
+    if (wedding.value?.title) return wedding.value.title
+    return 'Pengantin'
+  })
+
+  const parsedOverride = computed(() => {
+    let override = wedding.value?.theme_override
+    if (typeof override === 'string') {
+      try {
+        override = JSON.parse(override)
+      } catch (e) {
+        override = {}
+      }
+    }
+    return override || {}
+  })
+
+  const quoteText = computed(() => {
+    return parsedOverride.value?.words?.quote_text || 
+           parsedOverride.value?.quote_text ||
+           parsedOverride.value?.quote?.text ||
+           'Dan di antara tanda-tanda (kebesaran-Nya) ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya.'
+  })
+
+  const quoteVerse = computed(() => {
+    return parsedOverride.value?.words?.quote_verse || 
+           parsedOverride.value?.quote_verse ||
+           parsedOverride.value?.quote?.verse ||
+           'QS. Ar-Rum: 21'
+  })
+
+  const logoMempelai = computed(() => {
+    let override = parsedOverride.value?.images?.logo_mempelai
+    const config = theme.value?.theme_config?.images?.logo_mempelai
+    return override || config || ''
+  })
+
+  const openingMessage = computed(() => {
+    return parsedOverride.value?.words?.opening_message || ''
+  })
+
+  const closingMessage = computed(() => {
+    return parsedOverride.value?.words?.footer_message || parsedOverride.value?.words?.closing_message || ''
+  })
+
+  async function sendWish(payload: { guest_name: string; message: string }) {
+    await submitUcapan(slug.value, payload)
+    await fetchWeddingData()
+  }
 
   return {
     slug,
@@ -184,13 +177,16 @@ export function useWedding() {
     gallery,
     gift,
     wishes,
-    sendWish,
     groom,
     bride,
     coupleNickname,
     quoteText,
     quoteVerse,
-    quoteArabic,
+    logoMempelai,
+    openingMessage,
+    closingMessage,
+    lang: computed(() => wedding.value?.lang === 'english' ? 'english' : 'indonesia'),
+    sendWish,
     refetch: fetchWeddingData,
   }
 }

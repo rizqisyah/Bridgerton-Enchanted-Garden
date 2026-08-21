@@ -7,7 +7,7 @@ import { useWedding } from '../../composables/useWedding'
 import { BAND_HEIGHT, LAYERS } from '../../lib/bands/hero'
 
 const { el, shown } = useReveal(0.15)
-const { wedding, coupleNickname } = useWedding()
+const { wedding, coupleNickname, lang } = useWedding()
 
 /*
  * z23 (2695:173) is the couple PORTRAIT, not artwork — the design's stock illustration.
@@ -16,7 +16,7 @@ const { wedding, coupleNickname } = useWedding()
  * hole in the ornate frame (2695:172, z25, which paints ABOVE this and does the cropping).
  */
 const couplePhoto = computed(
-  () => (wedding.value?.image_cover as string) || (wedding.value?.image_bg1 as string) || '',
+  () => (wedding.value?.image_spouse as string) || (wedding.value?.image_cover as string) || (wedding.value?.image_bg1 as string) || '',
 )
 const heroSkip = computed(() => (couplePhoto.value ? ['2695:173'] : []))
 
@@ -55,7 +55,7 @@ const coupleLines = computed(() => {
     <!-- 2695:171 — Charoly Demo 32/28, #ad2124. -->
     <h2 id="hero-heading" class="hero__couple">{{ coupleLines }}</h2>
     <!-- 2695:170 — Mohave 20/30, #72703d. -->
-    <p class="hero__kicker">Wedding Invitation</p>
+    <p class="hero__kicker">{{ lang === 'english' ? 'Wedding Invitation' : 'Undangan Pernikahan' }}</p>
   </section>
 </template>
 

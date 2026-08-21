@@ -4,7 +4,7 @@ const BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api'
  * wins. It was 'tema-elegan-putih', the PREVIOUS template's slug, so a deploy that forgot
  * VITE_DEFAULT_SLUG fetched the wrong wedding. Set VITE_DEFAULT_SLUG per deployment.
  */
-const DEFAULT_SLUG = import.meta.env.VITE_DEFAULT_SLUG || 'demo-envelop'
+const DEFAULT_SLUG = import.meta.env.VITE_DEFAULT_SLUG || 'tema-bridgerton'
 
 /*
  * DESIGN MODE (the default): the app renders Frame 243/244's own content and never

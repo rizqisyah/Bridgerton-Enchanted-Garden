@@ -3,16 +3,26 @@
 // Text-only band -- no plate art of its own; the garden/spires seen behind it in the
 // bandspec crop belong to the neighbouring hero/groom bands and bleed into this strip.
 import { useReveal } from '../../composables/useReveal'
+import { useWedding } from '../../composables/useWedding'
 
 const BAND_HEIGHT = 91
 
 const { el, shown } = useReveal(0.15)
+const { lang, openingMessage } = useWedding()
 </script>
 
 <template>
   <section :ref="el" class="invite" :class="{ 'is-in': shown }" aria-label="Undangan">
     <!-- 2699:209 -- Ibarra Real Nova 13/20 Medium Italic, #5c5050. Design's own boilerplate copy. -->
-    <p class="invite__text">
+    <p v-if="openingMessage" class="invite__text" style="white-space: pre-wrap;">
+      {{ openingMessage }}
+    </p>
+    <p v-else-if="lang === 'english'" class="invite__text">
+      With all due respect, we would like to invite you to attend
+      <br />
+      Our Wedding:
+    </p>
+    <p v-else class="invite__text">
       Tanpa mengurangi rasa hormat, kami bermaksud mengundang Bapak/Ibu/Saudara/I untuk menghadiri
       acara
       <br />

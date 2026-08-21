@@ -36,7 +36,7 @@ const THUMB_OFFSET_X = [38.49, 111.78, 185.07, 258.36]
 const THUMB_OFFSET_Y = 300.14
 
 const { el, shown } = useReveal()
-const { gallery } = useWedding()
+const { gallery, lang } = useWedding()
 
 const photos = computed(() =>
   (gallery.value as any[])
@@ -187,11 +187,11 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section :ref="el" class="gallery" :class="{ 'is-in': shown }" aria-labelledby="gallery-heading">
+  <section v-if="hasPhotos" :ref="el" class="gallery" :class="{ 'is-in': shown }" aria-labelledby="gallery-heading">
     <BandArt :layers="LAYERS" :skip="['2712:279']" :shown="shown" />
 
     <!-- 2712:304 — Comtic Hiden 20/42, #9e0f0f. -->
-    <h2 id="gallery-heading" class="gallery__heading">Wedding Gallery</h2>
+    <h2 id="gallery-heading" class="gallery__heading">{{ lang === 'english' ? 'Wedding Gallery' : 'Galeri Pernikahan' }}</h2>
 
     <div class="gallery__stage">
       <button class="gallery__main" type="button" aria-label="Perbesar foto" @click="preview($event)">

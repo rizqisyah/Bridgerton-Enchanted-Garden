@@ -8,7 +8,7 @@ import { formatEventDate, formatEventTime } from '../../lib/format'
 import { BAND_HEIGHT, LAYERS } from '../../lib/bands/akad'
 
 const { el, shown } = useReveal(0.15)
-const { acara } = useWedding()
+const { acara, lang } = useWedding()
 
 /*
  * `acara` is a flat, ordered list with no type/category field to key off, so this
@@ -17,12 +17,18 @@ const { acara } = useWedding()
  * one entry, leaves `event` null and every field below falls back to the design's
  * own copy -- nothing breaks, the card just prints Frame 244's placeholder wedding.
  */
-const event = computed(() => (acara.value as any[])[0] ?? null)
+const event = computed(() => {
+  const sorted = [...(acara.value as any[])].sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0))
+  return sorted[0] ?? null
+})
 
-const when = computed(() => formatEventDate(event.value?.event_date))
-const dateText = computed(() => (when.value ? `${when.value.weekday}, ${when.value.date}` : 'Minggu, 2 Agustus 2026'))
-const timeText = computed(() => formatEventTime(event.value?.event_time) || '12.00 - 13.00 WIB')
-const venueText = computed(() => event.value?.location_name || 'Kediaman Mempelai Wanita')
+const hasContent = computed(() => (acara.value as any[]).length === 0 || !!event.value)
+
+const titleText = computed(() => event.value?.title || 'Akad Nikah')
+const when = computed(() => formatEventDate(event.value?.event_date, lang.value))
+const dateText = computed(() => (when.value ? `${when.value.weekday}, ${when.value.date}` : (lang.value === 'english' ? 'Sunday, August 2 2026' : 'Minggu, 2 Agustus 2026')))
+const timeText = computed(() => formatEventTime(event.value?.event_time, lang.value) || '12.00 - 13.00')
+const venueText = computed(() => event.value?.location_name || (lang.value === 'english' ? 'Bride\'s Residence' : 'Kediaman Mempelai Wanita'))
 const addressText = computed(
   () =>
     event.value?.address ||
@@ -36,19 +42,21 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
     <BandArt :layers="LAYERS" :shown="shown" />
 
     <!-- 2706:158 -- Comtic Hiden 20/23, var(--crimson-heading). -->
-    <h2 id="akad-heading" class="akad__heading">Akad Nikah</h2>
+    <h2 v-if="hasContent" id="akad-heading" class="akad__heading">{{ titleText }}</h2>
     <!-- 2706:159 -- Libre Caslon Condensed 15/23 Italic, #000. -->
-    <p class="akad__date">{{ dateText }}</p>
+    <p v-if="hasContent" class="akad__date">{{ dateText }}</p>
     <!-- 2706:160 -->
-    <p class="akad__time">{{ timeText }}</p>
+    <p v-if="hasContent" class="akad__time">{{ timeText }}</p>
     <!-- 2706:161 -->
-    <p class="akad__venue">{{ venueText }}</p>
+    <p v-if="hasContent" class="akad__venue">{{ venueText }}</p>
     <!-- 2706:162 -- Libre Caslon Condensed 11/23 Italic, #000. -->
-    <p class="akad__address">{{ addressText }}</p>
+    <p v-if="hasContent" class="akad__address">{{ addressText }}</p>
 
     <!-- Pill art is 2706:163, painted by BandArt above (z167). 2706:164 is the live label. -->
-    <a v-if="mapsUrl" class="akad__maps" :href="mapsUrl" target="_blank" rel="noopener noreferrer">Maps</a>
-    <span v-else class="akad__maps akad__maps--off">Maps</span>
+    <template v-if="hasContent">
+      <a v-if="mapsUrl" class="akad__maps" :href="mapsUrl" target="_blank" rel="noopener noreferrer">Maps</a>
+      <span v-else class="akad__maps akad__maps--off">Maps</span>
+    </template>
   </section>
 </template>
 

@@ -2,10 +2,11 @@
 import { computed, nextTick, onMounted, ref } from 'vue'
 import CoverSection from './components/cover/CoverSection.vue'
 import InviteBody from './components/invite/InviteBody.vue'
+import BottomNav from './components/sections/BottomNav.vue'
 import { usePreloadAssets } from './composables/usePreloadAssets'
 import { useWedding } from './composables/useWedding'
 
-const { guest, wedding, coupleNickname, quoteText, quoteVerse } = useWedding()
+const { guest, wedding, coupleNickname, quoteText, quoteVerse, logoMempelai, error, bride, groom } = useWedding()
 const { coverLoaded, preloadCover, preloadInviteBody } = usePreloadAssets()
 
 const isOpen = ref(false)
@@ -14,14 +15,27 @@ const isOpen = ref(false)
 const isLocked = ref(true)
 const contentVisible = ref(false)
 
-/*
- * Frame 243 prints "Nama Tamu" and "Ahmad & Salma", so an unconfigured render matches
- * the design instead of falling through to whatever wedding the default slug points at.
- */
-const guestName = computed(
-  () => new URLSearchParams(location.search).get('to') || guest.value?.name || 'Nama Tamu',
-)
-const coupleName = coupleNickname
+const guestName = computed(() => {
+  if (guest.value?.guest_name) {
+    return guest.value.guest_name
+  }
+  const urlParam = new URLSearchParams(location.search).get('to')
+  return urlParam || 'Nama Tamu'
+})
+
+const leftTitle = computed(() => {
+  const orderGroomFirst = wedding.value?.order_groom_first ?? true
+  const brideName = bride.value?.nickname || (bride.value?.name ? bride.value.name.split(' ')[0] : '')
+  const groomName = groom.value?.nickname || (groom.value?.name ? groom.value.name.split(' ')[0] : '')
+  if (brideName && groomName) {
+    return orderGroomFirst ? `${groomName} & ${brideName}` : `${brideName} & ${groomName}`
+  }
+  return coupleNickname.value
+})
+
+const leftSubtitle = computed(() => {
+  return wedding.value?.theme_override?.words?.the_wedding_of || 'The Wedding Of'
+})
 
 const leftBackgroundStyle = computed(() => {
   const img = wedding.value?.image_bg1 || wedding.value?.image_cover || ''
@@ -57,8 +71,8 @@ function onSplashLeave() {
       <div class="left-overlay"></div>
       <div class="left-content">
         <div class="left-header">
-          <p class="left-subtitle">The Wedding Of</p>
-          <h1 class="left-title">{{ coupleName }}</h1>
+          <p class="left-subtitle">{{ leftSubtitle }}</p>
+          <h1 class="left-title">{{ leftTitle }}</h1>
         </div>
         <div class="left-quote-container">
           <p class="left-quote">&ldquo;{{ quoteText }}&rdquo;</p>
@@ -67,25 +81,39 @@ function onSplashLeave() {
       </div>
     </div>
 
-    <div class="desktop-right-column" :class="{ 'is-locked': isLocked }">
-      <Transition name="splash" @after-leave="onSplashLeave">
-        <CoverSection
-          v-if="!isOpen"
-          :guest-name="guestName"
-          :couple-name="coupleName"
-          :ready="coverLoaded"
-          @open="openInvitation"
-        />
-      </Transition>
-
-      <div
-        v-show="isOpen"
-        id="invite"
-        class="invitation-content"
-        :class="{ 'is-visible': contentVisible }"
-      >
-        <InviteBody />
+    <div class="desktop-right-column" :class="{ 'is-locked': isLocked || error }">
+      <!-- Error / Restricted State Overlay -->
+      <div v-if="error" class="restricted-overlay">
+        <div class="restricted-box">
+          <div class="restricted-icon">🔒</div>
+          <h2 class="restricted-title">Akses Terbatas</h2>
+          <p class="restricted-message">{{ error }}</p>
+        </div>
       </div>
+
+      <template v-else>
+        <Transition name="splash" @after-leave="onSplashLeave">
+          <CoverSection
+            v-if="!isOpen"
+            :guest-name="guestName"
+            :couple-name="leftTitle"
+            :image-logo="logoMempelai"
+            :ready="coverLoaded"
+            @open="openInvitation"
+          />
+        </Transition>
+
+        <div
+          v-show="isOpen"
+          id="invite"
+          class="invitation-content"
+          :class="{ 'is-visible': contentVisible }"
+        >
+          <InviteBody />
+        </div>
+
+        <BottomNav v-if="isOpen" />
+      </template>
     </div>
   </main>
 </template>
@@ -264,5 +292,74 @@ function onSplashLeave() {
     overflow: hidden !important;
     height: 100vh;
   }
+}
+
+/* Restricted access overlay */
+.restricted-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  background: var(--paper, #efe7dc);
+  padding: 24px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.restricted-box {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(144, 2, 2, 0.2);
+  border-radius: 24px;
+  padding: 40px 24px;
+  max-width: 320px;
+  box-shadow: 0 8px 32px rgba(144, 2, 2, 0.1);
+  animation: restrict-fade-in 0.6s ease-out forwards;
+}
+
+@keyframes restrict-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.restricted-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  animation: lock-bounce 2s ease-in-out infinite alternate;
+}
+
+@keyframes lock-bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-6px);
+  }
+}
+
+.restricted-title {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  color: #900202;
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.restricted-message {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: #961a1a;
+  line-height: 1.6;
+  margin: 0;
 }
 </style>

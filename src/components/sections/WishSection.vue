@@ -82,8 +82,20 @@ const FALLBACK: Wish[] = [
 
 const WISH_PAGE_SIZE = 4
 
-const { el, shown } = useReveal()
-const { wishes, sendWish, guest } = useWedding()
+const { el, shown } = useReveal(0.15)
+const { wishes, sendWish, guest, lang, gallery } = useWedding()
+
+const hasGalleryPhotos = computed(() => {
+  return (gallery.value as any[])?.some((g) => !!g.image_url)
+})
+
+const skipLayers = computed(() => {
+  const skip = ['2729:127']
+  if (!hasGalleryPhotos.value) {
+    skip.push('2712:309', '2712:310')
+  }
+  return skip
+})
 
 const list = computed<Wish[]>(() => {
   const live = (wishes.value as Wish[]).filter((w) => w.guest_name || w.message)
@@ -104,7 +116,7 @@ const showMore = () => {
   shownCount.value += WISH_PAGE_SIZE
 }
 
-const stamp = (w: Wish) => w.time ?? relativeTime(w.created_at)
+const stamp = (w: Wish) => w.time ?? relativeTime(w.created_at, undefined, lang.value)
 
 const name = ref(String((guest.value as any)?.name ?? ''))
 const message = ref('')
@@ -114,11 +126,11 @@ const sent = ref(false)
 
 async function submit() {
   if (!name.value.trim()) {
-    error.value = 'Nama wajib diisi.'
+    error.value = lang.value === 'english' ? 'Name is required.' : 'Nama wajib diisi.'
     return
   }
   if (!message.value.trim()) {
-    error.value = 'Ucapan wajib diisi.'
+    error.value = lang.value === 'english' ? 'Message is required.' : 'Ucapan wajib diisi.'
     return
   }
   submitting.value = true
@@ -128,7 +140,7 @@ async function submit() {
     message.value = ''
     sent.value = true
   } catch (err: any) {
-    error.value = err?.message || 'Gagal mengirim ucapan. Coba lagi.'
+    error.value = err?.message || (lang.value === 'english' ? 'Failed to send wish. Please try again.' : 'Gagal mengirim ucapan. Coba lagi.')
   } finally {
     submitting.value = false
   }
@@ -137,10 +149,10 @@ async function submit() {
 
 <template>
   <section :ref="el" class="wish" :class="{ 'is-in': shown }" aria-labelledby="wish-heading">
-    <BandArt :layers="LAYERS" :skip="['2729:127']" :shown="shown" />
+    <BandArt :layers="LAYERS" :skip="skipLayers" :shown="shown" />
 
     <!-- 2712:258 — Comtic Hiden 20/42, #9e0f0f. -->
-    <h2 id="wish-heading" class="wish__heading">Wedding Wish</h2>
+    <h2 id="wish-heading" class="wish__heading">{{ lang === 'english' ? 'Wishes & Prayers' : 'Ucapan & Doa' }}</h2>
 
     <form class="wish__form" novalidate @submit.prevent="submit">
       <label class="wish__sr" for="wish-name">Nama</label>
@@ -149,7 +161,7 @@ async function submit() {
         v-model="name"
         class="wish__field wish__field--name"
         type="text"
-        placeholder="Nama"
+        :placeholder="lang === 'english' ? 'Name' : 'Nama'"
         autocomplete="name"
         required
       />
@@ -159,7 +171,7 @@ async function submit() {
         id="wish-message"
         v-model="message"
         class="wish__field wish__field--message"
-        placeholder="Give your wish"
+        :placeholder="lang === 'english' ? 'Give your wish' : 'Tulis ucapan...'"
         required
       ></textarea>
       <button class="wish__send" type="submit" :disabled="submitting" aria-label="Kirim ucapan">
@@ -169,7 +181,7 @@ async function submit() {
       <p v-if="error" class="wish__error" role="alert">{{ error }}</p>
     </form>
 
-    <p class="wish__sr" aria-live="polite">{{ sent ? 'Ucapan Anda sudah terkirim.' : '' }}</p>
+    <p class="wish__sr" aria-live="polite">{{ sent ? (lang === 'english' ? 'Your wish has been sent.' : 'Ucapan Anda sudah terkirim.') : '' }}</p>
 
     <!-- Replaces 2729:127 (skipped above): a live list instead of a raster, "Show more
          comments" (also baked into that raster) rebuilt as a real button that pages
@@ -185,7 +197,7 @@ async function submit() {
         </li>
       </ul>
       <button v-if="hasMore" type="button" class="wish__more" @click="showMore">
-        Show more comments
+        {{ lang === 'english' ? 'Show more comments' : 'Lihat komentar lainnya' }}
       </button>
     </div>
   </section>

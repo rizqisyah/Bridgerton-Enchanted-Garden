@@ -54,7 +54,7 @@ const FALLBACK: Account[] = [
 ]
 
 const { el, shown } = useReveal()
-const { gift } = useWedding()
+const { gift, lang } = useWedding()
 
 /*
  * The API's rekening rows are accounts only — there is no address field. The row
@@ -130,7 +130,10 @@ const px = (n: number) => `calc(${n} * var(--px))`
     <!-- 2712:185 — Comtic Hiden 20/28, #9e0f0f. -->
     <h2 id="gift-heading" class="gift__heading">Wedding<br />Gift</h2>
     <!-- 2712:208 — EB Garamond 11/22, #000000. -->
-    <p class="gift__body">
+    <p v-if="lang === 'english'" class="gift__body">
+      For those who wish to give a token of love as a form of attention and support, you may send it through the feature we have provided below. Every gift given will be received with deep gratitude and appreciation.
+    </p>
+    <p v-else class="gift__body">
       Bagi Bapak/Ibu/Saudara/i yang berkenan memberikan tanda kasih sebagai bentuk perhatian dan
       dukungan, dapat menyampaikannya melalui fitur yang telah kami sediakan di bawah ini. Setiap
       tanda kasih yang diberikan akan kami terima dengan penuh rasa syukur dan penghargaan.

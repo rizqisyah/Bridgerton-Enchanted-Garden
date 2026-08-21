@@ -22,7 +22,8 @@ import { parseEventStart, remainingUntil } from '../../lib/format'
 import { BAND_HEIGHT, LAYERS } from '../../lib/bands/countdown'
 
 const { el, shown } = useReveal(0.15)
-const { acara } = useWedding()
+const { acara, lang } = useWedding()
+const events = computed(() => [...(acara.value as any[])].sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0)))
 
 /*
  * Frame 244's akad card reads "Minggu, 2 Agustus 2026, 12.00 WIB", so that is the
@@ -34,7 +35,7 @@ const DESIGN_DATE = '2026-08-02'
 const DESIGN_TIME = '12:00'
 
 const target = computed(() => {
-  const e = (acara.value as any[])[0]
+  const e = events.value[0]
   return e
     ? parseEventStart(e.event_date, e.event_time)
     : parseEventStart(DESIGN_DATE, DESIGN_TIME)
@@ -42,7 +43,7 @@ const target = computed(() => {
 
 // The design ships 0 0 0 0, so an unconfigured render matches the reference.
 const now = ref(Date.now())
-const left = computed(() => remainingUntil(target.value, now.value))
+const timeLeft = computed(() => remainingUntil(target.value, now.value))
 
 // Tick starts on reveal (see CountdownSection in template 3 for why): the band
 // stays mounted for the whole scroll, so starting at setup would rewrite four
@@ -60,10 +61,10 @@ watch(
 onUnmounted(() => window.clearInterval(timer))
 
 const CELLS = [
-  { key: 'days' as const, label: 'Hari', cx: 139.5, digitTop: 290, labelTop: 356 },
-  { key: 'hours' as const, label: 'Jam', cx: 248.5, digitTop: 290, labelTop: 356 },
-  { key: 'minutes' as const, label: 'Menit', cx: 139.5, digitTop: 403, labelTop: 468 },
-  { key: 'seconds' as const, label: 'Detik', cx: 248.5, digitTop: 403, labelTop: 468 },
+  { key: 'days' as const, label: { en: 'Days', id: 'Hari' }, cx: 139.5, digitTop: 290, labelTop: 356 },
+  { key: 'hours' as const, label: { en: 'Hours', id: 'Jam' }, cx: 248.5, digitTop: 290, labelTop: 356 },
+  { key: 'minutes' as const, label: { en: 'Minutes', id: 'Menit' }, cx: 139.5, digitTop: 403, labelTop: 468 },
+  { key: 'seconds' as const, label: { en: 'Seconds', id: 'Detik' }, cx: 248.5, digitTop: 403, labelTop: 468 },
 ]
 const CELL_W = 110
 
@@ -85,7 +86,9 @@ function cellBox(cx: number) {
     <h2 id="countdown-label" class="countdown__heading">Save <br />the Date&hellip;</h2>
 
     <p class="countdown__sr" aria-live="polite">
-      {{ left.days }} hari {{ left.hours }} jam {{ left.minutes }} menit lagi
+      {{ timeLeft.days }} {{ lang === 'english' ? 'days' : 'hari' }} 
+      {{ timeLeft.hours }} {{ lang === 'english' ? 'hours' : 'jam' }} 
+      {{ timeLeft.minutes }} {{ lang === 'english' ? 'minutes' : 'menit' }} lagi
     </p>
 
     <!--
@@ -99,20 +102,20 @@ function cellBox(cx: number) {
         class="countdown__value"
         aria-hidden="true"
         :style="{ top: `calc(${c.digitTop} * var(--px))`, ...cellBox(c.cx) }"
-        >{{ left[c.key] }}</span
+        >{{ timeLeft[c.key] }}</span
       >
       <span
         class="countdown__caption"
         aria-hidden="true"
         :style="{ top: `calc(${c.labelTop} * var(--px))`, ...cellBox(c.cx) }"
-        >{{ c.label }}</span
+        >{{ c.label[lang === 'english' ? 'en' : 'id'] }}</span
       >
     </template>
 
     <!-- 2699:287 button plate, CSS background (single-fill, not a sliced asset). -->
     <div class="countdown__cal">
       <!-- 2699:288 — Libre Caslon Condensed 15/23 Italic, #ffffff. Decorative copy, hardcoded. -->
-      <span class="countdown__cal-label">Add to Calender</span>
+      <span class="countdown__cal-label">{{ lang === 'english' ? 'Add to Calendar' : 'Simpan ke Kalender' }}</span>
     </div>
   </section>
 </template>

@@ -7,16 +7,13 @@
  *   19 April 2029        <- day month year
  *   10.00 WIB - 12.00 WIB
  *
- * The invitation copy is Indonesian but the design sets its dates in English, so
- * that is what these return. The zone suffix is part of the design's string, not
- * something the API sends.
+ * that is what these return.
  */
-const ZONE = 'WIB'
 const RANGE_SEPARATORS = ['|', 's/d', ' - ', '-', '–']
 
 export type EventDate = { weekday: string; date: string }
 
-export function formatEventDate(raw?: string | null): EventDate | null {
+export function formatEventDate(raw?: string | null, lang: string = 'indonesia'): EventDate | null {
   if (!raw) return null
   /*
    * A bare 'YYYY-MM-DD' is parsed as UTC midnight, so west of Greenwich it renders
@@ -28,9 +25,10 @@ export function formatEventDate(raw?: string | null): EventDate | null {
     ? new Date(Number(parts[1]), Number(parts[2]) - 1, Number(parts[3]))
     : new Date(raw)
   if (Number.isNaN(d.getTime())) return null
+  const locale = lang === 'english' ? 'en-GB' : 'id-ID'
   return {
-    weekday: d.toLocaleDateString('en-GB', { weekday: 'long' }),
-    date: d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }),
+    weekday: d.toLocaleDateString(locale, { weekday: 'long' }),
+    date: d.toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' }),
   }
 }
 
@@ -87,30 +85,30 @@ function clockOf(part: string): string {
   return m ? `${m[1].padStart(2, '0')}.${m[2]}` : part.trim()
 }
 
-export function formatEventTime(raw?: string | null): string {
+export function formatEventTime(raw?: string | null, lang: string = 'indonesia'): string {
   if (!raw) return ''
   const sep = RANGE_SEPARATORS.find((s) => raw.includes(s))
-  if (!sep) return `${clockOf(raw)} ${ZONE}`
+  if (!sep) return clockOf(raw)
   const [from, to] = raw.split(sep)
   // An end of midnight is how the API says "no end time".
   const end = clockOf(to ?? '')
-  if (!end || end === '00.00' || end === '23.59') return `${clockOf(from)} ${ZONE} - Selesai`
-  return `${clockOf(from)} ${ZONE} - ${end} ${ZONE}`
+  if (!end || end === '00.00' || end === '23.59') return `${clockOf(from)} - ${lang === 'english' ? 'Finish' : 'Selesai'}`
+  return `${clockOf(from)} - ${end}`
 }
 
 /*
  * "2 hari lalu" — the wish list's timestamps. The design prints Indonesian relative
  * time, and unlike the dates above it does not switch to English.
  */
-const AGO: [seconds: number, unit: string][] = [
-  [60, 'menit'],
-  [3600, 'jam'],
-  [86400, 'hari'],
-  [2592000, 'bulan'],
-  [31536000, 'tahun'],
+const AGO: [seconds: number, idUnit: string, enUnit: string][] = [
+  [60, 'menit', 'minutes'],
+  [3600, 'jam', 'hours'],
+  [86400, 'hari', 'days'],
+  [2592000, 'bulan', 'months'],
+  [31536000, 'tahun', 'years'],
 ]
 
-export function relativeTime(value?: string | Date | null, now: number = Date.now()): string {
+export function relativeTime(value?: string | Date | null, now: number = Date.now(), lang: string = 'indonesia'): string {
   if (!value) return ''
   /*
    * The API sends MySQL-style "2026-07-28 10:00:00" — a space, no T, no zone. Chromium
@@ -127,13 +125,19 @@ export function relativeTime(value?: string | Date | null, now: number = Date.no
   // Under a minute, and also anything in the future: a guest's clock skewed ahead of
   // the server would otherwise read "-3 menit lalu".
   const secs = Math.floor((now - at.getTime()) / 1000)
-  if (secs < 60) return 'baru saja'
+  if (secs < 60) return lang === 'english' ? 'just now' : 'baru saja'
 
   for (let i = AGO.length - 1; i >= 0; i--) {
-    const [step, unit] = AGO[i]
-    if (secs >= step) return `${Math.floor(secs / step)} ${unit} lalu`
+    const [step, idUnit, enUnit] = AGO[i]
+    if (secs >= step) {
+      const val = Math.floor(secs / step)
+      if (lang === 'english') {
+        return `${val} ${val === 1 ? enUnit.slice(0, -1) : enUnit} ago`
+      }
+      return `${val} ${idUnit} lalu`
+    }
   }
-  return 'baru saja'
+  return lang === 'english' ? 'just now' : 'baru saja'
 }
 
 /*
@@ -162,10 +166,11 @@ export function parentLine(p?: {
   child_of?: string | null
   father_name?: string | null
   mother_name?: string | null
-} | null): string {
+} | null, lang: string = 'indonesia'): string {
   if (!p) return ''
   const prefix = (p.child_of || '').trim()
-  const parents = [p.father_name, p.mother_name].map((s) => (s || '').trim()).filter(Boolean).join(' ')
+  const parentConjunction = lang === 'english' ? 'and' : '&'
+  const parents = [p.father_name, p.mother_name].map((s) => (s || '').trim()).filter(Boolean).join(` ${parentConjunction} `)
   // `child_of` on real data is often the whole sentence already; don't repeat the parents.
   if (prefix && parents && prefix.includes(parents)) return prefix
   return [prefix, parents].filter(Boolean).join(' ').trim()

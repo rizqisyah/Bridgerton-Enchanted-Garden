@@ -7,8 +7,15 @@ import { useWedding } from '../../composables/useWedding'
 import { formatEventDate, formatEventTime } from '../../lib/format'
 import { BAND_HEIGHT, LAYERS } from '../../lib/bands/resepsi'
 
+const props = defineProps({
+  eventIndex: {
+    type: Number,
+    default: 1
+  }
+})
+
 const { el, shown } = useReveal(0.15)
-const { acara } = useWedding()
+const { acara, lang } = useWedding()
 
 /*
  * Same positional read as AkadSection: `acara` carries no type/category field, so
@@ -16,12 +23,18 @@ const { acara } = useWedding()
  * the list is empty or has a single entry, `event` is null and every field below
  * falls back to Frame 244's own placeholder copy.
  */
-const event = computed(() => (acara.value as any[])[1] ?? null)
+const event = computed(() => {
+  const sorted = [...(acara.value as any[])].sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0))
+  return sorted[props.eventIndex] ?? null
+})
 
-const when = computed(() => formatEventDate(event.value?.event_date))
-const dateText = computed(() => (when.value ? `${when.value.weekday}, ${when.value.date}` : 'Minggu, 2 Agustus 2026'))
-const timeText = computed(() => formatEventTime(event.value?.event_time) || '12.00 - 13.00 WIB')
-const venueText = computed(() => event.value?.location_name || 'Kediaman Mempelai Wanita')
+const hasContent = computed(() => (acara.value as any[]).length === 0 || !!event.value)
+
+const titleText = computed(() => event.value?.title || 'Resepsi Pernikahan')
+const when = computed(() => formatEventDate(event.value?.event_date, lang.value))
+const dateText = computed(() => (when.value ? `${when.value.weekday}, ${when.value.date}` : (lang.value === 'english' ? 'Sunday, August 2 2026' : 'Minggu, 2 Agustus 2026')))
+const timeText = computed(() => formatEventTime(event.value?.event_time, lang.value) || '14.00 - 15.00')
+const venueText = computed(() => event.value?.location_name || (lang.value === 'english' ? 'Gedung Serbaguna' : 'Kediaman Mempelai Wanita'))
 const addressText = computed(
   () =>
     event.value?.address ||
@@ -35,19 +48,21 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
     <BandArt :layers="LAYERS" :shown="shown" />
 
     <!-- 2712:172 -- Comtic Hiden 20/23, var(--crimson-heading). -->
-    <h2 id="resepsi-heading" class="resepsi__heading">Resepsi Nikah</h2>
+    <h2 v-if="hasContent" id="resepsi-heading" class="resepsi__heading">{{ titleText }}</h2>
     <!-- 2712:173 -- Libre Caslon Condensed 15/23 Italic, #000. -->
-    <p class="resepsi__date">{{ dateText }}</p>
+    <p v-if="hasContent" class="resepsi__date">{{ dateText }}</p>
     <!-- 2712:174 -->
-    <p class="resepsi__time">{{ timeText }}</p>
+    <p v-if="hasContent" class="resepsi__time">{{ timeText }}</p>
     <!-- 2712:175 -->
-    <p class="resepsi__venue">{{ venueText }}</p>
+    <p v-if="hasContent" class="resepsi__venue">{{ venueText }}</p>
     <!-- 2712:176 -- Libre Caslon Condensed 11/23 Italic, #000. -->
-    <p class="resepsi__address">{{ addressText }}</p>
+    <p v-if="hasContent" class="resepsi__address">{{ addressText }}</p>
 
     <!-- Pill art is 2712:177, painted by BandArt above (z168). 2712:178 is the live label. -->
-    <a v-if="mapsUrl" class="resepsi__maps" :href="mapsUrl" target="_blank" rel="noopener noreferrer">Maps</a>
-    <span v-else class="resepsi__maps resepsi__maps--off">Maps</span>
+    <template v-if="hasContent">
+      <a v-if="mapsUrl" class="resepsi__maps" :href="mapsUrl" target="_blank" rel="noopener noreferrer">Maps</a>
+      <span v-else class="resepsi__maps resepsi__maps--off">Maps</span>
+    </template>
   </section>
 </template>
 

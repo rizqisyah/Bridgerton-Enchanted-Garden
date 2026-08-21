@@ -21,7 +21,7 @@ import { useWedding } from '../../composables/useWedding'
 import { BAND_HEIGHT, LAYERS } from '../../lib/bands/footer'
 
 const { el, shown } = useReveal()
-const { groom, bride } = useWedding()
+const { groom, bride, lang, closingMessage } = useWedding()
 
 const groomFirst = computed(() => (groom.value?.name as string)?.split(' ')[0] || 'Ahmad')
 const brideFirst = computed(() => (bride.value?.name as string)?.split(' ')[0] || 'Salma')
@@ -34,7 +34,14 @@ const brideFirst = computed(() => (bride.value?.name as string)?.split(' ')[0] |
     <!-- 2712:330 — Comtic Hiden 24/42, #9e0f0f. -->
     <h2 id="footer-heading" class="footer__thanks">Thank You !</h2>
     <!-- 2712:323 — Ibarra Real Nova 14/20 Italic +1%, #000000. -->
-    <p class="footer__body">
+    <p v-if="closingMessage" class="footer__body" style="white-space: pre-wrap;">
+      {{ closingMessage }}
+    </p>
+    <p v-else-if="lang === 'english'" class="footer__body">
+      Your blessings and prayers bring joy to us. May Allah SWT bless our marriage. Thank you for your prayers and love.<br />
+      Wassalamu'alaikum warahmatullahi wabarakatuh.
+    </p>
+    <p v-else class="footer__body">
       Doa restu Bapak/Ibu/Saudara/i menjadi kebahagiaan bagi kami. Semoga Allah SWT memberkahi
       pernikahan kami. Terima kasih atas doa dan kasih sayangnya.<br />
       Wassalamu'alaikum warahmatullahi wabarakatuh.

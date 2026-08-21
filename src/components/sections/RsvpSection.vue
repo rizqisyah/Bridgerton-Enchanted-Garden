@@ -21,7 +21,7 @@ import { submitRsvp } from '../../lib/api'
 import { BAND_HEIGHT, LAYERS } from '../../lib/bands/rsvp'
 
 const { el, shown } = useReveal()
-const { slug, guestCode, guest } = useWedding()
+const { slug, guestCode, guest, lang } = useWedding()
 
 const name = ref('')
 const phone = ref('')
@@ -58,11 +58,11 @@ watch(
 
 async function submit() {
   if (!name.value.trim()) {
-    error.value = 'Nama wajib diisi.'
+    error.value = lang.value === 'english' ? 'Name is required.' : 'Nama wajib diisi.'
     return
   }
   if (!attendance.value) {
-    error.value = 'Pilih kehadiran terlebih dahulu.'
+    error.value = lang.value === 'english' ? 'Please select your attendance.' : 'Pilih kehadiran terlebih dahulu.'
     return
   }
   submitting.value = true
@@ -83,7 +83,7 @@ async function submit() {
     await nextTick()
     thanksEl.value?.focus()
   } catch (err: any) {
-    error.value = err?.message || 'Gagal mengirim konfirmasi. Coba lagi.'
+    error.value = err?.message || (lang.value === 'english' ? 'Failed to send confirmation. Please try again.' : 'Gagal mengirim konfirmasi. Coba lagi.')
   } finally {
     submitting.value = false
   }
@@ -97,22 +97,25 @@ async function submit() {
     <!-- 2712:226 — Comtic Hiden 20/38, #9e0f0f. -->
     <h2 id="rsvp-heading" class="rsvp__heading">Rsvp</h2>
     <!-- 2712:225 — EB Garamond 16/20, #631818. -->
-    <p class="rsvp__body">
+    <p v-if="lang === 'english'" class="rsvp__body">
+      Your presence will be a great honor for us and our family. Please confirm your attendance through the reservation form below:
+    </p>
+    <p v-else class="rsvp__body">
       Kehadiran Bapak/Ibu/Saudara/i akan menjadi kehormatan besar bagi kami dan keluarga. Mohon
       konfirmasi kehadiran Anda melalui formulir reservasi di bawah:
     </p>
 
     <p class="rsvp__sr" aria-live="polite">
-      {{ sent ? 'Konfirmasi kehadiran Anda sudah kami terima.' : '' }}
+      {{ sent ? (lang === 'english' ? 'We have received your confirmation.' : 'Konfirmasi kehadiran Anda sudah kami terima.') : '' }}
     </p>
 
     <p v-if="sent" ref="thanksEl" class="rsvp__thanks" tabindex="-1">
-      <span class="rsvp__thanks-title">Terima Kasih!</span>
-      <span>Konfirmasi kehadiran Anda sudah kami terima.</span>
+      <span class="rsvp__thanks-title">{{ lang === 'english' ? 'Thank You!' : 'Terima Kasih!' }}</span>
+      <span>{{ lang === 'english' ? 'We have received your confirmation.' : 'Konfirmasi kehadiran Anda sudah kami terima.' }}</span>
     </p>
 
     <form v-else class="rsvp__form" novalidate @submit.prevent="submit">
-      <label class="rsvp__label rsvp__label--name" for="rsvp-name">Nama:</label>
+      <label class="rsvp__label rsvp__label--name" for="rsvp-name">{{ lang === 'english' ? 'Name:' : 'Nama:' }}</label>
       <input
         id="rsvp-name"
         v-model="name"
@@ -122,7 +125,7 @@ async function submit() {
         required
       />
 
-      <label class="rsvp__label rsvp__label--phone" for="rsvp-phone">No Hp:</label>
+      <label class="rsvp__label rsvp__label--phone" for="rsvp-phone">{{ lang === 'english' ? 'Phone:' : 'No Hp:' }}</label>
       <input
         id="rsvp-phone"
         v-model="phone"
@@ -132,7 +135,7 @@ async function submit() {
         autocomplete="tel"
       />
 
-      <label class="rsvp__label rsvp__label--attend" for="rsvp-attend">Kehadiran</label>
+      <label class="rsvp__label rsvp__label--attend" for="rsvp-attend">{{ lang === 'english' ? 'Attendance' : 'Kehadiran' }}</label>
       <select
         id="rsvp-attend"
         v-model="attendance"
@@ -140,14 +143,14 @@ async function submit() {
         required
       >
         <option value=""></option>
-        <option value="hadir">Hadir</option>
-        <option value="tidak_hadir">Tidak Hadir</option>
+        <option value="hadir">{{ lang === 'english' ? 'Will Attend' : 'Hadir' }}</option>
+        <option value="tidak_hadir">{{ lang === 'english' ? 'Unable to Attend' : 'Tidak Hadir' }}</option>
       </select>
 
       <p v-if="error" class="rsvp__error" role="alert">{{ error }}</p>
 
       <button class="rsvp__send" type="submit" :disabled="submitting">
-        {{ submitting ? 'Mengirim...' : 'Send' }}
+        {{ submitting ? (lang === 'english' ? 'Sending...' : 'Mengirim...') : 'Send' }}
       </button>
     </form>
   </section>
