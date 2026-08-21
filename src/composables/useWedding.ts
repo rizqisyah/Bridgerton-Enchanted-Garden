@@ -160,8 +160,8 @@ export function useWedding() {
   })
 
   const leftBackground = computed(() => {
-    let override = parsedOverride.value?.images?.bg_desktop || parsedOverride.value?.images?.bg_left
-    let config = theme.value?.theme_config?.images?.bg_desktop || theme.value?.theme_config?.images?.bg_left
+    let override = parsedOverride.value?.images?.left_bg || parsedOverride.value?.images?.bg_desktop || parsedOverride.value?.images?.bg_left
+    let config = theme.value?.theme_config?.images?.left_bg || theme.value?.theme_config?.images?.bg_desktop || theme.value?.theme_config?.images?.bg_left
     return override || config || wedding.value?.image_bg1 || wedding.value?.image_cover || ''
   })
 
