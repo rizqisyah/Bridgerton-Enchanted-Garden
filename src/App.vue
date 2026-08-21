@@ -6,7 +6,7 @@ import BottomNav from './components/sections/BottomNav.vue'
 import { usePreloadAssets } from './composables/usePreloadAssets'
 import { useWedding } from './composables/useWedding'
 
-const { guest, wedding, coupleNickname, quoteText, quoteVerse, logoMempelai, error, bride, groom } = useWedding()
+const { guest, wedding, coupleNickname, quoteText, quoteVerse, logoMempelai, error, bride, groom, leftBackground } = useWedding()
 const { coverLoaded, preloadCover, preloadInviteBody } = usePreloadAssets()
 
 const isOpen = ref(false)
@@ -38,7 +38,7 @@ const leftSubtitle = computed(() => {
 })
 
 const leftBackgroundStyle = computed(() => {
-  const img = wedding.value?.image_bg1 || wedding.value?.image_cover || ''
+  const img = leftBackground.value
   return img ? { backgroundImage: `url(${img})` } : {}
 })
 

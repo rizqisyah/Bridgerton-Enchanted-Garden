@@ -101,7 +101,7 @@ const parents = computed(
   /* 2699:247's own global Figma order — see SLICING.md, "z-index is the GLOBAL order". */
   z-index: 108;
   left: calc(87 * var(--px));
-  top: calc(40 * var(--px));
+  top: calc(36 * var(--px));
   width: calc(205 * var(--px));
   font-family: var(--font-heading-script);
   font-size: calc(13 * var(--px));

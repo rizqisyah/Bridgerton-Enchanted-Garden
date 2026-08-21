@@ -99,7 +99,7 @@ const parents = computed(
   --delay: 110ms;
   z-index: 150;
   left: calc(62 * var(--px));
-  top: calc(34 * var(--px));
+  top: calc(30 * var(--px));
   width: calc(254 * var(--px));
   white-space: pre-line;
   font-family: var(--font-heading-script);

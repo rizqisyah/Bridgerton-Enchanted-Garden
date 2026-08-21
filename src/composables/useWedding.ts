@@ -159,6 +159,12 @@ export function useWedding() {
     return parsedOverride.value?.words?.footer_message || parsedOverride.value?.words?.closing_message || ''
   })
 
+  const leftBackground = computed(() => {
+    let override = parsedOverride.value?.images?.bg_desktop || parsedOverride.value?.images?.bg_left
+    let config = theme.value?.theme_config?.images?.bg_desktop || theme.value?.theme_config?.images?.bg_left
+    return override || config || wedding.value?.image_bg1 || wedding.value?.image_cover || ''
+  })
+
   async function sendWish(payload: { guest_name: string; message: string }) {
     await submitUcapan(slug.value, payload)
     await fetchWeddingData()
@@ -185,6 +191,7 @@ export function useWedding() {
     logoMempelai,
     openingMessage,
     closingMessage,
+    leftBackground,
     lang: computed(() => wedding.value?.lang === 'english' ? 'english' : 'indonesia'),
     sendWish,
     refetch: fetchWeddingData,
