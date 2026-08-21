@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { createHtmlPlugin } from 'vite-plugin-html'
 
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
@@ -12,7 +13,20 @@ export default defineConfig(({ mode }) => {
   const target = env.VITE_API_PROXY_TARGET || 'https://api.qinvi.id'
 
   return {
-    plugins: [vue()],
+    plugins: [
+      vue(),
+      createHtmlPlugin({
+        minify: true,
+        inject: {
+          data: {
+            title: "The Wedding of Ahmad & Salma",
+            description: "We joyfully invite you to attend our wedding",
+            image: "https://qinvi.id/img/only-logo.png",
+            url: "https://qinvi.id/",
+          },
+        },
+      }),
+    ],
     // Absolute, not './': slug routes like /demo-envelop are rewritten to index.html,
     // and a relative base would resolve assets against the slug path instead of the root.
     base: '/TemaBridgerton/',

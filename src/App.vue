@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref } from 'vue'
+import { computed, nextTick, onMounted, ref, watchEffect } from 'vue'
+import { useHead } from '@vueuse/head'
 import CoverSection from './components/cover/CoverSection.vue'
 import InviteBody from './components/invite/InviteBody.vue'
 import BottomNav from './components/sections/BottomNav.vue'
@@ -8,6 +9,24 @@ import { useWedding } from './composables/useWedding'
 
 const { guest, wedding, coupleNickname, quoteText, quoteVerse, logoMempelai, error, bride, groom, leftBackground } = useWedding()
 const { coverLoaded, preloadCover, preloadInviteBody } = usePreloadAssets()
+
+watchEffect(() => {
+  if (wedding.value) {
+    const title = wedding.value.title || 'Undangan Pernikahan'
+    const description = `We joyfully invite you to attend our wedding`
+    const image = wedding.value.image_cover || wedding.value.image_bg1 || 'https://qinvi.id/img/only-logo.png'
+    
+    useHead({
+      title,
+      meta: [
+        { name: 'description', content: description },
+        { property: 'og:title', content: title },
+        { property: 'og:description', content: description },
+        { property: 'og:image', content: image }
+      ]
+    })
+  }
+})
 
 const isOpen = ref(false)
 // The column cannot scroll while the cover owns the screen, or a stray wheel event
