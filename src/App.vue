@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, ref, watchEffect } from 'vue'
+import { computed, nextTick, onMounted, ref } from 'vue'
 import { useHead } from '@vueuse/head'
 import CoverSection from './components/cover/CoverSection.vue'
 import InviteBody from './components/invite/InviteBody.vue'
