@@ -10,22 +10,33 @@ import { useWedding } from './composables/useWedding'
 const { guest, wedding, coupleNickname, quoteText, quoteVerse, logoMempelai, error, bride, groom, leftBackground } = useWedding()
 const { coverLoaded, preloadCover, preloadInviteBody } = usePreloadAssets()
 
-watchEffect(() => {
-  if (wedding.value) {
-    const title = wedding.value.title || 'Undangan Pernikahan'
-    const description = `We joyfully invite you to attend our wedding`
-    const image = wedding.value.image_cover || wedding.value.image_bg1 || 'https://qinvi.id/img/only-logo.png'
-    
-    useHead({
-      title,
-      meta: [
-        { name: 'description', content: description },
-        { property: 'og:title', content: title },
-        { property: 'og:description', content: description },
-        { property: 'og:image', content: image }
-      ]
-    })
-  }
+/*
+ * Called once during setup with computed values. Inside a watchEffect every re-run
+ * happened outside setup: Vue warned "inject() can only be used inside setup()" and
+ * each run stacked another head entry on the shared fallback context.
+ * Same priority as the backend's SSR meta page: seo_settings first, then the wedding.
+ */
+const headTitle = computed(
+  () => wedding.value?.seo_settings?.title || wedding.value?.title || 'Undangan Pernikahan',
+)
+const headDescription = computed(
+  () => wedding.value?.seo_settings?.description || 'We joyfully invite you to attend our wedding',
+)
+const headImage = computed(
+  () =>
+    wedding.value?.seo_settings?.og?.image ||
+    wedding.value?.image_cover ||
+    wedding.value?.image_bg1 ||
+    'https://qinvi.id/img/only-logo.png',
+)
+useHead({
+  title: headTitle,
+  meta: [
+    { name: 'description', content: headDescription },
+    { property: 'og:title', content: headTitle },
+    { property: 'og:description', content: headDescription },
+    { property: 'og:image', content: headImage },
+  ],
 })
 
 const isOpen = ref(false)

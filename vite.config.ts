@@ -19,7 +19,10 @@ export default defineConfig(({ mode }) => {
         minify: true,
         inject: {
           data: {
-            title: "The Wedding of Ahmad & Salma",
+            // Neutral on purpose: this is what a crawler reads when it is not routed to the
+            // backend's SSR meta page, and the design couple's names would be wrong for
+            // every real wedding.
+            title: "Undangan Pernikahan",
             description: "We joyfully invite you to attend our wedding",
             image: "https://qinvi.id/img/only-logo.png",
             url: "https://qinvi.id/",
