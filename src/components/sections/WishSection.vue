@@ -18,7 +18,7 @@
  * The card colours below are read off the render's own pixels (sampled from
  * wish.png), not off a Figma TEXT node — none exists to sample instead.
  */
-import { computed, ref } from 'vue'
+import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import BandArt from '../invite/BandArt.vue'
 import { useReveal } from '../../composables/useReveal'
 import { useWedding } from '../../composables/useWedding'
@@ -56,12 +56,31 @@ const skipLayers = computed(() => {
 // No sample cards: until a guest posts, the list is empty.
 const list = computed<Wish[]>(() => (wishes.value as Wish[]).filter((w) => w.guest_name || w.message))
 
+/*
+ * Infinite scroll inside the capped list: the next page loads as the reader nears its
+ * bottom. If the cards so far don't fill the box there is nothing to scroll, so keep
+ * loading until they do (or the list runs out).
+ */
+const listEl = ref<HTMLElement | null>(null)
 const shownCount = ref(WISH_PAGE_SIZE)
 const visible = computed(() => list.value.slice(0, shownCount.value))
 const hasMore = computed(() => shownCount.value < list.value.length)
-const showMore = () => {
-  shownCount.value += WISH_PAGE_SIZE
+const NEAR_BOTTOM = 80
+
+function loadMoreIfNeeded() {
+  const box = listEl.value
+  // Behind the closed cover the list has no layout yet; measuring it then reads as
+  // "at the bottom" every time and would page in the whole list at once.
+  if (!box || !hasMore.value || !box.clientHeight) return
+  if (box.scrollTop + box.clientHeight >= box.scrollHeight - NEAR_BOTTOM) {
+    shownCount.value += WISH_PAGE_SIZE
+  }
 }
+
+// 'post' so the new cards are in the DOM before the list is measured again.
+watch(visible, loadMoreIfNeeded, { flush: 'post' })
+// The band scrolling into view is the first moment the list is sure to be laid out.
+watch(shown, loadMoreIfNeeded, { flush: 'post' })
 
 const stamp = (w: Wish) => w.time ?? relativeTime(w.created_at, undefined, lang.value)
 
@@ -70,6 +89,10 @@ const message = ref('')
 const submitting = ref(false)
 const error = ref('')
 const sent = ref(false)
+let sentTimer: ReturnType<typeof setTimeout> | undefined
+const SENT_NOTICE_MS = 4000
+
+onBeforeUnmount(() => clearTimeout(sentTimer))
 
 async function submit() {
   if (!name.value.trim()) {
@@ -82,10 +105,15 @@ async function submit() {
   }
   submitting.value = true
   error.value = ''
+  sent.value = false
+  clearTimeout(sentTimer)
   try {
     await sendWish({ guest_name: name.value.trim(), message: message.value.trim() })
     message.value = ''
     sent.value = true
+    sentTimer = setTimeout(() => (sent.value = false), SENT_NOTICE_MS)
+    // The API lists newest first, so the guest's own wish is at the top.
+    listEl.value?.scrollTo({ top: 0, behavior: 'smooth' })
   } catch (err: any) {
     error.value = err?.message || (lang.value === 'english' ? 'Failed to send wish. Please try again.' : 'Gagal mengirim ucapan. Coba lagi.')
   } finally {
@@ -126,15 +154,20 @@ async function submit() {
       </button>
 
       <p v-if="error" class="wish__error" role="alert">{{ error }}</p>
+      <!-- Stays mounted so screen readers announce the text when it appears. -->
+      <p class="wish__success" role="status">
+        <Transition name="wish-note">
+          <span v-if="sent && !error">
+            {{ lang === 'english' ? 'Thank you, your wish has been sent 🤍' : 'Terima kasih, ucapan Anda sudah terkirim 🤍' }}
+          </span>
+        </Transition>
+      </p>
     </form>
 
-    <p class="wish__sr" aria-live="polite">{{ sent ? (lang === 'english' ? 'Your wish has been sent.' : 'Ucapan Anda sudah terkirim.') : '' }}</p>
-
-    <!-- Replaces 2729:127 (skipped above): a live list instead of a raster, "Show more
-         comments" (also baked into that raster) rebuilt as a real button that pages
-         the list in, instead of the scrollbar the raster's fixed-height box implied. -->
+    <!-- Replaces 2729:127 (skipped above): a live list instead of a raster. The raster's
+         "Show more comments" pill is dropped; the list pages itself in on scroll. -->
     <div class="wish__panel">
-      <ul class="wish__list">
+      <ul ref="listEl" class="wish__list" @scroll.passive="loadMoreIfNeeded">
         <li v-for="(w, i) in visible" :key="w.id ?? i" class="wish__card">
           <p class="wish__row">
             <span class="wish__name">{{ w.guest_name }}</span>
@@ -143,9 +176,6 @@ async function submit() {
           <p class="wish__message">{{ w.message }}</p>
         </li>
       </ul>
-      <button v-if="hasMore" type="button" class="wish__more" @click="showMore">
-        {{ lang === 'english' ? 'Show more comments' : 'Lihat komentar lainnya' }}
-      </button>
     </div>
   </section>
 </template>
@@ -310,6 +340,30 @@ async function submit() {
   color: #7a2f2f;
 }
 
+/* Sits where the error line does; the two never show together. */
+.wish__success {
+  top: calc(132 * var(--px));
+  left: calc(39 * var(--px));
+  width: calc(286 * var(--px));
+  margin: 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: calc(12 * var(--px));
+  line-height: calc(14 * var(--px));
+  text-align: center;
+  color: var(--olive);
+}
+
+.wish-note-enter-active,
+.wish-note-leave-active {
+  transition: opacity 400ms ease-out;
+}
+
+.wish-note-enter-from,
+.wish-note-leave-to {
+  opacity: 0;
+}
+
 /*
  * 2729:127's own raster ran x24 y145 w327 h532 (measured off wish.png: cards start
  * y152, last card ends y624, the button itself spans y635-670, x44-328). A fixed
@@ -330,7 +384,7 @@ async function submit() {
   flex-direction: column;
   /*
    * The band is a fixed 918px box, and the panel starts at y145 -- so a list that
-   * grows (every "Show more", every wish posted in-session) used to paint straight
+   * grows (every page scrolled in, every wish posted in-session) used to paint straight
    * over the gallery band below. Capped at the render's own panel height, 532, which
    * is what its four default cards occupy: at rest there is nothing to scroll and the
    * band still matches the frame, and only the 5th card onward scrolls. 145 + 532
@@ -390,35 +444,6 @@ async function submit() {
   overflow-wrap: break-word;
 }
 
-/* Rebuilds the pill baked into 2729:127 — its colour is sampled off wish.png the same
-   way the card background is; there's no TEXT/fill node behind it to read a token from.
-   margin-top tuned against the render's own button position (measured y635, x44-328). */
-.wish__more {
-  display: block;
-  width: 100%;
-  margin: calc(30 * var(--px)) 0 0;
-  padding: calc(9 * var(--px)) 0;
-  border: 0;
-  border-radius: calc(999 * var(--px));
-  background: #788064;
-  font-family: var(--font-sans);
-  font-size: calc(14 * var(--px));
-  line-height: calc(18 * var(--px));
-  color: #ffffff;
-  text-align: center;
-  cursor: pointer;
-  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.wish__more:hover,
-.wish__more:focus-visible {
-  transform: scale(1.02);
-}
-
-.wish__more:active {
-  transform: scale(0.98);
-}
-
 @media (prefers-reduced-motion: reduce) {
   .wish__heading,
   .wish__form,
@@ -428,8 +453,12 @@ async function submit() {
     transition: none;
   }
 
-  .wish__send,
-  .wish__more {
+  .wish__send {
+    transition: none;
+  }
+
+  .wish-note-enter-active,
+  .wish-note-leave-active {
     transition: none;
   }
 }
