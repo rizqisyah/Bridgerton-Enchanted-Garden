@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { COVER_LAYERS } from '../../lib/coverLayers'
 import { useFitText } from '../../composables/useFitText'
 import { useWedding } from '../../composables/useWedding'
 
 // `ready` gates the reveal on the 36 layers being decoded — see App.vue.
-defineProps<{ guestName: string; coupleName: string; imageLogo?: string; ready: boolean }>()
+const props = defineProps<{ guestName: string; coupleName: string; imageLogo?: string; ready: boolean }>()
 defineEmits<{ open: [] }>()
 
 /*
@@ -15,8 +16,18 @@ defineEmits<{ open: [] }>()
 const delayFor = (z: number) => Math.min(z * 38, 1080)
 
 // The couple name is the one box on the cover with a fixed height — see its rule below.
-const fitCouple = useFitText()
+// Each half stays on one line (see .cover__couple-line), so a long name can only
+// shrink -- let it go well below the default floor before it would clip.
+const fitCouple = useFitText(0.4)
 const { lang } = useWedding()
+
+// Figma's "Ahmad \n& Salma": when the name has an "&", it and the second name start a
+// new line, whatever the names' lengths.
+const coupleLines = computed(() => {
+  const raw = (props.coupleName || '').trim()
+  const amp = raw.indexOf('&')
+  return amp > 0 ? [raw.slice(0, amp).trim(), raw.slice(amp).trim()] : [raw]
+})
 </script>
 
 <template>
@@ -44,7 +55,9 @@ const { lang } = useWedding()
 
       <!-- Group 251 (2695:152) — z 17 in Figma child order. -->
       <p class="cover__eyebrow">The Wedding Of</p>
-      <h1 :ref="fitCouple" class="cover__couple">{{ coupleName }}</h1>
+      <h1 :ref="fitCouple" class="cover__couple">
+        <span v-for="(line, i) in coupleLines" :key="i" class="cover__couple-line">{{ line }}</span>
+      </h1>
 
       <!-- Group 250 (2695:151) — z 18. -->
       <p class="cover__dear">{{ lang === 'english' ? 'Dear Mr/ Mrs/ Ms' : 'Kepada Yth.' }}</p>
@@ -173,10 +186,11 @@ const { lang } = useWedding()
  * looking like the render at all. Feed it the string as it comes.
  *
  * The break after "Ahmad" is Figma's authored newline, which useWedding()'s coupleName
- * cannot carry. `text-wrap: balance` reproduces it: the full string is 290.6px against
- * a 289px box so it has to wrap, and balancing prefers "Ahmad"/"& Salma" (max line
- * 154.8) over the greedy "Ahmad &"/"Salma" (160.2). Browsers without balance fall back
- * to the greedy split -- still two lines, just the other one.
+ * cannot carry, so the script splits the name at its "&" into block lines (see
+ * coupleLines). `text-wrap: balance` alone only wrapped names wider than the box, so
+ * short pairs like "Latief & Lina" stayed on one line. Each half is held to one line
+ * and a long one shrinks to fit instead of wrapping: "Muhammad Abdurrahman" wrapping
+ * pushed "& Siti Nurhaliza" out of the two-line box entirely.
  *
  * The fixed height and useFitText stay: a longer name would otherwise paint down over
  * the guest block instead of shrinking to fit.
@@ -194,8 +208,12 @@ const { lang } = useWedding()
   font-weight: 400;
   line-height: calc(47 * var(--px));
   letter-spacing: -0.06em;
-  text-wrap: balance;
   color: var(--crimson);
+}
+
+.cover__couple-line {
+  display: block;
+  white-space: nowrap;
 }
 
 /* 2684:118 — Ibarra Real Nova 14 Medium Italic, #790707. */

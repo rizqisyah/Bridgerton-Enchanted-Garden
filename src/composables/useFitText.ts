@@ -16,11 +16,15 @@ import { onUnmounted, type ComponentPublicInstance } from "vue";
  *   const fit = useFitText()
  *   <p :ref="fit" class="...">        // needs a fixed height in CSS
  *   font-size: calc(10 * var(--px) * var(--fit, 1));
+ *
+ * Width counts too: a line held to one line with `white-space: nowrap` overflows
+ * sideways, not down, and shrinks the same way. `minScale` lets a box that must keep
+ * its line count (the cover's couple name) go smaller than the default floor.
  */
 const MIN_SCALE = 0.72;
 const STEP = 0.02;
 
-export function useFitText(): (node: Element | ComponentPublicInstance | null) => void {
+export function useFitText(minScale: number = MIN_SCALE): (node: Element | ComponentPublicInstance | null) => void {
   let observer: ResizeObserver | null = null;
   let visibility: IntersectionObserver | null = null;
 
@@ -32,7 +36,9 @@ export function useFitText(): (node: Element | ComponentPublicInstance | null) =
     let scale = 1;
     node.style.setProperty("--fit", "1");
     // A fractional pixel of slack stops a rounding wobble from looping forever.
-    while (node.scrollHeight > node.clientHeight + 1 && scale > MIN_SCALE) {
+    const overflows = () =>
+      node.scrollHeight > node.clientHeight + 1 || node.scrollWidth > node.clientWidth + 1;
+    while (overflows() && scale > minScale) {
       scale -= STEP;
       node.style.setProperty("--fit", String(scale));
     }
