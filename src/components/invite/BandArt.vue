@@ -94,6 +94,7 @@ const stagger = () => Math.min(props.step, MAX_STAGGER / Math.max(1, visible().l
       top: `calc(${layer.y} * var(--px))`,
       width: `calc(${layer.w} * var(--px))`,
       height: `calc(${layer.h} * var(--px))`,
+      objectFit: layer.objectFit,
       ...entrance(layer, i),
     }"
   />

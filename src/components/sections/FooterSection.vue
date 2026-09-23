@@ -21,15 +21,29 @@ import { useWedding } from '../../composables/useWedding'
 import { BAND_HEIGHT, LAYERS } from '../../lib/bands/footer'
 
 const { el, shown } = useReveal()
-const { groom, bride, lang, closingMessage } = useWedding()
+const { groom, bride, wedding, lang, closingMessage, logoMempelai } = useWedding()
 
-const groomFirst = computed(() => (groom.value?.name as string)?.split(' ')[0] || 'Ahmad')
-const brideFirst = computed(() => (bride.value?.name as string)?.split(' ')[0] || 'Salma')
+// Same short name and order as the cover's couple line (coupleNickname).
+const shortName = (p: any, fallback: string) =>
+  (p?.nickname as string)?.trim() || (p?.name as string)?.trim().split(' ')[0] || fallback
+const couple = computed(() => {
+  const g = shortName(groom.value, 'Ahmad')
+  const b = shortName(bride.value, 'Salma')
+  return (wedding.value?.order_groom_first ?? true) ? [g, b] : [b, g]
+})
+
+// 2712:328 is the design's "AS" monogram; the couple's own logo takes its place, as on the cover.
+const MONOGRAM = '2712:328'
+const layers = computed(() =>
+  logoMempelai.value
+    ? LAYERS.map((l) => (l.id === MONOGRAM ? { ...l, src: logoMempelai.value, objectFit: 'contain' as const } : l))
+    : LAYERS,
+)
 </script>
 
 <template>
   <footer :ref="el" class="footer" :class="{ 'is-in': shown }" aria-labelledby="footer-heading">
-    <BandArt :layers="LAYERS" :shown="shown" />
+    <BandArt :layers="layers" :shown="shown" />
 
     <!-- 2712:330 — Comtic Hiden 24/42, #9e0f0f. -->
     <h2 id="footer-heading" class="footer__thanks">Thank You !</h2>
@@ -50,7 +64,7 @@ const brideFirst = computed(() => (bride.value?.name as string)?.split(' ')[0] |
     <!-- 2712:321 TEXT_PATH, string only in `name`; #4d4d2d, rendered straight (see note above). -->
     <p class="footer__of">The Wedding Of</p>
     <!-- 2712:322 — Charoly Demo 40, #732222. -->
-    <p class="footer__couple">{{ groomFirst }}<br />&amp;<br />{{ brideFirst }}</p>
+    <p class="footer__couple">{{ couple[0] }}<br />&amp;<br />{{ couple[1] }}</p>
 
     <!-- 2712:326 — Ibarra Real Nova 12, #ffffff, on the olive bar (2712:325, art). -->
     <p class="footer__credit">Created by @25ribuaja x Qinvi</p>

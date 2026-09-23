@@ -22,7 +22,6 @@ import { computed, ref } from 'vue'
 import BandArt from '../invite/BandArt.vue'
 import { useReveal } from '../../composables/useReveal'
 import { useWedding } from '../../composables/useWedding'
-import { DESIGN_MODE } from '../../lib/api'
 import { relativeTime } from '../../lib/format'
 import { BAND_HEIGHT, LAYERS } from '../../lib/bands/wish'
 
@@ -36,49 +35,6 @@ type Wish = {
   /** Design-only: the reference cards print an absolute date with no timestamp behind it. */
   time?: string
 }
-
-/* Frame 244's own four cards, transcribed off wish.png — an unconfigured render matches it. */
-const FALLBACK: Wish[] = [
-  {
-    id: 'd1',
-    guest_name: 'Woro & Suami',
-    time: '24 Jun 2026, 10:10',
-    message:
-      'Dear mba Pungky dan mas Mike selamat atas pernikahannya💐 smoga selalu bahagia dan menjadi keluarga yg samawa.. Aamiin YRA🤲 Mohon maaf y mba aku g bisa dtg🙏 InsyaAllah kalau ada rezekinya nnt bisa ketemuan🥰',
-  },
-  {
-    id: 'd2',
-    guest_name: 'Tante Titin & Bani',
-    time: '23 Jun 2026, 16:07',
-    message: 'Untuk Pungky dan Mike selamat menikah, semoga langgeng dan bahagia selalu.',
-  },
-  {
-    id: 'd3',
-    guest_name: 'Yanna & Suami',
-    time: '23 Jun 2026, 10:56',
-    message: 'Congrats to Mike & Paulina, semoga selalu bahagia & diberkahi Allah..Aamiin! Yana & Seto',
-  },
-  {
-    id: 'd4',
-    guest_name: 'Putri & Widi',
-    time: '22 Jun 2026, 20:55',
-    message: 'Dear Paulina and Michael, wishing you a wonderful wedding, blessed marriage, full of love and laughter.',
-  },
-  /* Past the render's own 4 cards — held back behind "Show more comments" so the pill has
-     something real to reveal instead of sitting there as decoration. */
-  {
-    id: 'd5',
-    guest_name: 'Rian & Keluarga',
-    time: '21 Jun 2026, 09:32',
-    message: 'Selamat menempuh hidup baru Ahmad & Salma, semoga sakinah mawaddah warahmah🤍',
-  },
-  {
-    id: 'd6',
-    guest_name: 'Dewi Anggraini',
-    time: '20 Jun 2026, 19:14',
-    message: 'Barakallahu lakuma wa baraka alaikuma, happy wedding!',
-  },
-]
 
 const WISH_PAGE_SIZE = 4
 
@@ -97,17 +53,8 @@ const skipLayers = computed(() => {
   return skip
 })
 
-const list = computed<Wish[]>(() => {
-  const live = (wishes.value as Wish[]).filter((w) => w.guest_name || w.message)
-  if (!live.length) return FALLBACK
-  /*
-   * In design mode the only live wishes are ones posted in this session, and they
-   * must not wipe out the design's own cards -- the band is meant to look like the
-   * frame. Newest first, then the design's four. With real data the API list is
-   * authoritative and the fallback drops out.
-   */
-  return DESIGN_MODE ? [...live, ...FALLBACK] : live
-})
+// No sample cards: until a guest posts, the list is empty.
+const list = computed<Wish[]>(() => (wishes.value as Wish[]).filter((w) => w.guest_name || w.message))
 
 const shownCount = ref(WISH_PAGE_SIZE)
 const visible = computed(() => list.value.slice(0, shownCount.value))

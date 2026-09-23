@@ -85,15 +85,25 @@ function clockOf(part: string): string {
   return m ? `${m[1].padStart(2, '0')}.${m[2]}` : part.trim()
 }
 
+/*
+ * The API writes the zone into `event_time` itself ("10.00 - 12.00 WIB"), and clockOf
+ * keeps only HH.MM, so pull the zone out first and put it back once at the end.
+ * WITA before WIT, or "WITA" would match as "WIT".
+ */
+const ZONE = /\s*\b(WITA|WIB|WIT)\b\.?/gi
+
 export function formatEventTime(raw?: string | null, lang: string = 'indonesia'): string {
   if (!raw) return ''
-  const sep = RANGE_SEPARATORS.find((s) => raw.includes(s))
-  if (!sep) return clockOf(raw)
-  const [from, to] = raw.split(sep)
+  const zone = raw.match(ZONE)?.[0].trim().replace(/\.$/, '').toUpperCase()
+  const bare = raw.replace(ZONE, '').trim()
+  const tail = zone ? ` ${zone}` : ''
+  const sep = RANGE_SEPARATORS.find((s) => bare.includes(s))
+  if (!sep) return `${clockOf(bare)}${tail}`
+  const [from, to] = bare.split(sep)
   // An end of midnight is how the API says "no end time".
   const end = clockOf(to ?? '')
-  if (!end || end === '00.00' || end === '23.59') return `${clockOf(from)} - ${lang === 'english' ? 'Finish' : 'Selesai'}`
-  return `${clockOf(from)} - ${end}`
+  if (!end || end === '00.00' || end === '23.59') return `${clockOf(from)} - ${lang === 'english' ? 'Finish' : 'Selesai'}${tail}`
+  return `${clockOf(from)} - ${end}${tail}`
 }
 
 /*

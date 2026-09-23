@@ -33,7 +33,7 @@ const hasContent = computed(() => (acara.value as any[]).length === 0 || !!event
 const titleText = computed(() => event.value?.title || 'Resepsi Pernikahan')
 const when = computed(() => formatEventDate(event.value?.event_date, lang.value))
 const dateText = computed(() => (when.value ? `${when.value.weekday}, ${when.value.date}` : (lang.value === 'english' ? 'Sunday, August 2 2026' : 'Minggu, 2 Agustus 2026')))
-const timeText = computed(() => formatEventTime(event.value?.event_time, lang.value) || '14.00 - 15.00')
+const timeText = computed(() => formatEventTime(event.value?.event_time, lang.value) || '14.00 - 15.00 WIB')
 const venueText = computed(() => event.value?.location_name || (lang.value === 'english' ? 'Gedung Serbaguna' : 'Kediaman Mempelai Wanita'))
 const addressText = computed(
   () =>

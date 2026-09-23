@@ -8,4 +8,6 @@ export type BandLayer = {
   y: number
   w: number
   h: number
+  /** For a layer swapped for an API image whose aspect differs from the slice's. */
+  objectFit?: 'fill' | 'cover' | 'contain'
 }
