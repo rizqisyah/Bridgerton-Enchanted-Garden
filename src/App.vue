@@ -14,19 +14,30 @@ const { coverLoaded, preloadCover, preloadInviteBody } = usePreloadAssets()
  * Called once during setup with computed values. Inside a watchEffect every re-run
  * happened outside setup: Vue warned "inject() can only be used inside setup()" and
  * each run stacked another head entry on the shared fallback context.
- * Same priority as the backend's SSR meta page: seo_settings first, then the wedding.
+ * Same priority as the backend's SSR meta page (src/modules/ssr/ssr.controller.ts), so
+ * the tab reads exactly what the link preview did: the guest's own override first,
+ * then seo_settings, then the wedding.
  */
+const g = computed(() => guest.value as any)
+const seo = computed(() => wedding.value?.seo_settings)
 const headTitle = computed(
-  () => wedding.value?.seo_settings?.title || wedding.value?.title || 'Undangan Pernikahan',
+  () => g.value?.custom_og_title || seo.value?.title || wedding.value?.title || 'Undangan Pernikahan',
 )
 const headDescription = computed(
-  () => wedding.value?.seo_settings?.description || 'We joyfully invite you to attend our wedding',
+  () =>
+    g.value?.custom_og_description ||
+    seo.value?.description ||
+    seo.value?.og?.description ||
+    (wedding.value?.title
+      ? `Undangan Pernikahan untuk menghadiri acara ${wedding.value.title}`
+      : 'We joyfully invite you to attend our wedding'),
 )
 const headImage = computed(
   () =>
-    wedding.value?.seo_settings?.og?.image ||
+    g.value?.custom_og_image ||
+    seo.value?.og?.image ||
+    seo.value?.twitter?.image ||
     wedding.value?.image_cover ||
-    wedding.value?.image_bg1 ||
     'https://qinvi.id/img/only-logo.png',
 )
 useHead({

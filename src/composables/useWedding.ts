@@ -55,9 +55,6 @@ export function useWedding() {
       if (data?.theme || data?.wedding) {
         applyTheme(data.theme, data.wedding)
       }
-      if (data?.wedding?.title) {
-        document.title = `${data.wedding.title} - Undangan Pernikahan`
-      }
     } catch (err: any) {
       console.error('Failed to load wedding data:', err)
       let msg = err instanceof Error ? err.message : 'Undangan ini bersifat privat dan hanya dapat diakses melalui link resmi.'
