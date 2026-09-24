@@ -2,11 +2,15 @@
 // Figma Frame 244 band "quote", y 709-1251. Coords are band-local design px.
 import BandArt from '../invite/BandArt.vue'
 import { useReveal } from '../../composables/useReveal'
+import { computed } from 'vue'
 import { useWedding } from '../../composables/useWedding'
+import { splitArabicQuote } from '../../lib/splitArabicQuote'
 import { BAND_HEIGHT, LAYERS } from '../../lib/bands/quote'
 
 const { el, shown } = useReveal(0.15)
 const { quoteText, quoteVerse } = useWedding()
+// Arabic verse (if any) gets its own line; the translation starts on the next one
+const quoteParts = computed(() => splitArabicQuote(quoteText.value))
 </script>
 
 <template>
@@ -14,7 +18,10 @@ const { quoteText, quoteVerse } = useWedding()
     <BandArt :layers="LAYERS" :shown="shown" />
 
     <!-- 2697:201 -- Roben Elegante 10/13 Script, #4b4742. No fontsource for Roben Elegante; see report. -->
-    <p id="quote-heading" class="quote__text">&ldquo;{{ quoteText }}&rdquo;</p>
+    <p id="quote-heading" class="quote__text">
+      <span v-if="quoteParts.arabic" class="quote__arabic" dir="rtl" lang="ar">{{ quoteParts.arabic }}</span>
+      <template v-if="quoteParts.translation">&ldquo;{{ quoteParts.translation }}&rdquo;</template>
+    </p>
     <!-- 2697:200 -- Roben Elegante 13/48 Script, #3b3835. -->
     <p class="quote__verse">{{ quoteVerse }}</p>
   </section>
@@ -65,6 +72,19 @@ const { quoteText, quoteVerse } = useWedding()
   font-size: calc(10 * var(--px));
   line-height: calc(13 * var(--px));
   color: #4b4742;
+}
+
+.quote__arabic {
+  display: block;
+  margin-bottom: calc(6 * var(--px));
+  text-align: right;
+  white-space: normal;
+  font-family: 'Amiri', 'Scheherazade New', 'Noto Naskh Arabic', 'Traditional Arabic', serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: calc(12 * var(--px));
+  /* Harakat stack above and below the line; give them room */
+  line-height: 1.9;
 }
 
 .quote__verse {
