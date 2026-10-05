@@ -8,6 +8,8 @@
  * falls back to two hours / the whole day.
  */
 
+import { parseDateParts } from './format'
+
 const ZONES: Record<string, string> = { WIB: 'Asia/Jakarta', WITA: 'Asia/Makassar', WIT: 'Asia/Jayapura' }
 const RANGE_SEPARATORS = ['|', 's/d', ' - ', '-', '–']
 const DEFAULT_HOURS = 2
@@ -24,9 +26,10 @@ const pad = (n: number) => String(n).padStart(2, '0')
 const clock = (s: string | undefined) => s?.trim().match(/^(\d{1,2})[.:](\d{2})/)
 
 export function googleCalendarUrl(evt: CalendarEvent, coupleName: string, pageUrl: string): string {
-  const d = (evt.event_date || '').match(/^(\d{4})-(\d{2})-(\d{2})/)
-  if (!d) return ''
-  const [y, m, day] = [Number(d[1]), Number(d[2]), Number(d[3])]
+  // Free-text admin dates ("Sabtu, 19 April 2029", "19-04-2029", ISO...)
+  const p = parseDateParts(evt.event_date)
+  if (!p) return ''
+  const { y, m, d: day } = p
 
   const time = evt.event_time || ''
   const zone = time.match(/\b(WITA|WIB|WIT)\b/i)?.[1].toUpperCase() || 'WIB'

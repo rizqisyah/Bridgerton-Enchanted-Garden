@@ -12,19 +12,49 @@
 const RANGE_SEPARATORS = ['|', 's/d', ' - ', '-', '–']
 
 export type EventDate = { weekday: string; date: string }
+export type DateParts = { y: number; m: number; d: number }
+
+// First three letters of Indonesian and English month names (and common short forms)
+const MONTHS: Record<string, number> = {
+  jan: 1, feb: 2, peb: 2, mar: 3, apr: 4, mei: 5, may: 5, jun: 6, jul: 7,
+  agu: 8, ags: 8, agt: 8, aug: 8, sep: 9, okt: 10, oct: 10, nov: 11, nop: 11, des: 12, dec: 12,
+}
+
+const valid = (p: DateParts): DateParts | null => {
+  const t = new Date(p.y, p.m - 1, p.d)
+  return t.getFullYear() === p.y && t.getMonth() === p.m - 1 && t.getDate() === p.d ? p : null
+}
+
+/*
+ * The admin's acara date is a free-text field, so real rows hold "2029-04-19" (autofill),
+ * "Sabtu, 19 April 2029", "Saturday, 19 April 2029", "April 19, 2029" or "19-04-2029"
+ * alike. Reads the calendar day out of any of those, without a time zone: a bare ISO date
+ * handed to `new Date` is UTC midnight and lands on the previous day west of Greenwich.
+ */
+export function parseDateParts(raw?: string | null): DateParts | null {
+  const s = (raw || '').trim()
+  if (!s) return null
+  let m = s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})/)
+  if (m) return valid({ y: +m[1], m: +m[2], d: +m[3] })
+  // Day first, as written in Indonesia: 19-04-2029, 19/04/2029, 19.04.2029
+  m = s.match(/^(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})\b/)
+  if (m) return valid({ y: +m[3], m: +m[2], d: +m[1] })
+  // Named month in either language and either order, weekday optional
+  const words = s.toLowerCase().replace(/[,.]/g, ' ').split(/\s+/)
+  const month = words.map((w) => MONTHS[w.slice(0, 3)]).find(Boolean)
+  const year = words.find((w) => /^\d{4}$/.test(w))
+  const day = words.find((w) => /^\d{1,2}$/.test(w))
+  if (month && year && day) return valid({ y: +year, m: month, d: +day })
+  const loose = new Date(s)
+  return Number.isNaN(loose.getTime())
+    ? null
+    : { y: loose.getFullYear(), m: loose.getMonth() + 1, d: loose.getDate() }
+}
 
 export function formatEventDate(raw?: string | null, lang: string = 'indonesia'): EventDate | null {
-  if (!raw) return null
-  /*
-   * A bare 'YYYY-MM-DD' is parsed as UTC midnight, so west of Greenwich it renders
-   * as the day before -- the wedding would read Friday to a guest in New York.
-   * Build those as a local date instead; anything with a time keeps its own offset.
-   */
-  const parts = raw.match(/^(\d{4})-(\d{2})-(\d{2})/)
-  const d = parts
-    ? new Date(Number(parts[1]), Number(parts[2]) - 1, Number(parts[3]))
-    : new Date(raw)
-  if (Number.isNaN(d.getTime())) return null
+  const p = parseDateParts(raw)
+  if (!p) return null
+  const d = new Date(p.y, p.m - 1, p.d)
   const locale = lang === 'english' ? 'en-GB' : 'id-ID'
   return {
     weekday: d.toLocaleDateString(locale, { weekday: 'long' }),
@@ -45,19 +75,15 @@ export function formatEventDate(raw?: string | null, lang: string = 'indonesia')
  * Missing time means midnight local, the same anchor `formatEventDate` uses.
  */
 export function parseEventStart(date?: string | null, time?: string | null): Date | null {
-  if (!date) return null
-  const d = date.match(/^(\d{4})-(\d{2})-(\d{2})/)
-  if (!d) {
-    const loose = new Date(date)
-    return Number.isNaN(loose.getTime()) ? null : loose
-  }
+  const p = parseDateParts(date)
+  if (!p) return null
   const sep = time ? RANGE_SEPARATORS.find((s) => time.includes(s)) : undefined
   const start = sep && time ? time.split(sep)[0] : time
   const t = (start ?? '').trim().match(/^(\d{1,2})[.:](\d{2})/)
   const at = new Date(
-    Number(d[1]),
-    Number(d[2]) - 1,
-    Number(d[3]),
+    p.y,
+    p.m - 1,
+    p.d,
     t ? Number(t[1]) : 0,
     t ? Number(t[2]) : 0,
   )
