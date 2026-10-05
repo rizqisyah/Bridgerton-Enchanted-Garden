@@ -14,7 +14,7 @@
  *   2712:322 "Ahmad \n&\nSalma"     three lines, live from groom/bride
  *   2712:326 the vendor credit, on the olive bar (2712:325, painted by BandArt)
  */
-import { computed } from 'vue'
+import { computed, onUnmounted, ref, watch } from 'vue'
 import BandArt from '../invite/BandArt.vue'
 import { useReveal } from '../../composables/useReveal'
 import { useWedding } from '../../composables/useWedding'
@@ -34,23 +34,66 @@ const couple = computed(() => {
 
 // 2712:328 is the design's "AS" monogram; the couple's own logo takes its place, as on the cover.
 const MONOGRAM = '2712:328'
+/*
+ * The closing paragraph sits in the sky above the chateau, sized for the design's six
+ * lines. A longer custom message pushes the whole scene (every layer plus the lines
+ * below it) down by however much it runs over, and the band grows to match, so the
+ * text never lands on the roof or the monogram. Measured in design px: the box is 259
+ * design px wide, so its rendered height scales by the same ratio.
+ */
+const BODY_WIDTH = 259
+const BODY_DESIGN_HEIGHT = 120 // 6 lines x 20px
+const bodyRef = ref<HTMLElement | null>(null)
+const overflow = ref(0)
+let resizeObs: ResizeObserver | null = null
+
+function measure(node: HTMLElement) {
+  if (!node.offsetWidth) return
+  const height = (node.offsetHeight * BODY_WIDTH) / node.offsetWidth
+  overflow.value = Math.max(0, Math.ceil(height - BODY_DESIGN_HEIGHT))
+}
+
+watch(bodyRef, (node) => {
+  resizeObs?.disconnect()
+  resizeObs = null
+  if (!node) {
+    // Design copy is back: it fits the original band
+    overflow.value = 0
+    return
+  }
+  measure(node)
+  resizeObs = new ResizeObserver(() => measure(node))
+  resizeObs.observe(node)
+})
+onUnmounted(() => resizeObs?.disconnect())
+
+const bandHeight = computed(() => BAND_HEIGHT + overflow.value)
+
 const layers = computed(() =>
-  logoMempelai.value
-    ? LAYERS.map((l) => (l.id === MONOGRAM ? { ...l, src: logoMempelai.value, objectFit: 'contain' as const } : l))
-    : LAYERS,
+  LAYERS.map((l) => {
+    const placed = overflow.value ? { ...l, y: l.y + overflow.value } : l
+    return logoMempelai.value && l.id === MONOGRAM
+      ? { ...placed, src: logoMempelai.value, objectFit: 'contain' as const }
+      : placed
+  }),
 )
 </script>
 
 <template>
-  <footer :ref="el" class="footer" :class="{ 'is-in': shown }" aria-labelledby="footer-heading">
+  <footer
+    :ref="el"
+    class="footer"
+    :class="{ 'is-in': shown }"
+    :style="{ '--shift': overflow }"
+    aria-labelledby="footer-heading"
+  >
     <BandArt :layers="layers" :shown="shown" />
 
     <!-- 2712:330 — Comtic Hiden 24/42, #9e0f0f. -->
     <h2 id="footer-heading" class="footer__thanks">Thank You !</h2>
-    <!-- 2712:323 — Ibarra Real Nova 14/20 Italic +1%, #000000. -->
-    <p v-if="closingMessage" class="footer__body" style="white-space: pre-wrap;">
-      {{ closingMessage }}
-    </p>
+    <!-- 2712:323 — Ibarra Real Nova 14/20 Italic +1%, #000000. Inline so pre-wrap
+         doesn't render the template's indentation. -->
+    <p v-if="closingMessage" ref="bodyRef" class="footer__body" style="white-space: pre-wrap;">{{ closingMessage.trim() }}</p>
     <p v-else-if="lang === 'english'" class="footer__body">
       Your blessings and prayers bring joy to us. May Allah SWT bless our marriage. Thank you for your prayers and love.<br />
       Wassalamu'alaikum warahmatullahi wabarakatuh.
@@ -73,8 +116,9 @@ const layers = computed(() =>
 
 <style scoped>
 .footer {
+  --shift: 0;
   position: relative;
-  height: calc(v-bind(BAND_HEIGHT) * var(--px));
+  height: calc(v-bind(bandHeight) * var(--px));
 }
 
 .footer > * {
@@ -136,7 +180,7 @@ const layers = computed(() =>
 .footer__of {
   --in: 900ms;
   z-index: 201;
-  top: calc(419 * var(--px));
+  top: calc((419 + var(--shift)) * var(--px));
   left: calc(104 * var(--px));
   width: calc(167 * var(--px));
   transform: translateY(calc(10 * var(--px)));
@@ -153,7 +197,7 @@ const layers = computed(() =>
   /* Spec is 452,108. Charoly Demo sets the block 7px lower and, because its swash
      capitals hang left of the glyph origin, 5px right of where the render has it --
      ink box measured against the render, the block's own width already matches. */
-  top: calc(445 * var(--px));
+  top: calc((445 + var(--shift)) * var(--px));
   left: calc(103 * var(--px));
   width: calc(159 * var(--px));
   transform: translateY(calc(30 * var(--px))) scale(0.9);
@@ -167,7 +211,7 @@ const layers = computed(() =>
 .footer__credit {
   --in: 1600ms;
   z-index: 205;
-  top: calc(793 * var(--px));
+  top: calc((793 + var(--shift)) * var(--px));
   left: calc(66 * var(--px));
   width: calc(244 * var(--px));
   transform: translateY(calc(6 * var(--px)));
