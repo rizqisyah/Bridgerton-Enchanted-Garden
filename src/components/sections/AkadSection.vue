@@ -45,11 +45,14 @@ const addressText = computed(() =>
   ),
 )
 const mapsUrl = computed(() => event.value?.maps_url || '')
+// The pill is sliced art (2706:163); a real event without a maps link drops it entirely
+const showMaps = computed(() => !!mapsUrl.value || isPlaceholder.value)
+const artSkip = computed(() => (showMaps.value ? [] : ['2706:163']))
 </script>
 
 <template>
   <section :ref="el" class="akad" :class="{ 'is-in': shown }" aria-labelledby="akad-heading">
-    <BandArt :layers="LAYERS" :shown="shown" />
+    <BandArt :layers="LAYERS" :skip="artSkip" :shown="shown" />
 
     <!-- 2706:158 -- Comtic Hiden 20/23, var(--crimson-heading). -->
     <h2 v-if="hasContent && titleText" id="akad-heading" class="akad__heading">{{ titleText }}</h2>
@@ -63,7 +66,7 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
     <p v-if="hasContent && addressText" class="akad__address">{{ addressText }}</p>
 
     <!-- Pill art is 2706:163, painted by BandArt above (z167). 2706:164 is the live label. -->
-    <template v-if="hasContent">
+    <template v-if="hasContent && showMaps">
       <a v-if="mapsUrl" class="akad__maps" :href="mapsUrl" target="_blank" rel="noopener noreferrer">Maps</a>
       <span v-else class="akad__maps akad__maps--off">Maps</span>
     </template>
