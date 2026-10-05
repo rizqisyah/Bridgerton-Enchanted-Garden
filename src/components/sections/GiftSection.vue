@@ -81,15 +81,12 @@ const accounts = computed<Account[]>(() => {
  * The band is drawn for three cards. Everything from the side vines down (the garden
  * path, bushes and deer, y >= DECOR_TOP) moves up by one pitch per missing card, so
  * fewer accounts close the gap instead of leaving empty paper. With no accounts at all
- * the heading and copy go too, and only that lower scenery remains: it is the backdrop
- * the RSVP band below sits on.
+ * the whole band, scenery included, is dropped.
  */
 const DESIGN_CARDS = 3
 const DECOR_TOP = 546
 const hasAccounts = computed(() => accounts.value.length > 0)
-const shift = computed(() =>
-  hasAccounts.value ? (DESIGN_CARDS - accounts.value.length) * PITCH : DECOR_TOP,
-)
+const shift = computed(() => (DESIGN_CARDS - accounts.value.length) * PITCH)
 const bandHeight = computed(() => BAND_HEIGHT - shift.value)
 const layers = computed(() =>
   shift.value ? LAYERS.map((l) => (l.y >= DECOR_TOP ? { ...l, y: l.y - shift.value } : l)) : LAYERS,
@@ -143,22 +140,20 @@ const px = (n: number) => `calc(${n} * var(--px))`
 </script>
 
 <template>
-  <section :ref="el" class="gift" :class="{ 'is-in': shown }" :aria-labelledby="hasAccounts ? 'gift-heading' : undefined">
+  <section v-if="hasAccounts" :ref="el" class="gift" :class="{ 'is-in': shown }" aria-labelledby="gift-heading">
     <BandArt :layers="layers" :skip="['2712:209', '2712:210', '2712:211']" :shown="shown" />
 
-    <template v-if="hasAccounts">
-      <!-- 2712:185 — Comtic Hiden 20/28, #9e0f0f. -->
-      <h2 id="gift-heading" class="gift__heading">Wedding<br />Gift</h2>
-      <!-- 2712:208 — EB Garamond 11/22, #000000. -->
-      <p v-if="lang === 'english'" class="gift__body">
-        For those who wish to give a token of love as a form of attention and support, you may send it through the feature we have provided below. Every gift given will be received with deep gratitude and appreciation.
-      </p>
-      <p v-else class="gift__body">
-        Bagi Bapak/Ibu/Saudara/i yang berkenan memberikan tanda kasih sebagai bentuk perhatian dan
-        dukungan, dapat menyampaikannya melalui fitur yang telah kami sediakan di bawah ini. Setiap
-        tanda kasih yang diberikan akan kami terima dengan penuh rasa syukur dan penghargaan.
-      </p>
-    </template>
+    <!-- 2712:185 — Comtic Hiden 20/28, #9e0f0f. -->
+    <h2 id="gift-heading" class="gift__heading">Wedding<br />Gift</h2>
+    <!-- 2712:208 — EB Garamond 11/22, #000000. -->
+    <p v-if="lang === 'english'" class="gift__body">
+      For those who wish to give a token of love as a form of attention and support, you may send it through the feature we have provided below. Every gift given will be received with deep gratitude and appreciation.
+    </p>
+    <p v-else class="gift__body">
+      Bagi Bapak/Ibu/Saudara/i yang berkenan memberikan tanda kasih sebagai bentuk perhatian dan
+      dukungan, dapat menyampaikannya melalui fitur yang telah kami sediakan di bawah ini. Setiap
+      tanda kasih yang diberikan akan kami terima dengan penuh rasa syukur dan penghargaan.
+    </p>
 
     <div
       v-for="(a, i) in accounts"

@@ -51,7 +51,11 @@ const addressText = computed(() =>
     'Jl. Melati Raya No. 27, RT 004/RW 006, Kelurahan Cikini, Kecamatan Menteng, Jakarta Pusat, DKI Jakarta 10330',
   ),
 )
-const mapsUrl = computed(() => event.value?.maps_url || '')
+// Only a real link counts; "-", spaces or a pasted address would still draw the pill
+const mapsUrl = computed(() => {
+  const url = ((event.value?.maps_url as string) || '').trim()
+  return /^https?:\/\//i.test(url) ? url : ''
+})
 // The pill is sliced art (2712:177); a real event without a maps link drops it entirely
 const showMaps = computed(() => !!mapsUrl.value || isPlaceholder.value)
 const artSkip = computed(() => (showMaps.value ? [] : ['2712:177']))
