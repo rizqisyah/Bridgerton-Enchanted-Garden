@@ -148,11 +148,11 @@ const layers = computed(() =>
   left: calc(40 * var(--px));
   width: calc(291 * var(--px));
   transform: translateY(calc(30 * var(--px))) scale(0.9);
-  font-family: var(--font-heading-script);
-  font-size: calc(24 * var(--px));
+  font-family: var(--ov-font-section, var(--font-heading-script));
+  font-size: calc(24 * var(--px) * var(--ov-scale-section, 1));
   line-height: calc(41.6 * var(--px));
   text-align: center;
-  color: var(--crimson-title);
+  color: var(--ov-color-section_title, var(--crimson-title));
 }
 
 .footer__body {
@@ -168,13 +168,13 @@ const layers = computed(() =>
   left: calc(50.5 * var(--px));
   width: calc(259 * var(--px));
   transform: translateY(calc(30 * var(--px))) scale(0.9);
-  font-family: var(--font-serif);
+  font-family: var(--ov-font-body, var(--font-serif));
   font-style: italic;
-  font-size: calc(14 * var(--px));
+  font-size: calc(14 * var(--px) * var(--ov-scale-body, 1));
   line-height: calc(20 * var(--px));
   letter-spacing: 0.01em;
   text-align: center;
-  color: #000000;
+  color: var(--ov-color-text_body, #000000);
 }
 
 .footer__of {
@@ -184,8 +184,8 @@ const layers = computed(() =>
   left: calc(104 * var(--px));
   width: calc(167 * var(--px));
   transform: translateY(calc(10 * var(--px)));
-  font-family: var(--font-script);
-  font-size: calc(20 * var(--px));
+  font-family: var(--ov-font-accent, var(--font-script));
+  font-size: calc(20 * var(--px) * var(--ov-scale-accent, 1));
   line-height: calc(24 * var(--px));
   text-align: center;
   color: #4d4d2d;
@@ -201,8 +201,8 @@ const layers = computed(() =>
   left: calc(103 * var(--px));
   width: calc(159 * var(--px));
   transform: translateY(calc(30 * var(--px))) scale(0.9);
-  font-family: var(--font-display-alt);
-  font-size: calc(40 * var(--px));
+  font-family: var(--ov-font-headline, var(--font-display-alt));
+  font-size: calc(40 * var(--px) * var(--ov-scale-headline, 1));
   line-height: calc(40 * var(--px));
   text-align: center;
   color: #732222;

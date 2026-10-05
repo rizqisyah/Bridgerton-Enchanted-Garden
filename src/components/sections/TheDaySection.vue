@@ -40,10 +40,10 @@ const { el, shown } = useReveal(0.3)
   left: calc(36 * var(--px));
   top: calc(152 * var(--px));
   width: calc(275 * var(--px));
-  font-family: var(--font-heading-script);
-  font-size: calc(24 * var(--px));
+  font-family: var(--ov-font-section, var(--font-heading-script));
+  font-size: calc(24 * var(--px) * var(--ov-scale-section, 1));
   line-height: calc(23 * var(--px));
-  color: var(--crimson);
+  color: var(--ov-color-section_title, var(--crimson));
 }
 
 .theday.is-in .theday__heading {

@@ -275,11 +275,11 @@ onBeforeUnmount(() => {
   transition:
     opacity 1100ms ease-out,
     transform 1500ms cubic-bezier(0.16, 1, 0.3, 1);
-  font-family: var(--font-heading-script);
-  font-size: calc(20 * var(--px));
+  font-family: var(--ov-font-section, var(--font-heading-script));
+  font-size: calc(20 * var(--px) * var(--ov-scale-section, 1));
   line-height: calc(42 * var(--px));
   text-align: center;
-  color: var(--crimson-title);
+  color: var(--ov-color-section_title, var(--crimson-title));
 }
 
 .gallery.is-in .gallery__heading {

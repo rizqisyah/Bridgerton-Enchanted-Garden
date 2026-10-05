@@ -66,10 +66,10 @@ const quoteParts = computed(() => splitArabicQuote(quoteText.value))
      italic the parent lines use -- rather than the script substitute: at 8 lines of body
      copy a script is a legibility problem the design does not have, since Roben Elegante
      is far tighter than Sacramento. Back to the spec's own 10/13 and 230px box. */
-  font-family: var(--font-serif);
+  font-family: var(--ov-font-italic, var(--font-serif));
   font-style: italic;
   font-weight: 500;
-  font-size: calc(10 * var(--px));
+  font-size: calc(10 * var(--px) * var(--ov-scale-italic, 1));
   line-height: calc(13 * var(--px));
   color: #4b4742;
 }

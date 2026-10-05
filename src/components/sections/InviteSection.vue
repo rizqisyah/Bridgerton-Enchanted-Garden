@@ -62,12 +62,12 @@ const { lang, openingMessage } = useWedding()
   width: calc(358 * var(--px));
   overflow-wrap: break-word;
   text-align: center;
-  font-family: var(--font-serif);
+  font-family: var(--ov-font-event_opening, var(--font-serif));
   font-style: italic;
   font-weight: 500;
-  font-size: calc(13 * var(--px));
+  font-size: calc(13 * var(--px) * var(--ov-scale-event_opening, 1));
   line-height: calc(20 * var(--px));
-  color: #5c5050;
+  color: var(--ov-color-event_opening_color, #5c5050);
 }
 
 .invite.is-in .invite__text {

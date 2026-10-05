@@ -11,8 +11,49 @@ const state = ref<{
   data: null,
 })
 
-function applyTheme(themeData: any, weddingData: any) {
-  const cfg = themeData?.theme_config
+/*
+ * Admin "Tema" colors/fonts -> the tokens this design actually uses (style/tokens.css).
+ * Only the wedding's own overrides apply: the theme row's defaults are the design's own
+ * values already, and applying them would just repaint the Figma colors. Anything not
+ * overridden is removed again, so clearing a color in the live preview restores the
+ * design instead of leaving the last picked value behind.
+ */
+const COLOR_TOKENS: Record<string, string[]> = {
+  primary: ['--crimson', '--crimson-title', '--crimson-heading'],
+  secondary: ['--crimson-deep'],
+  accent: ['--gold', '--gold-brown'],
+  bg_body: ['--paper', '--sheet-bg'],
+}
+const FONT_TOKENS: Record<string, string[]> = {
+  headline: ['--font-display'],
+  body: ['--font-body'],
+  script: ['--font-script'],
+  accent: ['--font-heading-script'],
+  italic: ['--font-serif'],
+}
+
+// Admin font values may carry SQL-style doubled quotes or "+" from Google Fonts names
+const cleanFont = (value: string) => value.replace(/''/g, "'").replace(/"/g, "'").replace(/\+/g, ' ')
+
+function injectCustomFont(family: string, url: string) {
+  const clean = family.replace(/['"]/g, '').replace(/\+/g, ' ').trim()
+  const id = `custom-font-${clean.replace(/\s+/g, '-')}`
+  if (!clean || document.getElementById(id)) return
+  if (url.includes('fonts.googleapis.com')) {
+    const link = document.createElement('link')
+    link.id = id
+    link.rel = 'stylesheet'
+    link.href = url
+    document.head.appendChild(link)
+  } else {
+    const style = document.createElement('style')
+    style.id = id
+    style.textContent = `@font-face { font-family: '${clean}'; src: url('${url}'); font-display: swap; }`
+    document.head.appendChild(style)
+  }
+}
+
+function applyTheme(_themeData: any, weddingData: any) {
   let override = weddingData?.theme_override
   if (typeof override === 'string') {
     try {
@@ -24,17 +65,45 @@ function applyTheme(themeData: any, weddingData: any) {
   override = override || {}
 
   const root = document.documentElement
-  const colors = { ...(cfg?.colors || {}), ...(override?.colors || {}) }
-  const fonts = { ...(cfg?.fonts || {}), ...(override?.fonts || {}) }
+  const colors = override.colors || {}
+  const fonts = override.fonts || {}
 
-  if (colors.primary) root.style.setProperty('--maroon-title', colors.primary)
-  if (colors.secondary) root.style.setProperty('--maroon-text', colors.secondary)
-  if (colors.accent) root.style.setProperty('--gold', colors.accent)
-  if (colors.bg_body) root.style.setProperty('--bg-body', colors.bg_body)
+  for (const [key, tokens] of Object.entries(COLOR_TOKENS)) {
+    const value = typeof colors[key] === 'string' ? colors[key].trim() : ''
+    for (const t of tokens) value ? root.style.setProperty(t, value) : root.style.removeProperty(t)
+  }
+  for (const [key, tokens] of Object.entries(FONT_TOKENS)) {
+    const value = typeof fonts[key] === 'string' ? cleanFont(fonts[key].trim()) : ''
+    for (const t of tokens) value ? root.style.setProperty(t, value) : root.style.removeProperty(t)
+  }
 
-  if (fonts.script) root.style.setProperty('--font-script', fonts.script)
-  if (fonts.hand) root.style.setProperty('--font-hand', fonts.hand)
+  /*
+   * Per-element settings from the Tema tab's style groups (spouse_fullname, event_title_color,
+   * section, ...), exposed as --ov-font-<key> / --ov-color-<key> / --ov-scale-<key>. The
+   * sections read them with the design's value as the fallback, so only what the admin set
+   * changes. Vars from a previous update that are no longer set are cleared.
+   */
+  const next = new Map<string, string>()
+  for (const [key, value] of Object.entries(fonts)) {
+    if (typeof value === 'string' && value.trim()) next.set(`--ov-font-${key}`, cleanFont(value.trim()))
+  }
+  for (const [key, value] of Object.entries(colors)) {
+    if (typeof value === 'string' && value.trim()) next.set(`--ov-color-${key}`, value.trim())
+  }
+  for (const [key, value] of Object.entries(override.font_scales || {})) {
+    const n = typeof value === 'number' ? value : parseFloat(value as string)
+    if (Number.isFinite(n) && n > 0 && n !== 1) next.set(`--ov-scale-${key}`, String(n))
+  }
+  for (const name of appliedOverrideVars) if (!next.has(name)) root.style.removeProperty(name)
+  for (const [name, value] of next) root.style.setProperty(name, value)
+  appliedOverrideVars = new Set(next.keys())
+
+  // Fonts uploaded / linked in the admin ("Font Kustom")
+  for (const f of Object.values(override.fonts_custom || {}) as any[]) {
+    if (f?.url && f?.family) injectCustomFont(f.family, f.url)
+  }
 }
+let appliedOverrideVars = new Set<string>()
 
 // Module-level so every section shares one slug, one request and one message listener
 const slug = ref(resolveSlug())

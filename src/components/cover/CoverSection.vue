@@ -169,8 +169,8 @@ const coupleLines = computed(() => {
   top: calc(288 * var(--px));
   left: calc(53 * var(--px));
   width: calc(269 * var(--px));
-  font-family: var(--font-script);
-  font-size: calc(20 * var(--px));
+  font-family: var(--ov-font-accent, var(--font-script));
+  font-size: calc(20 * var(--px) * var(--ov-scale-accent, 1));
   line-height: calc(30 * var(--px));
   color: var(--olive);
 }
@@ -203,8 +203,8 @@ const coupleLines = computed(() => {
   width: calc(289 * var(--px));
   height: calc(94 * var(--px));
   overflow: hidden;
-  font-family: var(--font-display);
-  font-size: calc(48 * var(--px) * var(--fit, 1));
+  font-family: var(--ov-font-headline, var(--font-display));
+  font-size: calc(48 * var(--px) * var(--fit, 1) * var(--ov-scale-headline, 1));
   font-weight: 400;
   line-height: calc(47 * var(--px));
   letter-spacing: -0.06em;

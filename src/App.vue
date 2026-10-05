@@ -256,7 +256,7 @@ function onSplashLeave() {
 
   .left-subtitle {
     margin-bottom: 16px;
-    font-family: var(--font-script);
+    font-family: var(--ov-font-accent, var(--font-script));
     font-size: 20px;
     letter-spacing: 0.06em;
     opacity: 0.9;
@@ -264,7 +264,7 @@ function onSplashLeave() {
 
   .left-title {
     margin: 0;
-    font-family: var(--font-display);
+    font-family: var(--ov-font-headline, var(--font-display));
     font-size: 56px;
     font-weight: 400;
     line-height: 1.15;
@@ -282,7 +282,7 @@ function onSplashLeave() {
 
   .left-quote {
     margin-bottom: 12px;
-    font-family: var(--font-serif);
+    font-family: var(--ov-font-italic, var(--font-serif));
     font-size: 15px;
     font-style: italic;
     line-height: 1.6;

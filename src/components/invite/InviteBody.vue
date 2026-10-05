@@ -72,7 +72,8 @@ const { acara } = useWedding()
    * Frame 244's base plate (2695:162) is a single colour across all 14.8M pixels,
    * so it is this background rather than a 19732px-tall asset.
    */
-  background: #f3ece2;
+  /* --sheet-bg is set only by a custom bg_body color (useWedding's applyTheme) */
+  background: var(--sheet-bg, #f3ece2);
 }
 
 .sheet > * {

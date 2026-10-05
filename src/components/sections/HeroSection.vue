@@ -104,8 +104,8 @@ const coupleLines = computed(() => {
   left: calc(45 * var(--px));
   top: calc(69 * var(--px));
   width: calc(289 * var(--px));
-  font-family: var(--font-display-alt);
-  font-size: calc(32 * var(--px));
+  font-family: var(--ov-font-headline, var(--font-display-alt));
+  font-size: calc(32 * var(--px) * var(--ov-scale-headline, 1));
   font-weight: 400;
   line-height: calc(28 * var(--px));
   white-space: pre-line;

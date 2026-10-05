@@ -233,11 +233,11 @@ async function submit() {
   left: calc(69 * var(--px));
   width: calc(238.5 * var(--px));
   transform: translateY(calc(30 * var(--px))) scale(0.9);
-  font-family: var(--font-heading-script);
-  font-size: calc(20 * var(--px));
+  font-family: var(--ov-font-section, var(--font-heading-script));
+  font-size: calc(20 * var(--px) * var(--ov-scale-section, 1));
   line-height: calc(41.6 * var(--px));
   text-align: center;
-  color: var(--crimson-title);
+  color: var(--ov-color-section_title, var(--crimson-title));
 }
 
 .wish__form {
@@ -259,11 +259,11 @@ async function submit() {
   border: calc(1 * var(--px)) solid;
   border-radius: calc(10 * var(--px));
   background: #ffffff;
-  font-family: var(--font-serif);
+  font-family: var(--ov-font-form_label, var(--font-serif));
   font-style: italic;
-  font-size: calc(16 * var(--px));
+  font-size: calc(16 * var(--px) * var(--ov-scale-form_label, 1));
   line-height: calc(22.4 * var(--px));
-  color: #4d4d2d;
+  color: var(--ov-color-form_label_color, #4d4d2d);
 }
 
 .wish__field::placeholder {
@@ -437,10 +437,10 @@ async function submit() {
 
 .wish__message {
   margin: calc(4 * var(--px)) 0 0;
-  font-family: var(--font-quote);
-  font-size: calc(13 * var(--px));
+  font-family: var(--ov-font-body, var(--font-quote));
+  font-size: calc(13 * var(--px) * var(--ov-scale-body, 1));
   line-height: calc(18 * var(--px));
-  color: #3a3020;
+  color: var(--ov-color-text_body, #3a3020);
   overflow-wrap: break-word;
 }
 

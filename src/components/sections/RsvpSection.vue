@@ -206,11 +206,11 @@ async function submit() {
   left: calc(35 * var(--px));
   width: calc(305 * var(--px));
   transform: translateY(calc(30 * var(--px))) scale(0.9);
-  font-family: var(--font-heading-script);
-  font-size: calc(20 * var(--px));
+  font-family: var(--ov-font-section, var(--font-heading-script));
+  font-size: calc(20 * var(--px) * var(--ov-scale-section, 1));
   line-height: calc(38 * var(--px));
   text-align: center;
-  color: var(--crimson-title);
+  color: var(--ov-color-section_title, var(--crimson-title));
 }
 
 .rsvp__body {
@@ -219,11 +219,11 @@ async function submit() {
   left: calc(72 * var(--px));
   width: calc(231 * var(--px));
   transform: translateY(calc(30 * var(--px))) scale(0.9);
-  font-family: var(--font-quote);
-  font-size: calc(16 * var(--px));
+  font-family: var(--ov-font-body, var(--font-quote));
+  font-size: calc(16 * var(--px) * var(--ov-scale-body, 1));
   line-height: calc(20 * var(--px));
   text-align: center;
-  color: #631818;
+  color: var(--ov-color-text_body, #631818);
 }
 
 .rsvp__form,
@@ -243,11 +243,11 @@ async function submit() {
 
 /* 2712:231/232/230 — Cormorant Garamond Bold 16/22, #631818. */
 .rsvp__label {
-  font-family: var(--font-body);
-  font-size: calc(16 * var(--px));
+  font-family: var(--ov-font-form_label, var(--font-body));
+  font-size: calc(16 * var(--px) * var(--ov-scale-form_label, 1));
   line-height: calc(22 * var(--px));
   font-weight: 700;
-  color: #631818;
+  color: var(--ov-color-form_label_color, #631818);
 }
 
 .rsvp__label--name {

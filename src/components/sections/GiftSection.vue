@@ -247,10 +247,10 @@ const px = (n: number) => `calc(${n} * var(--px))`
   top: 0;
   width: calc(230 * var(--px));
   transform: translateY(calc(30 * var(--px))) scale(0.9);
-  font-family: var(--font-heading-script);
-  font-size: calc(20 * var(--px));
+  font-family: var(--ov-font-section, var(--font-heading-script));
+  font-size: calc(20 * var(--px) * var(--ov-scale-section, 1));
   line-height: calc(28 * var(--px));
-  color: var(--crimson-title);
+  color: var(--ov-color-section_title, var(--crimson-title));
 }
 
 .gift__body {
@@ -260,10 +260,10 @@ const px = (n: number) => `calc(${n} * var(--px))`
   top: calc(72 * var(--px));
   width: calc(324 * var(--px));
   transform: translateY(calc(30 * var(--px))) scale(0.9);
-  font-family: var(--font-quote);
-  font-size: calc(11 * var(--px));
+  font-family: var(--ov-font-body, var(--font-quote));
+  font-size: calc(11 * var(--px) * var(--ov-scale-body, 1));
   line-height: calc(22 * var(--px));
-  color: #000000;
+  color: var(--ov-color-text_body, #000000);
 }
 
 .gift__card {

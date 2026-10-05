@@ -19,11 +19,22 @@ import BandArt from '../invite/BandArt.vue'
 import { useReveal } from '../../composables/useReveal'
 import { useWedding } from '../../composables/useWedding'
 import { parseEventStart, remainingUntil } from '../../lib/format'
+import { googleCalendarUrl } from '../../lib/calendar'
 import { BAND_HEIGHT, LAYERS } from '../../lib/bands/countdown'
 
 const { el, shown } = useReveal(0.15)
-const { acara, lang } = useWedding()
+const { acara, lang, coupleNickname } = useWedding()
 const events = computed(() => [...(acara.value as any[])].sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0)))
+
+// Same event the countdown runs to. Without a dated acara (theme preview) the button
+// stays the design's static plate.
+const calendarUrl = computed(() => {
+  const e = events.value[0]
+  if (!e) return ''
+  // The invitation itself, without the guest's ?to= code
+  const pageUrl = `${window.location.origin}${window.location.pathname}`
+  return googleCalendarUrl(e, coupleNickname.value, pageUrl)
+})
 
 /*
  * Frame 244's akad card reads "Minggu, 2 Agustus 2026, 12.00 WIB", so that is the
@@ -113,10 +124,16 @@ function cellBox(cx: number) {
     </template>
 
     <!-- 2699:287 button plate, CSS background (single-fill, not a sliced asset). -->
-    <div class="countdown__cal">
-      <!-- 2699:288 — Libre Caslon Condensed 15/23 Italic, #ffffff. Decorative copy, hardcoded. -->
+    <component
+      :is="calendarUrl ? 'a' : 'div'"
+      class="countdown__cal"
+      :href="calendarUrl || undefined"
+      :target="calendarUrl ? '_blank' : undefined"
+      :rel="calendarUrl ? 'noopener noreferrer' : undefined"
+    >
+      <!-- 2699:288 — Libre Caslon Condensed 15/23 Italic, #ffffff. -->
       <span class="countdown__cal-label">{{ lang === 'english' ? 'Add to Calendar' : 'Simpan ke Kalender' }}</span>
-    </div>
+    </component>
   </section>
 </template>
 
@@ -166,10 +183,10 @@ function cellBox(cx: number) {
   left: calc(35 * var(--px));
   top: calc(56 * var(--px));
   width: calc(275 * var(--px));
-  font-family: var(--font-heading-script);
-  font-size: calc(20 * var(--px));
+  font-family: var(--ov-font-section, var(--font-heading-script));
+  font-size: calc(20 * var(--px) * var(--ov-scale-section, 1));
   line-height: calc(23 * var(--px));
-  color: var(--crimson);
+  color: var(--ov-color-section_title, var(--crimson));
 }
 
 
@@ -208,6 +225,22 @@ function cellBox(cx: number) {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
+}
+
+a.countdown__cal {
+  cursor: pointer;
+  transition: background-color 200ms ease-out;
+}
+
+a.countdown__cal:hover,
+a.countdown__cal:focus-visible {
+  background: #56623e;
+}
+
+a.countdown__cal:focus-visible {
+  outline: calc(2 * var(--px)) solid #424c30;
+  outline-offset: calc(2 * var(--px));
 }
 
 .countdown__cal-label {

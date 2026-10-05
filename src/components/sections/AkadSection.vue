@@ -120,10 +120,10 @@ const artSkip = computed(() => (showMaps.value ? [] : ['2706:163']))
   left: calc(66 * var(--px));
   top: calc(442 * var(--px));
   width: calc(243 * var(--px));
-  font-family: var(--font-heading-script);
-  font-size: calc(20 * var(--px));
+  font-family: var(--ov-font-event_title, var(--font-heading-script));
+  font-size: calc(20 * var(--px) * var(--ov-scale-event_title, 1));
   line-height: calc(23 * var(--px));
-  color: var(--crimson-heading);
+  color: var(--ov-color-event_title_color, var(--crimson-heading));
 }
 
 .akad__date {
@@ -132,11 +132,11 @@ const artSkip = computed(() => (showMaps.value ? [] : ['2706:163']))
   left: calc(66 * var(--px));
   top: calc(487 * var(--px));
   width: calc(243 * var(--px));
-  font-family: var(--font-condensed);
+  font-family: var(--ov-font-event_detail, var(--font-condensed));
   font-style: italic;
-  font-size: calc(15 * var(--px));
+  font-size: calc(15 * var(--px) * var(--ov-scale-event_detail, 1));
   line-height: calc(23 * var(--px));
-  color: #000;
+  color: var(--ov-color-event_detail_color, #000);
 }
 
 .akad__time {
@@ -145,11 +145,11 @@ const artSkip = computed(() => (showMaps.value ? [] : ['2706:163']))
   left: calc(66 * var(--px));
   top: calc(537 * var(--px));
   width: calc(243 * var(--px));
-  font-family: var(--font-condensed);
+  font-family: var(--ov-font-event_detail, var(--font-condensed));
   font-style: italic;
-  font-size: calc(15 * var(--px));
+  font-size: calc(15 * var(--px) * var(--ov-scale-event_detail, 1));
   line-height: calc(23 * var(--px));
-  color: #000;
+  color: var(--ov-color-event_detail_color, #000);
 }
 
 .akad__venue {
@@ -158,11 +158,11 @@ const artSkip = computed(() => (showMaps.value ? [] : ['2706:163']))
   left: calc(70 * var(--px));
   top: calc(587 * var(--px));
   width: calc(243 * var(--px));
-  font-family: var(--font-condensed);
+  font-family: var(--ov-font-event_detail, var(--font-condensed));
   font-style: italic;
-  font-size: calc(15 * var(--px));
+  font-size: calc(15 * var(--px) * var(--ov-scale-event_detail, 1));
   line-height: calc(23 * var(--px));
-  color: #000;
+  color: var(--ov-color-event_detail_color, #000);
 }
 
 .akad__address {
@@ -171,11 +171,11 @@ const artSkip = computed(() => (showMaps.value ? [] : ['2706:163']))
   left: calc(86 * var(--px));
   top: calc(610 * var(--px));
   width: calc(203 * var(--px));
-  font-family: var(--font-condensed);
+  font-family: var(--ov-font-event_detail, var(--font-condensed));
   font-style: italic;
-  font-size: calc(11 * var(--px));
+  font-size: calc(11 * var(--px) * var(--ov-scale-event_detail, 1));
   line-height: calc(23 * var(--px));
-  color: #000;
+  color: var(--ov-color-event_detail_color, #000);
 }
 
 .akad__maps {

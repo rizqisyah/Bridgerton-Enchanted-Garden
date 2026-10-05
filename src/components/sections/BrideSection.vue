@@ -113,10 +113,10 @@ const parents = computed(
   left: calc(87 * var(--px));
   top: calc(36 * var(--px));
   width: calc(205 * var(--px));
-  font-family: var(--font-heading-script);
-  font-size: calc(13 * var(--px));
+  font-family: var(--ov-font-spouse_fullname, var(--font-heading-script));
+  font-size: calc(13 * var(--px) * var(--ov-scale-spouse_fullname, 1));
   line-height: calc(23 * var(--px));
-  color: var(--crimson);
+  color: var(--ov-color-spouse_text, var(--crimson));
 }
 
 .bride__name span {
@@ -131,12 +131,12 @@ const parents = computed(
   top: calc(690 * var(--px));
   width: calc(331 * var(--px));
   white-space: pre-line;
-  font-family: var(--font-serif);
+  font-family: var(--ov-font-parents, var(--font-serif));
   font-style: italic;
   font-weight: 500;
-  font-size: calc(16 * var(--px));
+  font-size: calc(16 * var(--px) * var(--ov-scale-parents, 1));
   line-height: calc(20 * var(--px));
-  color: #5c5050;
+  color: var(--ov-color-spouse_text, #5c5050);
 }
 
 @media (prefers-reduced-motion: reduce) {
