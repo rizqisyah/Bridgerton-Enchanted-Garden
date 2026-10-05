@@ -142,6 +142,32 @@ export function useWedding() {
            'QS. Ar-Rum: 21'
   })
 
+  /*
+   * "Pengaturan Zoom & Posisi Foto Mempelai" in the admin's Tema tab: per-photo zoom and
+   * focus point, saved as theme_override.foto_pria_transform / foto_wanita_transform.
+   * Returned as the photo's own style -- object-position picks the focus, and the zoom
+   * scales about that same point so the focus stays put while zooming.
+   */
+  const photoStyle = (key: 'foto_pria_transform' | 'foto_wanita_transform') =>
+    computed(() => {
+      const t = parsedOverride.value?.[key]
+      if (!t || typeof t !== 'object') return {}
+      const num = (v: unknown, fallback: number) => {
+        const n = typeof v === 'number' ? v : parseFloat(v as string)
+        return Number.isFinite(n) ? n : fallback
+      }
+      const scale = num(t.scale, 1)
+      const x = num(t.x, 50)
+      const y = num(t.y, 50)
+      return {
+        objectPosition: `${x}% ${y}%`,
+        transformOrigin: `${x}% ${y}%`,
+        transform: `scale(${scale})`,
+      }
+    })
+  const groomPhotoStyle = photoStyle('foto_pria_transform')
+  const bridePhotoStyle = photoStyle('foto_wanita_transform')
+
   const logoMempelai = computed(() => {
     let override = parsedOverride.value?.images?.logo_mempelai
     const config = theme.value?.theme_config?.images?.logo_mempelai
@@ -185,6 +211,8 @@ export function useWedding() {
     coupleNickname,
     quoteText,
     quoteVerse,
+    groomPhotoStyle,
+    bridePhotoStyle,
     logoMempelai,
     openingMessage,
     closingMessage,

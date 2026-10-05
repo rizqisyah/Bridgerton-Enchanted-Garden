@@ -8,7 +8,7 @@ import { parentLine } from '../../lib/format'
 import { BAND_HEIGHT, LAYERS } from '../../lib/bands/groom'
 
 const { el, shown } = useReveal(0.15)
-const { groom, lang } = useWedding()
+const { groom, lang, groomPhotoStyle } = useWedding()
 
 /*
  * 2699:211 is the design's illustrated portrait; 2699:212 (z63/z64) is the ornate
@@ -38,15 +38,18 @@ const parents = computed(
   <section :ref="el" class="groom" :class="{ 'is-in': shown }" aria-labelledby="groom-heading">
     <BandArt :layers="LAYERS" :skip="artSkip" :shown="shown" />
 
-    <img
-      v-if="photo"
-      :src="photo"
-      alt="Foto mempelai"
-      class="groom__photo"
-      width="250"
-      height="348"
-      @error="photoFailed = true"
-    />
+    <!-- Clips the zoom from Tema > Pengaturan Zoom & Posisi Foto Mempelai to the hole -->
+    <div v-if="photo" class="groom__photo">
+      <img
+        :src="photo"
+        alt="Foto mempelai"
+        class="groom__photo-img"
+        :style="groomPhotoStyle"
+        width="250"
+        height="348"
+        @error="photoFailed = true"
+      />
+    </div>
 
     <!-- 2699:214 -- Comtic Hiden 13/23, #ad2124. -->
     <h2 id="groom-heading" class="groom__name">{{ groomName }}</h2>
@@ -92,6 +95,13 @@ const parents = computed(
   top: calc(172 * var(--px));
   width: calc(250 * var(--px));
   height: calc(348 * var(--px));
+  overflow: hidden;
+}
+
+.groom__photo-img {
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 

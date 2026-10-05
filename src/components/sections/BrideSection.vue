@@ -8,7 +8,7 @@ import { parentLine } from '../../lib/format'
 import { BAND_HEIGHT, LAYERS } from '../../lib/bands/bride'
 
 const { el, shown } = useReveal(0.15)
-const { bride, lang } = useWedding()
+const { bride, lang, bridePhotoStyle } = useWedding()
 
 /*
  * 2699:251 is the design's illustrated portrait; 2699:254 (z64) is the ornate plate
@@ -36,15 +36,18 @@ const parents = computed(
   <section :ref="el" class="bride" :class="{ 'is-in': shown }" aria-labelledby="bride-heading">
     <BandArt :layers="LAYERS" :skip="artSkip" :shown="shown" />
 
-    <img
-      v-if="photo"
-      :src="photo"
-      alt="Foto mempelai"
-      class="bride__photo"
-      width="250"
-      height="348"
-      @error="photoFailed = true"
-    />
+    <!-- Clips the zoom from Tema > Pengaturan Zoom & Posisi Foto Mempelai to the hole -->
+    <div v-if="photo" class="bride__photo">
+      <img
+        :src="photo"
+        alt="Foto mempelai"
+        class="bride__photo-img"
+        :style="bridePhotoStyle"
+        width="250"
+        height="348"
+        @error="photoFailed = true"
+      />
+    </div>
 
     <!-- 2699:247 — Comtic Hiden 13/23, #ad2124. -->
     <h2 id="bride-heading" class="bride__name">
@@ -93,6 +96,13 @@ const parents = computed(
   top: calc(172 * var(--px));
   width: calc(250 * var(--px));
   height: calc(348 * var(--px));
+  overflow: hidden;
+}
+
+.bride__photo-img {
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
