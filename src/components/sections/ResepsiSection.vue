@@ -20,25 +20,36 @@ const { acara, lang } = useWedding()
 /*
  * Same positional read as AkadSection: `acara` carries no type/category field, so
  * Resepsi is index 1 (Akad is index 0), mirroring template-3's CeremonyBand. If
- * the list is empty or has a single entry, `event` is null and every field below
- * falls back to Frame 244's own placeholder copy.
+ * the list is empty or has a single entry, `event` is null. Only a wedding with no
+ * acara at all (theme preview) prints Frame 244's placeholder copy; a real event's
+ * empty fields stay empty.
  */
 const event = computed(() => {
   const sorted = [...(acara.value as any[])].sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0))
   return sorted[props.eventIndex] ?? null
 })
 
-const hasContent = computed(() => (acara.value as any[]).length === 0 || !!event.value)
+const isPlaceholder = computed(() => (acara.value as any[]).length === 0)
+const hasContent = computed(() => isPlaceholder.value || !!event.value)
+const orPlaceholder = (value: string | null | undefined, placeholder: string) =>
+  value?.trim() || (isPlaceholder.value ? placeholder : '')
 
-const titleText = computed(() => event.value?.title || 'Resepsi Pernikahan')
+const titleText = computed(() => orPlaceholder(event.value?.title, 'Resepsi Pernikahan'))
 const when = computed(() => formatEventDate(event.value?.event_date, lang.value))
-const dateText = computed(() => (when.value ? `${when.value.weekday}, ${when.value.date}` : (lang.value === 'english' ? 'Sunday, August 2 2026' : 'Minggu, 2 Agustus 2026')))
-const timeText = computed(() => formatEventTime(event.value?.event_time, lang.value) || '14.00 - 15.00 WIB')
-const venueText = computed(() => event.value?.location_name || (lang.value === 'english' ? 'Gedung Serbaguna' : 'Kediaman Mempelai Wanita'))
-const addressText = computed(
-  () =>
-    event.value?.address ||
+const dateText = computed(() =>
+  when.value
+    ? `${when.value.weekday}, ${when.value.date}`
+    : orPlaceholder('', lang.value === 'english' ? 'Sunday, August 2 2026' : 'Minggu, 2 Agustus 2026'),
+)
+const timeText = computed(() => orPlaceholder(formatEventTime(event.value?.event_time, lang.value), '14.00 - 15.00 WIB'))
+const venueText = computed(() =>
+  orPlaceholder(event.value?.location_name, lang.value === 'english' ? 'Gedung Serbaguna' : 'Kediaman Mempelai Wanita'),
+)
+const addressText = computed(() =>
+  orPlaceholder(
+    event.value?.address,
     'Jl. Melati Raya No. 27, RT 004/RW 006, Kelurahan Cikini, Kecamatan Menteng, Jakarta Pusat, DKI Jakarta 10330',
+  ),
 )
 const mapsUrl = computed(() => event.value?.maps_url || '')
 </script>
@@ -48,15 +59,15 @@ const mapsUrl = computed(() => event.value?.maps_url || '')
     <BandArt :layers="LAYERS" :shown="shown" />
 
     <!-- 2712:172 -- Comtic Hiden 20/23, var(--crimson-heading). -->
-    <h2 v-if="hasContent" id="resepsi-heading" class="resepsi__heading">{{ titleText }}</h2>
+    <h2 v-if="hasContent && titleText" id="resepsi-heading" class="resepsi__heading">{{ titleText }}</h2>
     <!-- 2712:173 -- Libre Caslon Condensed 15/23 Italic, #000. -->
-    <p v-if="hasContent" class="resepsi__date">{{ dateText }}</p>
+    <p v-if="hasContent && dateText" class="resepsi__date">{{ dateText }}</p>
     <!-- 2712:174 -->
-    <p v-if="hasContent" class="resepsi__time">{{ timeText }}</p>
+    <p v-if="hasContent && timeText" class="resepsi__time">{{ timeText }}</p>
     <!-- 2712:175 -->
-    <p v-if="hasContent" class="resepsi__venue">{{ venueText }}</p>
+    <p v-if="hasContent && venueText" class="resepsi__venue">{{ venueText }}</p>
     <!-- 2712:176 -- Libre Caslon Condensed 11/23 Italic, #000. -->
-    <p v-if="hasContent" class="resepsi__address">{{ addressText }}</p>
+    <p v-if="hasContent && addressText" class="resepsi__address">{{ addressText }}</p>
 
     <!-- Pill art is 2712:177, painted by BandArt above (z168). 2712:178 is the live label. -->
     <template v-if="hasContent">

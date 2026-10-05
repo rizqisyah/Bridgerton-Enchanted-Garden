@@ -5,7 +5,10 @@
 import { useReveal } from '../../composables/useReveal'
 import { useWedding } from '../../composables/useWedding'
 
+// Design height fits the 3-line boilerplate (3 x 20px lines + 31px gap). A longer custom
+// opening message grows the band instead of spilling over the groom's full name below.
 const BAND_HEIGHT = 91
+const BOTTOM_GAP = 31
 
 const { el, shown } = useReveal(0.15)
 const { lang, openingMessage } = useWedding()
@@ -14,9 +17,8 @@ const { lang, openingMessage } = useWedding()
 <template>
   <section :ref="el" class="invite" :class="{ 'is-in': shown }" aria-label="Undangan">
     <!-- 2699:209 -- Ibarra Real Nova 13/20 Medium Italic, #5c5050. Design's own boilerplate copy. -->
-    <p v-if="openingMessage" class="invite__text" style="white-space: pre-wrap;">
-      {{ openingMessage }}
-    </p>
+    <!-- Inline so pre-wrap doesn't render the template's indentation -->
+    <p v-if="openingMessage" class="invite__text" style="white-space: pre-wrap;">{{ openingMessage.trim() }}</p>
     <p v-else-if="lang === 'english'" class="invite__text">
       With all due respect, we would like to invite you to attend
       <br />
@@ -34,7 +36,9 @@ const { lang, openingMessage } = useWedding()
 <style scoped>
 .invite {
   position: relative;
-  height: calc(v-bind(BAND_HEIGHT) * var(--px));
+  box-sizing: border-box;
+  min-height: calc(v-bind(BAND_HEIGHT) * var(--px));
+  padding-bottom: calc(v-bind(BOTTOM_GAP) * var(--px));
 }
 
 .invite > * {
@@ -52,9 +56,11 @@ const { lang, openingMessage } = useWedding()
     transform 1800ms cubic-bezier(0.16, 1, 0.28, 1) var(--delay, 0ms);
   --delay: 70ms;
   z-index: 1;
-  left: calc(9 * var(--px));
-  top: 0;
+  /* In flow (not absolute) so the band's height follows the text */
+  position: relative;
+  margin-left: calc(9 * var(--px));
   width: calc(358 * var(--px));
+  overflow-wrap: break-word;
   text-align: center;
   font-family: var(--font-serif);
   font-style: italic;
