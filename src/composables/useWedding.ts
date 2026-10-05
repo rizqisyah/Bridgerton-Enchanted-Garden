@@ -36,11 +36,14 @@ function applyTheme(themeData: any, weddingData: any) {
   if (fonts.hand) root.style.setProperty('--font-hand', fonts.hand)
 }
 
-export function useWedding() {
-  const slug = ref(resolveSlug())
-  const guestCode = ref(new URLSearchParams(window.location.search).get('to') || '')
+// Module-level so every section shares one slug, one request and one message listener
+const slug = ref(resolveSlug())
+const guestCode = ref(new URLSearchParams(window.location.search).get('to') || '')
+let inflight: Promise<void> | null = null
 
-  async function fetchWeddingData() {
+function fetchWeddingData(): Promise<void> {
+  if (inflight) return inflight
+  inflight = (async () => {
     state.value.loading = true
     state.value.error = null
     try {
@@ -65,21 +68,44 @@ export function useWedding() {
       console.warn('Restricted access bypassed for preview:', msg)
     } finally {
       state.value.loading = false
+      inflight = null
     }
-  }
+  })()
+  return inflight
+}
 
-  onMounted(() => {
-    if (!state.value.data && state.value.loading) {
-      fetchWeddingData()
-    }
-
-    const handleMessage = (event: MessageEvent) => {
-      if (event.data?.type === 'QINVI_PREVIEW_UPDATE' && event.data?.payload?.refetch) {
-        fetchWeddingData()
+/*
+ * Live preview from the admin dashboard (App.tsx posts { type, wedding, theme, refetch }).
+ * `wedding`/`theme` carry unsaved edits -- the Tema tab's sliders, colors, words -- and
+ * are shown at once; `refetch` reloads content saved in other tabs (pengantin, acara...).
+ * The older `payload.refetch` shape is still honoured.
+ */
+window.addEventListener('message', (event: MessageEvent) => {
+  const msg = event.data
+  if (msg?.type !== 'QINVI_PREVIEW_UPDATE') return
+  if (msg.wedding || msg.theme) {
+    let wedding = msg.wedding
+    if (wedding && typeof wedding.theme_override === 'string') {
+      try {
+        wedding = { ...wedding, theme_override: JSON.parse(wedding.theme_override) }
+      } catch {
+        wedding = { ...wedding, theme_override: {} }
       }
     }
-    window.addEventListener('message', handleMessage)
-    return () => window.removeEventListener('message', handleMessage)
+    const current = state.value.data || {}
+    state.value.data = {
+      ...current,
+      ...(wedding ? { wedding: { ...(current.wedding || {}), ...wedding } } : {}),
+      ...(msg.theme ? { theme: msg.theme } : {}),
+    }
+    applyTheme(state.value.data.theme, state.value.data.wedding)
+  }
+  if (msg.refetch || msg.payload?.refetch) fetchWeddingData()
+})
+
+export function useWedding() {
+  onMounted(() => {
+    if (!state.value.data) fetchWeddingData()
   })
 
   const wedding = computed(() => state.value.data?.wedding ?? null)
