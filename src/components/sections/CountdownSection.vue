@@ -23,13 +23,24 @@ import { googleCalendarUrl } from '../../lib/calendar'
 import { BAND_HEIGHT, LAYERS } from '../../lib/bands/countdown'
 
 const { el, shown } = useReveal(0.15)
-const { acara, lang, coupleNickname } = useWedding()
+const { acara, lang, coupleNickname, wedding } = useWedding()
 const events = computed(() => [...(acara.value as any[])].sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0)))
 
-// Same event the countdown runs to. Without a dated acara (theme preview) the button
-// stays the design's static plate.
+/*
+ * "Save the Date" is the reception: the acara titled Resepsi (any case, e.g. "Resepsi
+ * Pernikahan", "Wedding Reception"), else the second one -- the Resepsi band's slot --
+ * else the only one there is. Both the countdown and the calendar button use it.
+ */
+const saveTheDate = computed(() => {
+  const list = events.value
+  return (
+    list.find((e) => /resepsi|reception/i.test(String(e.title ?? ''))) ?? list[1] ?? list[0] ?? null
+  )
+})
+
+// Without a dated acara (theme preview) the button stays the design's static plate.
 const calendarUrl = computed(() => {
-  const e = events.value[0]
+  const e = saveTheDate.value
   if (!e) return ''
   // The invitation itself, without the guest's ?to= code
   const pageUrl = `${window.location.origin}${window.location.pathname}`
@@ -45,8 +56,16 @@ const calendarUrl = computed(() => {
 const DESIGN_DATE = '2026-08-02'
 const DESIGN_TIME = '12:00'
 
+/*
+ * The countdown runs to the wedding's own "Tanggal Countdown" (General settings, a
+ * timestamp with its zone, so it is the exact instant everywhere). Without one it falls
+ * back to the Save the Date acara's start, then to the design's date.
+ */
 const target = computed(() => {
-  const e = events.value[0]
+  const raw = wedding.value?.countdown_date
+  const set = raw ? new Date(raw) : null
+  if (set && !Number.isNaN(set.getTime())) return set
+  const e = saveTheDate.value
   return e
     ? parseEventStart(e.event_date, e.event_time)
     : parseEventStart(DESIGN_DATE, DESIGN_TIME)
