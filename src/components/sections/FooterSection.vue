@@ -94,11 +94,11 @@ const layers = computed(() =>
     <!-- 2712:323 — Ibarra Real Nova 14/20 Italic +1%, #000000. Inline so pre-wrap
          doesn't render the template's indentation. -->
     <p v-if="closingMessage" ref="bodyRef" class="footer__body" style="white-space: pre-wrap;">{{ closingMessage.trim() }}</p>
-    <p v-else-if="lang === 'english'" class="footer__body">
+    <p v-else-if="lang === 'english'" ref="bodyRef" class="footer__body">
       Your blessings and prayers bring joy to us. May Allah SWT bless our marriage. Thank you for your prayers and love.<br />
       Wassalamu'alaikum warahmatullahi wabarakatuh.
     </p>
-    <p v-else class="footer__body">
+    <p v-else ref="bodyRef" class="footer__body">
       Doa restu Bapak/Ibu/Saudara/i menjadi kebahagiaan bagi kami. Semoga Allah SWT memberkahi
       pernikahan kami. Terima kasih atas doa dan kasih sayangnya.<br />
       Wassalamu'alaikum warahmatullahi wabarakatuh.

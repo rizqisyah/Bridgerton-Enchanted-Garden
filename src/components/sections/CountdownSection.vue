@@ -249,7 +249,6 @@ function cellBox(cx: number) {
 
 a.countdown__cal {
   cursor: pointer;
-  transition: background-color 200ms ease-out;
 }
 
 a.countdown__cal:hover,

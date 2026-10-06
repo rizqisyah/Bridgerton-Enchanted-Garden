@@ -12,7 +12,9 @@ const state = ref<{
 })
 
 /*
- * Admin "Tema" colors/fonts -> the tokens this design actually uses (style/tokens.css).
+ * Admin "Tema" base colors -> the tokens this design actually uses (style/tokens.css).
+ * Fonts are per element only (the --ov-* vars below): a font token is shared by headings,
+ * names and labels alike, so swapping it would restyle far more than the one setting.
  * Only the wedding's own overrides apply: the theme row's defaults are the design's own
  * values already, and applying them would just repaint the Figma colors. Anything not
  * overridden is removed again, so clearing a color in the live preview restores the
@@ -24,14 +26,6 @@ const COLOR_TOKENS: Record<string, string[]> = {
   accent: ['--gold', '--gold-brown'],
   bg_body: ['--paper', '--sheet-bg'],
 }
-const FONT_TOKENS: Record<string, string[]> = {
-  headline: ['--font-display'],
-  body: ['--font-body'],
-  script: ['--font-script'],
-  accent: ['--font-heading-script'],
-  italic: ['--font-serif'],
-}
-
 // Admin font values may carry SQL-style doubled quotes or "+" from Google Fonts names
 const cleanFont = (value: string) => value.replace(/''/g, "'").replace(/"/g, "'").replace(/\+/g, ' ')
 
@@ -70,10 +64,6 @@ function applyTheme(_themeData: any, weddingData: any) {
 
   for (const [key, tokens] of Object.entries(COLOR_TOKENS)) {
     const value = typeof colors[key] === 'string' ? colors[key].trim() : ''
-    for (const t of tokens) value ? root.style.setProperty(t, value) : root.style.removeProperty(t)
-  }
-  for (const [key, tokens] of Object.entries(FONT_TOKENS)) {
-    const value = typeof fonts[key] === 'string' ? cleanFont(fonts[key].trim()) : ''
     for (const t of tokens) value ? root.style.setProperty(t, value) : root.style.removeProperty(t)
   }
 
